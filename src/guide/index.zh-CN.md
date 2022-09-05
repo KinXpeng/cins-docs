@@ -1,7 +1,7 @@
 ---
 nav:
-  title: 文档
-  path: /docs
+  title: 指南
+  path: /guide
 ---
 
 ## 介绍

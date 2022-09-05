@@ -1,18 +1,18 @@
 ---
 nav:
-  title: 组件
-  path: /components
+  title: 方法库
+  path: /library
 ---
 
-## Foo
+## Com
 
 Demo:
 
 ```tsx
 import React from 'react';
-import { Foo } from 'cins-docs';
+import { Com } from 'cins-docs';
 
-export default () => <Foo title="First Demo" />;
+export default () => <Com title="First Demo" />;
 ```
 
 More skills for writing demo: https://d.umijs.org/guide/basic#write-component-demo

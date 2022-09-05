@@ -9,6 +9,8 @@ export default defineConfig({
   outputPath: 'docs-dist',
   // publicPath:'./',
   mode: 'site',
+  // 开启mfsu
+  mfsu: {},
   // 多语言配置方式如下
   locales: [
     ['en-US', 'English'],
@@ -46,6 +48,43 @@ export default defineConfig({
       {
         title: 'GitHub',
         path: 'https://github.com/KinXpeng/cins-npm',
+      },
+    ],
+  },
+  // 菜单配置
+  menus: {
+    '/library': [
+      {
+        title: 'Changelog',
+        path: '/library/changelog',
+        children: [
+          // 菜单子项（可选）
+          'library/changelog/index.md',
+        ],
+      },
+      {
+        title: 'Test',
+        path: '/library/test',
+        children: ['library/test/index.md'],
+      },
+    ],
+    '/zh-CN/library': [
+      // 省略，配置同上
+      {
+        title: '更新日志',
+        path: '/library/changelog',
+        children: [
+          // 菜单子项（可选）
+          'library/changelog/index.zh-CN.md',
+        ],
+      },
+      {
+        title: '测试',
+        path: '/library/test',
+        children: [
+          // 菜单子项（可选）
+          'library/test/index.zh-CN.md',
+        ],
       },
     ],
   },

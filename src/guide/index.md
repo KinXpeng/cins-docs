@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Docs
-  path: /docs
+  title: Guide
+  path: /guide
 ---
 
 ## Introduction
