@@ -4,6 +4,6 @@ nav:
   path: /guide
 ---
 
-## Introduction
+## What is cins?
 
 About `cins` library,it contains many common methods and some regular expressions.
