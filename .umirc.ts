@@ -33,6 +33,10 @@ export default defineConfig({
         title: 'GitHub',
         path: 'https://github.com/KinXpeng/cins-npm',
       },
+      // {
+      //   title: 'Usually',
+      //   path: '/usually',
+      // },
     ],
     'zh-CN': [
       null, // null 值代表保留约定式生成的导航，只做增量配置
@@ -49,6 +53,10 @@ export default defineConfig({
         title: 'GitHub',
         path: 'https://github.com/KinXpeng/cins-npm',
       },
+      // {
+      //   title: '通用',
+      //   path: '/usually',
+      // },
     ],
   },
   // 菜单配置
@@ -85,6 +93,48 @@ export default defineConfig({
           // 菜单子项（可选）
           'library/test/index.zh-CN.md',
         ],
+      },
+    ],
+
+    '/usually': [
+      {
+        title: 'Introduction',
+        path: '/usually/introduction',
+        children: [
+          // 菜单子项（可选）
+          'usually/introduction/index.md',
+        ],
+      },
+      {
+        title: 'Regex',
+        path: '/usually/regex',
+        children: ['usually/regex/index.md'],
+      },
+      {
+        title: 'Common',
+        path: '/usually/common',
+        children: ['usually/common/index.md'],
+      },
+    ],
+    '/zh-CN/usually': [
+      // 省略，配置同上
+      {
+        title: '介绍',
+        path: '/usually/introduction',
+        children: [
+          // 菜单子项（可选）
+          'usually/introduction/index.zh-CN.md',
+        ],
+      },
+      {
+        title: '正则',
+        path: '/usually/regex',
+        children: ['usually/regex/index.zh-CN.md'],
+      },
+      {
+        title: '常用',
+        path: '/usually/common',
+        children: ['usually/common/index.zh-CN.md'],
       },
     ],
   },
