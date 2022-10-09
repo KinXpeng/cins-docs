@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Common
+  title: Location
   path: /usually
 ---
 

@@ -3,8 +3,8 @@ import { defineConfig } from 'dumi';
 export default defineConfig({
   title: 'cins',
   favicon:
-    'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
-  logo: 'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
+    'https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/logo_net.png?versionId=CAEQOBiBgMDLq.DsnRgiIGE2YzFkZDY4Njc2ZDQ5MzdhMWU5ZTM5YWE1NzM0YjYx',
+  logo: 'https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/logo_net.png?versionId=CAEQOBiBgMDLq.DsnRgiIGE2YzFkZDY4Njc2ZDQ5MzdhMWU5ZTM5YWE1NzM0YjYx',
   // base: '/',
   outputPath: 'docs-dist',
   // publicPath:'./',
@@ -33,10 +33,6 @@ export default defineConfig({
         title: 'GitHub',
         path: 'https://github.com/KinXpeng/cins-npm',
       },
-      // {
-      //   title: 'Usually',
-      //   path: '/usually',
-      // },
     ],
     'zh-CN': [
       null, // null 值代表保留约定式生成的导航，只做增量配置
@@ -53,10 +49,6 @@ export default defineConfig({
         title: 'GitHub',
         path: 'https://github.com/KinXpeng/cins-npm',
       },
-      // {
-      //   title: '通用',
-      //   path: '/usually',
-      // },
     ],
   },
   // 菜单配置
@@ -100,20 +92,19 @@ export default defineConfig({
       {
         title: 'Introduction',
         path: '/usually/introduction',
-        children: [
-          // 菜单子项（可选）
-          'usually/introduction/index.md',
-        ],
       },
       {
         title: 'Regex',
         path: '/usually/regex',
-        children: ['usually/regex/index.md'],
+      },
+      {
+        title: 'Location',
+        path: '/usually/location',
       },
       {
         title: 'Common',
         path: '/usually/common',
-        children: ['usually/common/index.md'],
+        children: ['usually/common/upload/index.md', 'usually/common/cookie/index.md'],
       },
     ],
     '/zh-CN/usually': [
@@ -129,12 +120,15 @@ export default defineConfig({
       {
         title: '正则',
         path: '/usually/regex',
-        children: ['usually/regex/index.zh-CN.md'],
+      },
+      {
+        title: '位置',
+        path: '/usually/location',
       },
       {
         title: '常用',
         path: '/usually/common',
-        children: ['usually/common/index.zh-CN.md'],
+        children: ['usually/common/upload/index.zh-CN.md', 'usually/common/cookie/index.zh-CN.md'],
       },
     ],
   },

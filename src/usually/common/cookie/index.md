@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Common
+  title: Cookie
   path: /usually
 ---
 
