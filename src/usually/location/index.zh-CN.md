@@ -4,7 +4,7 @@ nav:
   path: /usually
 ---
 
-## H5 获取位置
+## H5 获取位置（JS）
 
 ```js
 /**
@@ -38,7 +38,52 @@ const getLocation = () => {
 };
 ```
 
-## 腾讯地图 API
+## 百度地图经纬度转为腾讯地图经纬度（JS）
+
+```js
+/**
+ * 百度地图经纬度转为腾讯地图经纬度
+ * @param {Number} lat
+ * @param {Number} lng
+ * @returns
+ */
+const bdMapToTxMap = (lat, lng) => {
+  let pi = (3.14159265358979324 * 3000.0) / 180.0;
+  let x = lng - 0.0065;
+  let y = lat - 0.006;
+  let z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * pi);
+  let theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * pi);
+  lng = z * Math.cos(theta);
+  lat = z * Math.sin(theta);
+  return { lng: lng, lat: lat };
+};
+```
+
+## 腾讯地图转百度地图经纬度（JS）
+
+```js
+/**
+ * 腾讯地图转百度地图经纬度
+ * @param {Number} lat
+ * @param {Number} lng
+ * @returns
+ */
+const txMapToBdMap = (lng, lat) => {
+  let x_pi = (3.14159265358979324 * 3000.0) / 180.0;
+  let x = lng;
+  let y = lat;
+  let z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
+  let theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
+  let lngs = z * Math.cos(theta) + 0.0065;
+  let lats = z * Math.sin(theta) + 0.006;
+  return {
+    lng: lngs,
+    lat: lats,
+  };
+};
+```
+
+## 腾讯地图 API（JS）
 
 - 请求 `API` 时可能会遇到跨域问题，可采用 `jsonp` 请求解决跨域。
 - 获取 [`jsonp`](https://kinxpeng.oss-cn-beijing.aliyuncs.com/files/cins-docs/jsonp.js?versionId=CAEQOBiBgICcsJnunRgiIGVmY2YxNTY1NTI3OTRkZjQ5OTU1Y2EwN2UwMjQ0NGMx) 文件。

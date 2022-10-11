@@ -1,6 +1,6 @@
 ---
 nav:
-  title: 方法库
+  title: 库
   path: /library
 ---
 

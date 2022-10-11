@@ -1,6 +1,6 @@
 ---
 hero:
-  title: cins
+  title: 请移步中文版，英文版敬请期待。。。
   desc: 📖 A library of common methods for easy development
   actions:
     - text: Getting Started

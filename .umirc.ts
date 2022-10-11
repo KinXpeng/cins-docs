@@ -94,6 +94,10 @@ export default defineConfig({
         path: '/usually/introduction',
       },
       {
+        title: 'Common',
+        path: '/usually/common',
+      },
+      {
         title: 'Regex',
         path: '/usually/regex',
       },
@@ -102,9 +106,8 @@ export default defineConfig({
         path: '/usually/location',
       },
       {
-        title: 'Common',
-        path: '/usually/common',
-        children: ['usually/common/upload/index.md', 'usually/common/cookie/index.md'],
+        title: 'Date & Time',
+        path: '/usually/datetime',
       },
     ],
     '/zh-CN/usually': [
@@ -118,6 +121,10 @@ export default defineConfig({
         ],
       },
       {
+        title: '常用',
+        path: '/usually/common',
+      },
+      {
         title: '正则',
         path: '/usually/regex',
       },
@@ -126,9 +133,8 @@ export default defineConfig({
         path: '/usually/location',
       },
       {
-        title: '常用',
-        path: '/usually/common',
-        children: ['usually/common/upload/index.zh-CN.md', 'usually/common/cookie/index.zh-CN.md'],
+        title: '日期时间',
+        path: '/usually/datetime',
       },
     ],
   },
