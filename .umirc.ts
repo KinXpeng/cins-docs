@@ -109,6 +109,10 @@ export default defineConfig({
         title: 'Date & Time',
         path: '/usually/datetime',
       },
+      {
+        title: 'Http',
+        path: '/usually/http',
+      },
     ],
     '/zh-CN/usually': [
       // 省略，配置同上
@@ -135,6 +139,10 @@ export default defineConfig({
       {
         title: '日期时间',
         path: '/usually/datetime',
+      },
+      {
+        title: '请求',
+        path: '/usually/http',
       },
     ],
   },
