@@ -1,6 +1,6 @@
 ---
 hero:
-  title: cins
+  title: CINS
   desc: 📖 为便捷开发而生的方法库，常用方法统统齐全，一键开启！
   actions:
     - text: 快速上手

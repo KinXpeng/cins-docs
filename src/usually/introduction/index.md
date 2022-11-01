@@ -4,6 +4,7 @@ nav:
   path: /usually
 ---
 
-## Introduction
+## Features
 
-About `cins` library,it contains many common methods and some regular expressions.
+- No download dependencies, out of the box!
+- Collected a variety of common methods, such as RE, upload and get location, etc...

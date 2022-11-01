@@ -331,3 +331,40 @@ const foreachTree = (
   }
 };
 ```
+
+## 监听当前窗口状态
+
+```js
+document.addEventListener("visibilitychange", () => {
+  console.log(document.visibilityState); // visible/hidden
+});
+```
+
+## Web Share API
+
+- navigator.share()：返回一个promise，如果分享成功的话，该promise将会resolve。该接口会调用原生分享机制，并接收你想分享的数据作为参数。注意，它只能在用户按下链接或按钮时调用。也就是说，它需要transient activation（瞬时激活）。
+
+```js
+/**
+ * 页面分享
+ * @param url 要分享的链接
+ * @param text 要分享的文本
+ * @param title 要分享的标题
+ * @param files 表示要分享的File对象数组
+ * */
+
+// let shareData = {
+//   url:url,
+//   text:text,
+//   title:title,
+//   files:files
+// };
+
+const shareQuote = async (shareData) => {
+  try {
+    await navigator.share(shareData);
+  } catch (error) {
+    console.error(error);
+  }
+};
+```
