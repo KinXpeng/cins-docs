@@ -1,4 +1,4 @@
-/* 输入框抖动 S */
+/* apply-shake S */
 @keyframes shake {
   10%,
   90% {
@@ -23,22 +23,9 @@
 }
 .apply-shake-input {
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 .apply-shake-input > input {
-  width: 70%;
-  border: 1px solid #ccc;
-  outline: none;
+  width: 75%;
 }
-.apply-shake-input > button {
-  width: 25%;
-  color: #fff;
-  background-color: #589ff8;
-  border: 1px solid #589ff8;
-  cursor: pointer;
-}
-.apply-shake-input > button:active {
-  background-color: #341cf8;
-}
-/* 输入框抖动 E */
+/* apply-shake E */

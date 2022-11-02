@@ -63,7 +63,7 @@ export default defineConfig({
         ],
       },
       {
-        title: 'CSS',
+        title: 'Choiceness CSS',
         path: '/library/css',
         // children: ['library/css/index.md'],
       },
@@ -79,7 +79,7 @@ export default defineConfig({
         ],
       },
       {
-        title: 'CSS',
+        title: '精选CSS',
         path: '/library/css',
         // children: [
         //   // 菜单子项（可选）
