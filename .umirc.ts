@@ -38,8 +38,8 @@ export default defineConfig({
       null, // null 值代表保留约定式生成的导航，只做增量配置
       // {
       //   title: '我有二级导航',
-      //   // path: '链接是可选的',
-      //   // 可通过如下形式嵌套二级导航菜单，目前暂不支持更多层级嵌套：
+      //   path: '链接是可选的',
+      //   可通过如下形式嵌套二级导航菜单，目前暂不支持更多层级嵌套：
       //   children: [
       //     { title: '第一项', path: 'https://d.umijs.org' },
       //     { title: '第二项', path: '/guide' },
@@ -63,9 +63,9 @@ export default defineConfig({
         ],
       },
       {
-        title: 'Test',
-        path: '/library/test',
-        children: ['library/test/index.md'],
+        title: 'CSS',
+        path: '/library/css',
+        // children: ['library/css/index.md'],
       },
     ],
     '/zh-CN/library': [
@@ -79,12 +79,12 @@ export default defineConfig({
         ],
       },
       {
-        title: '测试',
-        path: '/library/test',
-        children: [
-          // 菜单子项（可选）
-          'library/test/index.zh-CN.md',
-        ],
+        title: 'CSS',
+        path: '/library/css',
+        // children: [
+        //   // 菜单子项（可选）
+        //   'library/css/index.zh-CN.md',
+        // ],
       },
     ],
 

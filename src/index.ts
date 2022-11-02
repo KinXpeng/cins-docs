@@ -1,2 +1,2 @@
 // import './library/changelog';
-export { default as Com } from './library/test';
+// export { Shake } from './library/css/components/shake';

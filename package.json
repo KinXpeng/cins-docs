@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "cins-docs",
+  "name": "cins-ui",
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",
