@@ -55,11 +55,12 @@ export default defineConfig({
   menus: {
     '/library': [
       {
-        title: 'Changelog',
-        path: '/library/changelog',
+        title: 'Overview',
+        path: '/library/overview',
         children: [
           // 菜单子项（可选）
-          'library/changelog/index.md',
+          'library/overview/changelog/index.md',
+          'library/overview/introduction/index.md',
         ],
       },
       {
@@ -71,11 +72,12 @@ export default defineConfig({
     '/zh-CN/library': [
       // 省略，配置同上
       {
-        title: '更新日志',
-        path: '/library/changelog',
+        title: '总览',
+        path: '/library/overview',
         children: [
           // 菜单子项（可选）
-          'library/changelog/index.zh-CN.md',
+          'library/overview/changelog/index.zh-CN.md',
+          'library/overview/introduction/index.zh-CN.md',
         ],
       },
       {
