@@ -4,7 +4,7 @@ nav:
   path: /usually
 ---
 
-## License plate number 
+## License plate number
 
 ### General license plate
 
@@ -57,6 +57,19 @@ const isTrailerNumber = (str: string): boolean => {
 const isMobilePhone = (str: string): boolean => {
   const pattern =
     /^((13[0-9])|(14[0,1,4-9])|(15[0-3,5-9])|(16[2,5,6,7])|(17[0-8])|(18[0-9])|(19[0-3,5-9]))[0-9]{8}$/;
+  return pattern.test(str);
+};
+```
+
+## Phone number or landline number
+
+```ts
+/**
+ *	Mainland mobile phone number 11 digits
+ *  Landline: The area code:3-4 digits Number: 5-8 digits
+ */
+const isMobileOrLandline = (str: string): boolean => {
+  const pattern = /^((0\d{2,3}\d{5,8})|(1[3456789]\d{9}))$/;
   return pattern.test(str);
 };
 ```

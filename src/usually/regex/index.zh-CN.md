@@ -61,6 +61,19 @@ const isMobilePhone = (str: string): boolean => {
 };
 ```
 
+## 手机号或者座机号
+
+```ts
+/**
+ *	大陆手机号码11位数
+ *  座机: 区号3-4位 号码: 5-8位
+ */
+const isMobileOrLandline = (str: string): boolean => {
+  const pattern = /^((0\d{2,3}\d{5,8})|(1[3456789]\d{9}))$/;
+  return pattern.test(str);
+};
+```
+
 ## 证件号
 
 ```ts
