@@ -4,6 +4,30 @@ nav:
   path: /usually
 ---
 
+## 正则语法参考
+
+<div style="padding:0 10px">
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">.</span> - 除换行符以外的所有字符。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">^</span> - 字符串开头。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">$</span> - 字符串结尾。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">\d,\w,\s</span> - 匹配数字、字符、空格。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">\D,\W,\S</span> - 匹配非数字、非字符、非空格。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">[abc]</span> - 匹配 a、b 或 c 中的一个字母。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">[a-z]</span> - 匹配 a 到 z 中的一个字母。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">[^abc]</span> - 匹配除了 a、b 或 c 中的其他字母。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">aa|bb</span> - 匹配 aa 或 bb。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">?</span> - 0 次或 1 次匹配。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">*</span> - 匹配 0 次或多次。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">+</span> - 匹配 1 次或多次。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">{n}</span> - 匹配 n 次。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">n,</span> - 匹配 n 次以上。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">{m,n}</span> - 最少 m 次，最多 n 次匹配。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">(expr)</span> - 捕获 expr 子模式,以 \1 使用它。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">(?:expr)</span> - 忽略捕获的子模式。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">(?=expr)</span> - 正向预查模式 expr。</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">(?!expr)</span> - 负向预查模式 expr。</p>
+</div>
+
 ## 车牌号
 
 ### 一般车牌

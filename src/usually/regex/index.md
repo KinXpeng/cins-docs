@@ -4,6 +4,30 @@ nav:
   path: /usually
 ---
 
+## Regular syntax reference
+
+<div style="padding:0 10px">
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">.</span> - All characters except line breaks.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">^</span> - The beginning of a string.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">$</span> - End of a string.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">\d,\w,\s</span> - Matches digits, characters, and Spaces.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">\D,\W,\S</span> - Matches non-digits, non-characters, and non-spaces.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">[abc]</span> - Matches a letter in a, b, or c.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">[a-z]</span> - Matches a letter from a to z.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">[^abc]</span> - Matches any letter other than a, b, or c.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">aa|bb</span> - Matches aa or bb.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">?</span> - 0 or 1 matches.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">*</span> - Matches 0 or more times.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">+</span> - Match 1 or more times.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">{n}</span> - Match n times.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">n,</span> - Matches more than n times.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">{m,n}</span> - At least m matches and at most n matches.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">(expr)</span> - Capture the expr subpattern and use it with \1.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">(?:expr)</span> - The captured subpattern is ignored.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">(?=expr)</span> - Forward precheck mode expr.</p>
+  <p style="color:#8e8c84;margin:4px 0"><span style="color:#e83e8c;font-weight:bold">(?!expr)</span> - Negative pre-check mode expr.</p>
+</div>
+
 ## License plate number
 
 ### General license plate
