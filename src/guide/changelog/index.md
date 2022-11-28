@@ -1,12 +1,12 @@
 ---
 nav:
-  title: Overview
-  path: /library
+  title: Changelog
+  path: /guide
 ---
 
 ## Changelog
 
-### Common methods
+### Common
 
 - 2002/11/28 Common - Added Deep copy
 - 2002/11/18 Regex - Added regular syntax reference.

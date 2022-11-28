@@ -53,13 +53,42 @@ export default defineConfig({
   },
   // 菜单配置
   menus: {
+    '/guide': [
+      {
+        title: 'Guide',
+        path: '/guide/what',
+        children: [
+          // 菜单子项（可选）
+          'guide/what/introduction/index.md',
+        ],
+      },
+      {
+        title: 'Changelog',
+        path: '/guide/changelog',
+      },
+    ],
+    '/zh-CN/guide': [
+      // 省略，配置同上
+      {
+        title: '指南',
+        path: '/guide/what',
+        children: [
+          // 菜单子项（可选）
+          'guide/what/introduction/index.zh-CN.md',
+        ],
+      },
+      {
+        title: '更新日志',
+        path: '/guide/changelog',
+      },
+    ],
+
     '/library': [
       {
         title: 'Overview',
         path: '/library/overview',
         children: [
           // 菜单子项（可选）
-          'library/overview/changelog/index.md',
           'library/overview/introduction/index.md',
         ],
       },
@@ -76,7 +105,6 @@ export default defineConfig({
         path: '/library/overview',
         children: [
           // 菜单子项（可选）
-          'library/overview/changelog/index.zh-CN.md',
           'library/overview/introduction/index.zh-CN.md',
         ],
       },
