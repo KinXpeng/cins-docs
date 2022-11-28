@@ -335,14 +335,14 @@ const foreachTree = (
 ## 监听当前窗口状态
 
 ```js
-document.addEventListener("visibilitychange", () => {
+document.addEventListener('visibilitychange', () => {
   console.log(document.visibilityState); // visible/hidden
 });
 ```
 
 ## Web Share API
 
-- navigator.share()：返回一个promise，如果分享成功的话，该promise将会resolve。该接口会调用原生分享机制，并接收你想分享的数据作为参数。注意，它只能在用户按下链接或按钮时调用。也就是说，它需要transient activation（瞬时激活）。
+- navigator.share()：返回一个 promise，如果分享成功的话，该 promise 将会 resolve。该接口会调用原生分享机制，并接收你想分享的数据作为参数。注意，它只能在用户按下链接或按钮时调用。也就是说，它需要 transient activation（瞬时激活）。
 
 ```js
 /**
@@ -366,5 +366,41 @@ const shareQuote = async (shareData) => {
   } catch (error) {
     console.error(error);
   }
+};
+```
+
+## 深拷贝
+
+```js
+/**
+ * 深拷贝
+ * @param { object } obj
+ * @return { object } obj
+ */
+const deepClone = (obj, hash = new WeakMap()) => {
+  if (obj == null) {
+    return;
+  }
+  if (obj instanceof Date) {
+    return new Date(obj);
+  }
+  if (obj instanceof RegExp) {
+    return new RegExp(obj);
+  }
+  //将以上几种特殊类型直接copy返回
+  if (hash.has(obj)) {
+    return hash.get(obj); //查表,存在就不重复拷贝，解决循环冗余
+  }
+  let newobj = {};
+  //递归拷贝并存表
+  hash.set(obj, newobj);
+  for (let i in obj) {
+    if (obj[i] instanceof Object) {
+      newobj[i] = deepClone(obj[i], hash);
+    } else {
+      newobj[i] = obj[i];
+    }
+  }
+  return newobj;
 };
 ```

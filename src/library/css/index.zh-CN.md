@@ -47,3 +47,13 @@ export default () => {
   );
 };
 ```
+
+## 文字描边
+
+```tsx
+import React from 'react';
+import './styles/stroke.css';
+export default () => {
+  return <div className="stroke-text">你好，这里是CINS！</div>;
+};
+```

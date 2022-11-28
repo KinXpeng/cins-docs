@@ -17,10 +17,10 @@ nav:
 
 ```ts
 /**
- * @params cname cookie name 
+ * @params cname cookie name
  * @params cvalue cookie value
  * @params extime expiration time
-*/
+ */
 const set = (cname: string, cvalue: string, extime: number) => {
   // default 30 minutes
   if (!extime) {
@@ -37,7 +37,7 @@ const set = (cname: string, cvalue: string, extime: number) => {
 
 ```ts
 /**
- * @params name cookie name 
+ * @params name cookie name
  * @return cookie value
  * */
 const get = (name: string): string => {
@@ -335,7 +335,7 @@ const foreachTree = (
 ## Listens to the current window state
 
 ```js
-document.addEventListener("visibilitychange", () => {
+document.addEventListener('visibilitychange', () => {
   console.log(document.visibilityState); // visible/hidden
 });
 ```
@@ -366,5 +366,41 @@ const shareQuote = async (shareData) => {
   } catch (error) {
     console.error(error);
   }
+};
+```
+
+## Deep clone
+
+```js
+/**
+ * Deep clone
+ * @param { object } obj
+ * @return { object } obj
+ */
+const deepClone = (obj, hash = new WeakMap()) => {
+  if (obj == null) {
+    return;
+  }
+  if (obj instanceof Date) {
+    return new Date(obj);
+  }
+  if (obj instanceof RegExp) {
+    return new RegExp(obj);
+  }
+  // The above special types are returned by direct copy
+  if (hash.has(obj)) {
+    return hash.get(obj); // Look up the table, there is no duplicate copy, to solve the circular redundancy
+  }
+  let newobj = {};
+  // Recursively copy the coexistence table
+  hash.set(obj, newobj);
+  for (let i in obj) {
+    if (obj[i] instanceof Object) {
+      newobj[i] = deepClone(obj[i], hash);
+    } else {
+      newobj[i] = obj[i];
+    }
+  }
+  return newobj;
 };
 ```

@@ -47,3 +47,13 @@ export default () => {
   );
 };
 ```
+
+## Stroke of text
+
+```tsx
+import React from 'react';
+import './styles/stroke.css';
+export default () => {
+  return <div className="stroke-text">Hello,here is CINS！</div>;
+};
+```
