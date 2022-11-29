@@ -371,6 +371,17 @@ const shareQuote = async (shareData) => {
 
 ## 深拷贝
 
+### JSON.parse 的方式
+
+```js
+/**
+ * @param { object | array} obj
+ **/
+obj = JSON.parse(JSON.stringify(obj));
+```
+
+### hash 的方式
+
 ```js
 /**
  * 深拷贝

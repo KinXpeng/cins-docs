@@ -371,6 +371,17 @@ const shareQuote = async (shareData) => {
 
 ## Deep clone
 
+### JSON.parse
+
+```js
+/**
+ * @param { object | array} obj
+ **/
+obj = JSON.parse(JSON.stringify(obj));
+```
+
+### hash
+
 ```js
 /**
  * Deep clone
