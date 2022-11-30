@@ -39,7 +39,7 @@ const formatTime = (day, fmt, time) => {
   };
   // Gets the matching year replacement
   if (/(y+)/.test(fmt)) {
-    //RegExp.$1 The matching result is replaced by the corresponding length. 
+    //RegExp.$1 The matching result is replaced by the corresponding length.
     fmt = fmt.replace(RegExp.$1, (recent.getFullYear() + '').substr(4 - RegExp.$1.length));
   }
   for (let key in fmtObj) {
@@ -63,8 +63,7 @@ const formatTime = (day, fmt, time) => {
 /**
  * Day of the week by date (week of the day of return without date)
  * @param {String} date
- * @param {String} week
- * @returns
+ * @returns {String} week
  * Invoke the sample
  * dateToWeek('2022-09-20')
    // Tuesday
@@ -151,5 +150,52 @@ const timeToSec = (time) => {
  * */
 export const isWeekday = (date: string): boolean => {
   return new Date(date).getDay() % 6 !== 0;
+};
+```
+
+## The number of days in a month or year
+
+```ts
+/**
+ * Incoming Year and Month Gets the number of days in the month of the year
+ * @param { number } year
+ * @param { number } month
+ * @return { number } days
+ **/
+const getMonthDays = (year: number, month: number): number => {
+  const date = new Date(year, month, 0); // If the number of the current day is 0, js automatically processes it as the last day of the previous month
+  return date.getDate();
+};
+```
+
+## Every day of the year and month
+
+```ts
+/**
+ * Get each day of the specified year
+ * @param { number } year
+ * @param { number } month
+ * @return { Array<Item> }
+ **/
+interface Item {
+  yeardate: string;
+  date: string;
+}
+
+const getDateList = (year: number, month: number): Array<Item> => {
+  const _newdate = new Date(year, month, 0); // The number of the day is 0
+  const _length = _newdate.getDate();
+  month = month < 10 ? '0' + month : month;
+  const _result = [];
+  for (let i = 1; i <= _length; i++) {
+    i = i < 10 ? '0' + i : i;
+    const _yeardate = year + '-' + month + '-' + i;
+    const _date = month + '-' + i;
+    _result.push({
+      yeardate: _yeardate,
+      date: _date,
+    });
+  }
+  return _result;
 };
 ```

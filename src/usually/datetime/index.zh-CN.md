@@ -63,8 +63,7 @@ const formatTime = (day, fmt, time) => {
 /**
  * 根据日期返回星期几（不传日期返回当天的星期）
  * @param {String} date
- * @param {String} week
- * @returns
+ * @returns {String} week
  * 调用示例
  * dateToWeek('2022-09-20')
    // 二
@@ -152,5 +151,52 @@ const timeToSec = (time) => {
  * */
 export const isWeekday = (date: string): boolean => {
   return new Date(date).getDay() % 6 !== 0;
+};
+```
+
+## 某年某月的天数
+
+```ts
+/**
+ * 传入年份和月份 获取该年对应月份的天数
+ * @param { number } year
+ * @param { number } month
+ * @return { number } days
+ **/
+const getMonthDays = (year: number, month: number): number => {
+  const date = new Date(year, month, 0); //当天数为0 js自动处理为上一月的最后一天
+  return date.getDate();
+};
+```
+
+## 某年某月的每一天
+
+```ts
+/**
+ * 获取指定年月的每一天
+ * @param { number } year
+ * @param { number } month
+ * @return { Array<Item> }
+ **/
+interface Item {
+  yeardate: string;
+  date: string;
+}
+
+const getDateList = (year: number, month: number): Array<Item> => {
+  const _newdate = new Date(year, month, 0); // 当天数为0
+  const _length = _newdate.getDate();
+  month = month < 10 ? '0' + month : month;
+  const _result = [];
+  for (let i = 1; i <= _length; i++) {
+    i = i < 10 ? '0' + i : i;
+    const _yeardate = year + '-' + month + '-' + i;
+    const _date = month + '-' + i;
+    _result.push({
+      yeardate: _yeardate,
+      date: _date,
+    });
+  }
+  return _result;
 };
 ```

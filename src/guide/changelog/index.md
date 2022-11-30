@@ -8,6 +8,8 @@ nav:
 
 ### Common
 
+- 2002/11/30 Datetime - Added every day of a certain year and a certain month
+- 2002/11/30 Datetime - The number of days in a month and a year is added
 - 2002/11/28 Common - Added Deep copy
 - 2002/11/18 Regex - Added regular syntax reference.
 - 2022/11/17 Regex - Added regulars compatible with mobile phone numbers and landline numbers.
