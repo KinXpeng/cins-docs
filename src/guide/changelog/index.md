@@ -8,6 +8,7 @@ nav:
 
 ### Common
 
+- 2002/11/30 Common - Added Convert the data of json to URL parameters
 - 2002/11/30 Datetime - Added every day of a certain year and a certain month
 - 2002/11/30 Datetime - The number of days in a month and a year is added
 - 2002/11/28 Common - Added Deep copy

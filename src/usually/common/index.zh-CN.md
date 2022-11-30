@@ -142,6 +142,43 @@ const getSearchParams = () => {
 };
 ```
 
+## json 转 get 参数
+
+```ts
+/**
+ * 将json数据转换为URL参数
+ * @param { IJson } obj
+ * @return { string }
+ * */
+
+// 示例
+interface IJson {
+  id: number;
+  name: string;
+  address: string;
+  sex: boolean;
+  other: string;
+}
+let dataobj: IJson = {
+  id: 1,
+  name: 'test',
+  address: '北京市',
+  sex: true,
+  other: 'xxxxx',
+};
+// 结果 ==> id=1&name=test&address=北京市&sex=true&other=xxxxx
+const jsonToString = (obj: IJson): string => {
+  const _length: number = Object.keys(obj).length | 0;
+  let _str: string = '';
+  if (!_length) return _str;
+  for (let key in obj) {
+    _str += key + '=' + obj[key as keyof typeof dataobj] + '&';
+  }
+  _str = _str.slice(0, _str.length - 1);
+  return _str;
+};
+```
+
 ## 校验数据类型
 
 ```ts
