@@ -31,7 +31,7 @@ export default defineConfig({
       // },
       {
         title: 'GitHub',
-        path: 'https://github.com/KinXpeng/cins-npm',
+        path: 'https://github.com/KinXpeng/cins-docs',
       },
     ],
     'zh-CN': [
@@ -47,7 +47,7 @@ export default defineConfig({
       // },
       {
         title: 'GitHub',
-        path: 'https://github.com/KinXpeng/cins-npm',
+        path: 'https://github.com/KinXpeng/cins-docs',
       },
     ],
   },
