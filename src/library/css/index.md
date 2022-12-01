@@ -57,3 +57,18 @@ export default () => {
   return <div className="stroke-text">Hello,here is CINS！</div>;
 };
 ```
+
+## The site turns gray
+
+```tsx
+import React from 'react';
+import './styles/gray.css';
+export default () => {
+  return (
+    <div className="content">
+      <div className="gray-text">Default state, colorful!</div>
+      <div className="gray-text silence">Default state, colorful!</div>
+    </div>
+  );
+};
+```

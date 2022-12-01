@@ -57,3 +57,18 @@ export default () => {
   return <div className="stroke-text">你好，这里是CINS！</div>;
 };
 ```
+
+## 网站变成灰色效果
+
+```tsx
+import React from 'react';
+import './styles/gray.css';
+export default () => {
+  return (
+    <div className="content">
+      <div className="gray-text">默认状态，色彩斑斓！</div>
+      <div className="gray-text silence">默认状态，色彩斑斓！</div>
+    </div>
+  );
+};
+```
