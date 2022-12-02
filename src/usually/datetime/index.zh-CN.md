@@ -200,3 +200,59 @@ const getDateList = (year: number, month: number): Array<Item> => {
   return _result;
 };
 ```
+
+## 计算开始时间与时长的和
+
+```ts
+/**
+ * 获取单个指定块的结束时间
+ * @param { string } stime 15:40
+ * @param { number } duration 22
+ * @return { string } =>>>  16:02
+ */
+const getEndTime = (stime: string, duration: number) => {
+  let [hour, minute] = stime.split(':');
+  let _hour: string | number = Number(hour);
+  let _minute: string | number = Number(minute);
+  const _minutes = _minute + duration;
+  if (_minutes < 60) {
+    _minute += duration;
+    _minute = _minute < 10 ? '0' + _minute : _minute;
+  } else {
+    const _h = Math.floor(_minutes / 60);
+    let _m = _minutes - _h * 60;
+    _hour += _h;
+    _hour = _hour < 10 ? '0' + _hour : _hour;
+    _minute = _m < 10 ? '0' + _m : _m;
+  }
+  return _hour + ':' + _minute;
+};
+```
+
+## 获取两个时间之间的时长
+
+```ts
+/**
+ * 获取两个时间之间的时长
+ * @param { string } time1 15:40
+ * @param { string } time2 17:33
+ * @param { number } num 1 时段的标准时长，默认为一小时
+ * @param { number } type 'start' / 'end' // start算出来是正数，反之为负数
+ * @return { number } =>>>  1.8833333333333333 // 计算两个时间的差为num的倍数
+ */
+const timeToInteger = (time1: string, time2: string, num: number, type: string) => {
+  let [stime1, etime1]: Array<any> = time1.split(':');
+  let [stime2, etime2]: Array<any> = time2.split(':');
+  let h,
+    m = 0;
+  if (type == 'start') {
+    h = stime1 - stime2;
+    m = etime1 - etime2;
+  } else if (type == 'end') {
+    h = stime2 - stime1;
+    m = etime2 - etime1;
+  }
+  let decimals = m / (60 * num);
+  return (h as number) / num + decimals;
+};
+```
