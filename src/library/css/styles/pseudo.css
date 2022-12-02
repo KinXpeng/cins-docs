@@ -1,0 +1,17 @@
+.pseudo-text {
+  position: relative;
+  left: 40px;
+  height: 40px;
+  font-size: 30px;
+  line-height: 40px;
+}
+.pseudo-text::before {
+  position: absolute;
+  top: 4px;
+  left: -40px;
+  width: 34px;
+  height: 34px;
+  background: url(https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/schedul_warning.png)
+    center/cover;
+  content: '';
+}

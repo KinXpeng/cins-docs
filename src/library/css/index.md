@@ -72,3 +72,13 @@ export default () => {
   );
 };
 ```
+
+## Pseudo class to achieve the prompt icon effect
+
+```tsx
+import React from 'react';
+import './styles/pseudo.css';
+export default () => {
+  return <div className="pseudo-text">It's a reminder with an icon on it!</div>;
+};
+```

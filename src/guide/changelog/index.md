@@ -17,6 +17,7 @@ nav:
 
 ### The overview
 
+- 2002/12/02 CSS - Added pseudo class to achieve the prompt icon effect
 - 2002/12/01 CSS - Added the site turns gray
 - 2002/11/28 CSS - Added a text stroke
 - 2022/11/2 CSS - Added the input box jitter.

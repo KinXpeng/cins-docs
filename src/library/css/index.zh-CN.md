@@ -72,3 +72,13 @@ export default () => {
   );
 };
 ```
+
+## CSS 伪类实现提示语图标效果
+
+```tsx
+import React from 'react';
+import './styles/pseudo.css';
+export default () => {
+  return <div className="pseudo-text">这是一条有图标的提示语！</div>;
+};
+```
