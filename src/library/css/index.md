@@ -82,3 +82,32 @@ export default () => {
   return <div className="pseudo-text">It's a reminder with an icon on it!</div>;
 };
 ```
+
+## CSS Throttle
+
+```tsx
+import React from 'react';
+import { Button, message } from 'antd';
+import './styles/throttle.css';
+export default () => {
+  const throttleTips = () => {
+    message.success('The button has been clicked！');
+  };
+  return (
+    <div className="throttle-button">
+      <div className="button-wrap">
+        <Button type="primary" onClick={throttleTips}>
+          No throttling
+        </Button>
+        <span>（No break trigger）</span>
+      </div>
+      <div className="button-wrap">
+        <Button type="primary" onClick={throttleTips} className="ant-throttle">
+          Throttle
+        </Button>
+        <span>（2s trigger once）</span>
+      </div>
+    </div>
+  );
+};
+```

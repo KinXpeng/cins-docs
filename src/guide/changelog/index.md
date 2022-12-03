@@ -19,6 +19,7 @@ nav:
 
 ### The overview
 
+- 2002/12/03 CSS - Added **achieve button throttling effect by CSS.**
 - 2002/12/02 CSS - Added **pseudo class to achieve the prompt icon effect.**
 - 2002/12/01 CSS - Added **the site turns gray.**
 - 2002/11/28 CSS - Added **a text stroke.**

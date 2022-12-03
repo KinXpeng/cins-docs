@@ -1,0 +1,45 @@
+.throttle-button {
+  display: flex;
+  justify-content: space-between;
+}
+.throttle-button .button-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  user-select: none;
+}
+.throttle-button .button-wrap:first-child {
+  border-right: 1px solid #ccc;
+}
+@media (max-width: 1000px) {
+  .throttle-button {
+    display: block;
+  }
+  .throttle-button .button-wrap {
+    width: 100%;
+    margin-bottom: 10px;
+    border-right: none !important;
+  }
+}
+
+/* 使用节流 */
+.throttle-button .button-wrap .ant-throttle {
+  animation: throttle 2s step-end forwards;
+}
+.throttle-button .button-wrap .ant-throttle:active {
+  animation: none;
+}
+
+/* 节流样式 */
+
+@keyframes throttle {
+  from {
+    /* color: red; */
+    pointer-events: none;
+  }
+  to {
+    /* color: green; */
+    pointer-events: all;
+  }
+}

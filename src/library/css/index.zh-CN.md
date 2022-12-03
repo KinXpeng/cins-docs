@@ -82,3 +82,32 @@ export default () => {
   return <div className="pseudo-text">这是一条有图标的提示语！</div>;
 };
 ```
+
+## CSS 节流
+
+```tsx
+import React from 'react';
+import { Button, message } from 'antd';
+import './styles/throttle.css';
+export default () => {
+  const throttleTips = () => {
+    message.success('按钮已点击！');
+  };
+  return (
+    <div className="throttle-button">
+      <div className="button-wrap">
+        <Button type="primary" onClick={throttleTips}>
+          未节流
+        </Button>
+        <span>（不间断触发）</span>
+      </div>
+      <div className="button-wrap">
+        <Button type="primary" onClick={throttleTips} className="ant-throttle">
+          节流
+        </Button>
+        <span>（2s触发一次）</span>
+      </div>
+    </div>
+  );
+};
+```
