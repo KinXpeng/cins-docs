@@ -35,11 +35,9 @@
 
 @keyframes throttle {
   from {
-    /* color: red; */
     pointer-events: none;
   }
   to {
-    /* color: green; */
     pointer-events: all;
   }
 }
