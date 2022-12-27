@@ -122,10 +122,19 @@ export default defineConfig({
       {
         title: 'Introduction',
         path: '/usually/introduction',
+        children: [
+          // 菜单子项（可选）
+          'usually/introduction/index.md',
+        ],
       },
       {
         title: 'Common',
         path: '/usually/common',
+        children: [
+          // 菜单子项（可选）
+          'usually/common/group_first/index.md',
+          'usually/common/group_second/index.md',
+        ],
       },
       {
         title: 'Regex',
@@ -157,6 +166,11 @@ export default defineConfig({
       {
         title: '常用',
         path: '/usually/common',
+        children: [
+          // 菜单子项（可选）
+          'usually/common/group_first/index.zh-CN.md',
+          'usually/common/group_second/index.zh-CN.md',
+        ],
       },
       {
         title: '正则',

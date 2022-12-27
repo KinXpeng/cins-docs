@@ -1,28 +1,28 @@
 ---
 nav:
-  title: Usually
+  title: 常用方法
   path: /usually
 ---
 
-## Various methods commonly used
+## 分组一
 
-- A collection of methods that are commonly used but not very informative.
-- There are multiple solutions, and there are separate menus for those that fall into one category.
-- Although the methods are common and simple, they are useful.
-- Summary is not easy, don't spray if you don't like.
+- 汇集了一些常用但是内容不是很多的方法。
+- 关于有多种解决方式，归纳为一类的方法有单独菜单汇总。
+- 虽然方法都很常见且比较简单，但是很实用。
+- 汇总不易，不喜勿喷。
 
 ## Cookie
 
-### Set Cookie
+### 设置 Cookie
 
 ```ts
-/**
- * @params cname cookie name
- * @params cvalue cookie value
- * @params extime expiration time
- */
+/*
+  @params cname cookie名称 
+  @params cvalue cookie的值
+  @params extime 过期时间
+*/
 const set = (cname: string, cvalue: string, extime: number) => {
-  // default 30 minutes
+  //默认30分钟
   if (!extime) {
     extime = 30;
   }
@@ -33,13 +33,13 @@ const set = (cname: string, cvalue: string, extime: number) => {
 };
 ```
 
-### Get Cookie
+### 获取 Cookie
 
 ```ts
-/**
- * @params name cookie name
- * @return cookie value
- * */
+/*
+  @params name cookie名称 
+  @return cookie的值
+*/
 const get = (name: string): string => {
   const nameString = name + '=';
   const value = document.cookie.split(';').filter((item) => {
@@ -53,25 +53,25 @@ const get = (name: string): string => {
 };
 ```
 
-### Clear Cookie
+### 清除 Cookie
 
 ```ts
 /*
-  @params name cookie name
+  @params name cookie名称 
 */
 const clear = (name: string) => {
   set(name, '', -1);
 };
 ```
 
-## Upload
+## 上传
 
 ```ts
-/**
-  Unified Upload Method
-  @params type Upload File Type string
-  @params flag Whether multiple files can be uploaded  boolean
-  @params size Upload file size（The unit is KB） number
+/*
+  上传统一方法
+  @params type 上传文件类型 string
+  @params flag 是否支持多个文件上传  boolean
+  @params size 上传文件大小(单位为KB) number
 */
 const upload = (type: string, flag: boolean, size: number) => {
   return new Promise((resolve, reject) => {
@@ -81,9 +81,9 @@ const upload = (type: string, flag: boolean, size: number) => {
     input.accept = type;
     input.onchange = ({ target }) => {
       const files = (target as EventTarget & { files: FileList }).files;
-      let overSize = true; // Default not exceeding
+      let overSize = true; // 默认不超出
       if (size) {
-        // Limit the size of the
+        // 限制大小
         for (let key in files) {
           if (files[key].size && files[key].size / 1024 > size) {
             overSize = false;
@@ -93,7 +93,7 @@ const upload = (type: string, flag: boolean, size: number) => {
       if (overSize) {
         resolve(files);
       } else {
-        reject('Upload size out of limit!');
+        reject('上传大小超出限制！');
       }
     };
     input.click();
@@ -101,15 +101,15 @@ const upload = (type: string, flag: boolean, size: number) => {
 };
 ```
 
-## Address Bar Parameters
+## 地址栏参数
 
-### A single parameter
+### 单个参数
 
 ```ts
 /**
- * Get Address Bar Parameters
- * @param name Gets the name of the parameter
- * @return value The parameter value
+ * 获取地址栏参数
+ * @param name 获取参数的name
+ * @return value 参数值
  * */
 const urlParams = (name: string): string | null => {
   const url = window.location.href;
@@ -123,11 +123,11 @@ const urlParams = (name: string): string | null => {
 };
 ```
 
-### Multiple parameters
+### 多个参数
 
 ```ts
 /**
- * Analytical URL parameters
+ * 解析URL参数
  * @return Object
  * */
 const getSearchParams = () => {
@@ -142,11 +142,11 @@ const getSearchParams = () => {
 };
 ```
 
-## json to get parameter
+## json 转 get 参数
 
 ```ts
 /**
- * Convert the data of json to URL parameters
+ * 将json数据转换为URL参数
  * @param { IJson } obj
  * @return { string }
  * */
@@ -166,7 +166,7 @@ let dataobj: IJson = {
   sex: true,
   other: 'xxxxx',
 };
-// result ==> id=1&name=test&address=北京市&sex=true&other=xxxxx
+// 结果 ==> id=1&name=test&address=北京市&sex=true&other=xxxxx
 const jsonToString = (obj: IJson): string => {
   const _length: number = Object.keys(obj).length | 0;
   let _str: string = '';
@@ -179,12 +179,12 @@ const jsonToString = (obj: IJson): string => {
 };
 ```
 
-## Check data type
+## 校验数据类型
 
 ```ts
 /**
- * Check data type
- * @param obj data
+ * 校验数据类型
+ * @param obj 数据
  * @return string type
  * */
 const typeOf = (obj: any): string => {
@@ -192,13 +192,13 @@ const typeOf = (obj: any): string => {
 };
 ```
 
-## Debounce
+## 防抖
 
 ```ts
 /**
- * Debounce
- * @param function Function
- * @param time The time interval
+ * 防抖
+ * @param function 需要防抖的函数
+ * @param time 防抖时间间隔
  * */
 const debounce = (() => {
   let timer: any = null;
@@ -209,13 +209,13 @@ const debounce = (() => {
 })();
 ```
 
-## Throttle
+## 节流
 
 ```ts
 /**
- * Throttle
- * @param function Function
- * @param time The time interval
+ * 节流
+ * @param function 需要节流的函数
+ * @param time 节流时间间隔
  * */
 const throttle = (() => {
   let last: number = 0;
@@ -229,26 +229,26 @@ const throttle = (() => {
 })();
 ```
 
-## Cell phone number desensitization
+## 手机号脱敏
 
 ```ts
 /**
- * Cell phone number desensitization
- * @param mobile Phone number 13122223333 -> 131****3333
- * @return mobile Desensitized cell phone number
+ * 手机号脱敏
+ * @param mobile 手机号 13122223333 -> 131****3333
+ * @return mobile 已脱敏的手机号
  * */
 const hideMobile = (mobile: number | string) => {
   return String(mobile).replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2');
 };
 ```
 
-## Case and case conversion
+## 大小写转换
 
 ```ts
 /**
- * Case and case conversion
- * @param str The string to be converted
- * @param type 1-All uppercase 2-All lowercase 3-Capitalize the first letter
+ * 大小写转换
+ * @param str 待转换的字符串
+ * @param type 1-全大写 2-全小写 3-首字母大写
  * @return str
  * */
 const turnCase = (str: string, type: number) => {
@@ -265,11 +265,11 @@ const turnCase = (str: string, type: number) => {
 };
 ```
 
-## Andoird or ios
+## 判断手机是 Andoird 还是 IOS
 
 ```ts
 /**
- * Andoird or ios
+ * 判断手机是Andoird还是IOS
  * @return type
  * */
 const getOSType = (): string => {
@@ -286,13 +286,13 @@ const getOSType = (): string => {
 };
 ```
 
-## Array objects are de-weighted according to fields
+## 数组对象根据字段去重
 
 ```ts
 /**
- * Array objects are de-weighted according to fields
- * @param arr The array to be removed
- * @param key Based on the name of the field to be deleted
+ * 数组对象根据字段去重
+ * @param arr 要去重的数组
+ * @param key 根据去重的字段名
  * @return arr
  * */
 const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
@@ -309,7 +309,7 @@ const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
 };
 ```
 
-## Generate uuid
+## 生成 uuid
 
 ```ts
 /**
@@ -319,19 +319,19 @@ const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
 const uuid = () => {
   const temp_url = URL.createObjectURL(new Blob());
   const uuid = temp_url.toString();
-  URL.revokeObjectURL(temp_url); // Release this url
+  URL.revokeObjectURL(temp_url); //释放这个url
   return uuid.substring(uuid.lastIndexOf('/') + 1);
 };
 ```
 
-## Fuzzy search
+## 模糊搜索
 
 ```ts
 /**
- * Fuzzy search
- * @param list The original array
- * @param keyWord Keywords for query
- * @param attribute The array needs to retrieve attributes
+ * 模糊搜索
+ * @param list 原数组
+ * @param keyWord 查询的关键词
+ * @param attribute 数组需要检索属性
  * @return arr
  * */
 const fuzzyQuery = (list: Array<any>, keyWord: string, attribute: string) => {
@@ -346,14 +346,14 @@ const fuzzyQuery = (list: Array<any>, keyWord: string, attribute: string) => {
 };
 ```
 
-## Traverse the tree nodes
+## 遍历树节点
 
 ```ts
 /**
- * Traverse the tree nodes
- * @param data Tree data
- * @param callback The callback function
- * @param childrenName Array of child nodes
+ * 遍历树节点
+ * @param data 树数据
+ * @param callback 回调函数
+ * @param childrenName 子节点数组
  * */
 const foreachTree = (
   data: Array<any>,
@@ -369,7 +369,7 @@ const foreachTree = (
 };
 ```
 
-## Listens to the current window state
+## 监听当前窗口状态
 
 ```js
 document.addEventListener('visibilitychange', () => {
@@ -379,15 +379,15 @@ document.addEventListener('visibilitychange', () => {
 
 ## Web Share API
 
-- navigator.share()：Return a promise that will resolve if the share is successfu. This interface calls the native sharing mechanism and takes the data you want to share as an argument. Note that it can only be called when the user presses a link or button. In other words, it requires transient activation.
+- navigator.share()：返回一个 promise，如果分享成功的话，该 promise 将会 resolve。该接口会调用原生分享机制，并接收你想分享的数据作为参数。注意，它只能在用户按下链接或按钮时调用。也就是说，它需要 transient activation（瞬时激活）。
 
 ```js
 /**
- * Page to share
- * @param url Links to share
- * @param text Text to share
- * @param title Titles to share
- * @param files Represents an array of File objects to share
+ * 页面分享
+ * @param url 要分享的链接
+ * @param text 要分享的文本
+ * @param title 要分享的标题
+ * @param files 表示要分享的File对象数组
  * */
 
 // let shareData = {
@@ -406,9 +406,9 @@ const shareQuote = async (shareData) => {
 };
 ```
 
-## Deep clone
+## 深拷贝
 
-### JSON.parse
+### JSON.parse 的方式
 
 ```js
 /**
@@ -417,11 +417,11 @@ const shareQuote = async (shareData) => {
 obj = JSON.parse(JSON.stringify(obj));
 ```
 
-### hash
+### hash 的方式
 
 ```js
 /**
- * Deep clone
+ * 深拷贝
  * @param { object } obj
  * @return { object } obj
  */
@@ -435,12 +435,12 @@ const deepClone = (obj, hash = new WeakMap()) => {
   if (obj instanceof RegExp) {
     return new RegExp(obj);
   }
-  // The above special types are returned by direct copy
+  //将以上几种特殊类型直接copy返回
   if (hash.has(obj)) {
-    return hash.get(obj); // Look up the table, there is no duplicate copy, to solve the circular redundancy
+    return hash.get(obj); //查表,存在就不重复拷贝，解决循环冗余
   }
   let newobj = {};
-  // Recursively copy the coexistence table
+  //递归拷贝并存表
   hash.set(obj, newobj);
   for (let i in obj) {
     if (obj[i] instanceof Object) {

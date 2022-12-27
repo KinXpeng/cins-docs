@@ -256,3 +256,18 @@ const timeToInteger = (time1: string, time2: string, num: number, type: string) 
   return (h as number) / num + decimals;
 };
 ```
+
+## 获取某个日期位于当年的第几天
+
+```js
+/**
+ * 获取某个日期位于当年的第几天
+ * @param { string } date '2022-12-27'
+ * @return { number } =>>>  361
+ */
+const dateOfYear = (date) => {
+  date = new Date(date);
+  const _days = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+  return _days;
+};
+```
