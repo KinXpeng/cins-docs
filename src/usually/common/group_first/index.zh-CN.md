@@ -452,3 +452,50 @@ const deepClone = (obj, hash = new WeakMap()) => {
   return newobj;
 };
 ```
+
+### Map 的方式
+
+```js
+/**
+ * @param { object | array} obj
+ **/
+const deepClone = (obj) => {
+  const objectMap = new Map();
+  const _deepClone = (value) => {
+    const type = typeof value;
+    if (type !== 'object' || type === null) {
+      return value;
+    }
+    if (objectMap.has(value)) {
+      return objectMap.get(value);
+    }
+    const result = Array.isArray(value) ? [] : {};
+    objectMap.set(value, result);
+    for (const key in value) {
+      result[key] = _deepClone(value[key]);
+    }
+    return result;
+  };
+  return _deepClone(obj);
+};
+```
+
+### MessageChannel 的方式
+
+```js
+/**
+ * @param { object | array} obj
+ *  deepClone({ a: 1, b: [{ c: 1 }] }).then((res) => {
+ *    console.log(res);
+ *  });
+ **/
+const deepClone = (obj) => {
+  return new Promise((resolve) => {
+    const { port1, port2 } = new MessageChannel();
+    port1.postMessage(obj);
+    port2.onmessage = (msg) => {
+      resolve(msg.data);
+    };
+  });
+};
+```

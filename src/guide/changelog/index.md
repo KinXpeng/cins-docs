@@ -8,6 +8,9 @@ nav:
 
 ### Common
 
+- 2002/12/29 Datetime - Added **Count the number of days between two dates.**
+- 2002/12/29 Common(group first) - Added **Deep clone(MessageChannel).**
+- 2002/12/29 Common(group first) - Added **Deep clone(Map).**
 - 2002/12/27 Common(group second) - Added **Filter object attributes.**
 - 2002/12/27 Common(group second) - Added **Copy the text to the clipboard.**
 - 2002/12/27 Datetime - Added **Gets the day of the year in which a date is located.**

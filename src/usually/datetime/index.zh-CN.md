@@ -271,3 +271,21 @@ const dateOfYear = (date) => {
   return _days;
 };
 ```
+
+## 计算两个日期之间的天数
+
+```js
+/**
+ * 计算两个日期之间的天数
+ * @param { string } date1 '2022-12-27'
+ * @param { string } date2 '2022-12-28'
+ * @return { number }  =>>>  1
+ */
+const daysDistance = (date1, date2) => {
+  date1 = Date.parse(date1);
+  date2 = Date.parse(date2);
+  const _ms = date2 - date1;
+  const _days = Math.floor(_ms / (24 * 3600 * 1000));
+  return _days;
+};
+```
