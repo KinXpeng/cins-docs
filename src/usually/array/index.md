@@ -13,7 +13,7 @@ nav:
  * @param b There's object two to compare
  * @returns Returns true if the same is true, reverse if the opposite is true
  */
-function isObjectValueEqual<T>(a: T, b: T): boolean {
+const isObjectValueEqual = <T>(a: T, b: T): boolean => {
   if (!a || !b) return false;
   let aProps = Object.getOwnPropertyNames(a);
   let bProps = Object.getOwnPropertyNames(b);
@@ -30,7 +30,7 @@ function isObjectValueEqual<T>(a: T, b: T): boolean {
     }
   }
   return true;
-}
+};
 ```
 
 ## Array objects are de-weighted according to fields

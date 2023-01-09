@@ -13,7 +13,7 @@ nav:
  * @param b 要比较的对象二
  * @returns 相同返回 true，反之则反
  */
-function isObjectValueEqual<T>(a: T, b: T): boolean {
+const isObjectValueEqual = <T>(a: T, b: T): boolean => {
   if (!a || !b) return false;
   let aProps = Object.getOwnPropertyNames(a);
   let bProps = Object.getOwnPropertyNames(b);
@@ -30,7 +30,7 @@ function isObjectValueEqual<T>(a: T, b: T): boolean {
     }
   }
   return true;
-}
+};
 ```
 
 ## 数组对象根据字段去重
