@@ -114,3 +114,33 @@ const pickAttrs = (obj, ...props) => {
   return Object.fromEntries(Object.entries(obj).filter(([k]) => props.includes(k)));
 };
 ```
+
+## 数组、数组对象去重
+
+```ts
+/**
+ * 数组、数组对象去重
+ * @param arr 数组内容
+ * @param attr 需要去重的键值（数组对象）
+ * @returns
+ */
+declare type EmptyArrayType<T = any> = T[];
+declare type EmptyObjectType<T = any> = {
+  [key: string]: T;
+};
+const removeDuplicate = (arr: EmptyArrayType, attr?: any) => {
+  if (!Object.keys(arr).length) {
+    return arr;
+  } else {
+    if (attr) {
+      const obj: EmptyObjectType = {};
+      return arr.reduce((cur: EmptyArrayType[], item: EmptyArrayType) => {
+        obj[item[attr]] ? '' : (obj[item[attr]] = true && item[attr] && cur.push(item));
+        return cur;
+      }, []);
+    } else {
+      return [...new Set(arr)];
+    }
+  }
+};
+```

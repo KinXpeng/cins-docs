@@ -115,3 +115,33 @@ const pickAttrs = (obj, ...props) => {
   return Object.fromEntries(Object.entries(obj).filter(([k]) => props.includes(k)));
 };
 ```
+
+## Array, array object deweight
+
+```ts
+/**
+ * Array, array object deweight
+ * @param arr Array contents
+ * @param attr Key values to be de-duplicated (array objects）
+ * @returns
+ */
+declare type EmptyArrayType<T = any> = T[];
+declare type EmptyObjectType<T = any> = {
+  [key: string]: T;
+};
+const removeDuplicate = (arr: EmptyArrayType, attr?: any) => {
+  if (!Object.keys(arr).length) {
+    return arr;
+  } else {
+    if (attr) {
+      const obj: EmptyObjectType = {};
+      return arr.reduce((cur: EmptyArrayType[], item: EmptyArrayType) => {
+        obj[item[attr]] ? '' : (obj[item[attr]] = true && item[attr] && cur.push(item));
+        return cur;
+      }, []);
+    } else {
+      return [...new Set(arr)];
+    }
+  }
+};
+```
