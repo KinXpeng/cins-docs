@@ -21,17 +21,3 @@ const copyToClipboard = (text: string) => {
   return navigator.clipboard.writeText(text);
 };
 ```
-
-## 筛选对象属性
-
-```js
-/**
- * @param { Object } 对象
- * @param { string } 属性名（多个属性以逗号隔开）
- * @return { Object } 筛选后的对象
- * pickAttrs({a:1,b:2,c:3},'a','b') ==>>>> { a: 1, b: 2 }
- */
-const pickAttrs = (obj, ...props) => {
-  return Object.fromEntries(Object.entries(obj).filter(([k]) => props.includes(k)));
-};
-```

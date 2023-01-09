@@ -21,18 +21,3 @@ const copyToClipboard = (text: string) => {
   return navigator.clipboard.writeText(text);
 };
 ```
-
-## Filter object attributes
-
-```js
-/**
- * @param { Object } object
- * @param { string } attrName
- * @return { Object } The filtered object
- * pickAttrs({a:1,b:2,c:3},'a','b') ==>>>> { a: 1, b: 2 }
- *
- */
-const pickAttrs = (obj, ...props) => {
-  return Object.fromEntries(Object.entries(obj).filter(([k]) => props.includes(k)));
-};
-```

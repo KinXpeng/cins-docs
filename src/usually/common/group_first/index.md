@@ -286,29 +286,6 @@ const getOSType = (): string => {
 };
 ```
 
-## Array objects are de-weighted according to fields
-
-```ts
-/**
- * Array objects are de-weighted according to fields
- * @param arr The array to be removed
- * @param key Based on the name of the field to be deleted
- * @return arr
- * */
-const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
-  if (arr.length === 0) return;
-  let list: Array<any> = [];
-  const map: any = {};
-  arr.forEach((item) => {
-    if (!map[item[key]]) {
-      map[item[key]] = item;
-    }
-  });
-  list = Object.values(map);
-  return list;
-};
-```
-
 ## Generate uuid
 
 ```ts
@@ -321,51 +298,6 @@ const uuid = () => {
   const uuid = temp_url.toString();
   URL.revokeObjectURL(temp_url); // Release this url
   return uuid.substring(uuid.lastIndexOf('/') + 1);
-};
-```
-
-## Fuzzy search
-
-```ts
-/**
- * Fuzzy search
- * @param list The original array
- * @param keyWord Keywords for query
- * @param attribute The array needs to retrieve attributes
- * @return arr
- * */
-const fuzzyQuery = (list: Array<any>, keyWord: string, attribute: string) => {
-  const reg = new RegExp(keyWord);
-  const arr = [];
-  for (let i = 0; i < list.length; i++) {
-    if (reg.test(list[i][attribute])) {
-      arr.push(list[i]);
-    }
-  }
-  return arr;
-};
-```
-
-## Traverse the tree nodes
-
-```ts
-/**
- * Traverse the tree nodes
- * @param data Tree data
- * @param callback The callback function
- * @param childrenName Array of child nodes
- * */
-const foreachTree = (
-  data: Array<any>,
-  callback: (params: any) => void,
-  childrenName = 'children',
-) => {
-  for (let i = 0; i < data.length; i++) {
-    callback(data[i]);
-    if (data[i][childrenName] && data[i][childrenName].length > 0) {
-      foreachTree(data[i][childrenName], callback, childrenName);
-    }
-  }
 };
 ```
 

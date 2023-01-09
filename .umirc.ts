@@ -152,6 +152,10 @@ export default defineConfig({
         title: 'Http',
         path: '/usually/http',
       },
+      {
+        title: 'Array Object',
+        path: '/usually/array',
+      },
     ],
     '/zh-CN/usually': [
       // 省略，配置同上
@@ -187,6 +191,10 @@ export default defineConfig({
       {
         title: '请求',
         path: '/usually/http',
+      },
+      {
+        title: '数组对象',
+        path: '/usually/array',
       },
     ],
   },

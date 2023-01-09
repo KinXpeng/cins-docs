@@ -286,29 +286,6 @@ const getOSType = (): string => {
 };
 ```
 
-## 数组对象根据字段去重
-
-```ts
-/**
- * 数组对象根据字段去重
- * @param arr 要去重的数组
- * @param key 根据去重的字段名
- * @return arr
- * */
-const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
-  if (arr.length === 0) return;
-  let list: Array<any> = [];
-  const map: any = {};
-  arr.forEach((item) => {
-    if (!map[item[key]]) {
-      map[item[key]] = item;
-    }
-  });
-  list = Object.values(map);
-  return list;
-};
-```
-
 ## 生成 uuid
 
 ```ts
@@ -321,51 +298,6 @@ const uuid = () => {
   const uuid = temp_url.toString();
   URL.revokeObjectURL(temp_url); //释放这个url
   return uuid.substring(uuid.lastIndexOf('/') + 1);
-};
-```
-
-## 模糊搜索
-
-```ts
-/**
- * 模糊搜索
- * @param list 原数组
- * @param keyWord 查询的关键词
- * @param attribute 数组需要检索属性
- * @return arr
- * */
-const fuzzyQuery = (list: Array<any>, keyWord: string, attribute: string) => {
-  const reg = new RegExp(keyWord);
-  const arr = [];
-  for (let i = 0; i < list.length; i++) {
-    if (reg.test(list[i][attribute])) {
-      arr.push(list[i]);
-    }
-  }
-  return arr;
-};
-```
-
-## 遍历树节点
-
-```ts
-/**
- * 遍历树节点
- * @param data 树数据
- * @param callback 回调函数
- * @param childrenName 子节点数组
- * */
-const foreachTree = (
-  data: Array<any>,
-  callback: (params: any) => void,
-  childrenName = 'children',
-) => {
-  for (let i = 0; i < data.length; i++) {
-    callback(data[i]);
-    if (data[i][childrenName] && data[i][childrenName].length > 0) {
-      foreachTree(data[i][childrenName], callback, childrenName);
-    }
-  }
 };
 ```
 
