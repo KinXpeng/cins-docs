@@ -188,20 +188,6 @@ const isValidAccount = (str: string): boolean => {
 };
 ```
 
-## A strong password
-
-```ts
-/**
- * Strong password (must contain a combination of uppercase and lowercase letters and numbers, cannot use special characters, and must be 8-16 in length) :
- * @param str
- * @returns
- */
-const isStrongPassword(str: string): boolean => {
-  const pattern = /^(?=.d)(?=.[a-z])(?=.*[A-Z]).{8,16}$/;
-  return pattern.test(str);
-}
-```
-
 ## Hexadecimal color
 
 ```ts
@@ -347,7 +333,7 @@ const verifyPassword = (str: string): boolean => {
 };
 ```
 
-### Strong cipher
+### Strong cipher 1
 
 ```ts
 /**
@@ -366,6 +352,20 @@ const verifyPasswordPowerful = (str: string): boolean => {
 };
 ```
 
+### Strong cipher 2
+
+```ts
+/**
+ * Strong password (must contain a combination of uppercase and lowercase letters and numbers, cannot use special characters, and must be 8-16 in length) :
+ * @param str
+ * @returns
+ */
+const isStrongPassword(str: string): boolean => {
+  const pattern = /^(?=.d)(?=.[a-z])(?=.*[A-Z]).{8,16}$/;
+  return pattern.test(str);
+}
+```
+
 ## IP address
 
 ```ts
@@ -382,5 +382,22 @@ const verifyIPAddress = (str: string): boolean => {
   )
     return false;
   else return true;
+};
+```
+
+## Amount separation
+
+```ts
+/**
+ * The amount is separated by a ', '
+ * @param str
+ * @returns
+ */
+const numberComma = (str: string): string => {
+  let v: any = verifyNumberIntegerAndFloat(str);
+  v = v.toString().split('.');
+  v[0] = v[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  v = v.join('.');
+  return v;
 };
 ```

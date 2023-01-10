@@ -188,20 +188,6 @@ const isValidAccount = (str: string): boolean => {
 };
 ```
 
-## 强密码
-
-```ts
-/**
- * 强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-16之间)：
- * @param str
- * @returns
- */
-const isStrongPassword(str: string): boolean => {
-  const pattern = /^(?=.d)(?=.[a-z])(?=.*[A-Z]).{8,16}$/;
-  return pattern.test(str);
-}
-```
-
 ## 十六进制颜色
 
 ```ts
@@ -348,7 +334,7 @@ const verifyPassword = (str: string): boolean => {
 };
 ```
 
-### 强密码
+### 强密码 1
 
 ```ts
 /**
@@ -369,6 +355,20 @@ const verifyPasswordPowerful = (str: string): boolean => {
 };
 ```
 
+### 强密码 2
+
+```ts
+/**
+ * 强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-16之间)：
+ * @param str
+ * @returns
+ */
+const isStrongPassword(str: string): boolean => {
+  const pattern = /^(?=.d)(?=.[a-z])(?=.*[A-Z]).{8,16}$/;
+  return pattern.test(str);
+}
+```
+
 ## IP 地址
 
 ```ts
@@ -385,5 +385,27 @@ const verifyIPAddress = (str: string): boolean => {
   )
     return false;
   else return true;
+};
+```
+
+## 金额分隔
+
+```ts
+/**
+ * 金额用 `,` 区分开
+ * @param str 当前值字符串
+ * @returns 返回处理后的字符串
+ */
+const numberComma = (str: string): string => {
+  // 调用小数或整数(不可以负数)方法
+  let v: any = verifyNumberIntegerAndFloat(str);
+  // 字符串转成数组
+  v = v.toString().split('.');
+  // \B 匹配非单词边界，两边都是单词字符或者两边都是非单词字符
+  v[0] = v[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  // 数组转字符串
+  v = v.join('.');
+  // 返回结果
+  return v;
 };
 ```
