@@ -8,6 +8,7 @@ nav:
 
 ### Common
 
+- 2023/01/10 Common(group second) - Added **Color conversion.**
 - 2023/01/10 Regex - Added **Amount separation.**
 - 2023/01/10 Common(group second) - Added **Matching text discoloration.**
 - 2023/01/10 Common(group second) - Added **Turn numbers into Chinese uppercase.**
