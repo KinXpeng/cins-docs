@@ -301,7 +301,9 @@ const verifyPostalCode = (str: string): boolean => {
 };
 ```
 
-## 密码强度
+## 密码
+
+### 密码强度
 
 ```ts
 /**
@@ -327,6 +329,43 @@ const verifyPasswordStrength = (str: string): boolean => {
     v = '强';
   // 返回结果
   return v;
+};
+```
+
+### 密码格式
+
+```ts
+/**
+ * 密码 (以字母开头，长度在6~16之间，只能包含字母、数字和下划线)
+ * @param str 当前值字符串
+ * @returns 返回 true: 密码正确
+ */
+const verifyPassword = (str: string): boolean => {
+  // false: 密码不正确
+  if (!/^[a-zA-Z]\w{5,15}$/.test(str)) return false;
+  // true: 密码正确
+  else return true;
+};
+```
+
+### 强密码
+
+```ts
+/**
+ * 强密码 (字母+数字+特殊字符，长度在6-16之间)
+ * @param str 当前值字符串
+ * @returns 返回 true: 强密码正确
+ */
+const verifyPasswordPowerful = (str: string): boolean => {
+  // false: 强密码不正确
+  if (
+    !/^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&\.*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&\.*]+$)(?![\d!@#$%^&\.*]+$)[a-zA-Z\d!@#$%^&\.*]{6,16}$/.test(
+      str,
+    )
+  )
+    return false;
+  // true: 强密码正确
+  else return true;
 };
 ```
 

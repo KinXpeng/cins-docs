@@ -301,7 +301,9 @@ const verifyPostalCode = (str: string): boolean => {
 };
 ```
 
-## Cryptographic strength
+## Password
+
+### Cryptographic strength
 
 ```ts
 /**
@@ -328,6 +330,39 @@ const verifyPasswordStrength = (str: string): boolean => {
     v = 'Strong';
   // result
   return v;
+};
+```
+
+### Password format
+
+```ts
+/**
+ * Password format (The value must start with a letter and contain only letters, digits, and underscores (_))
+ * @param str string
+ * @returns
+ */
+const verifyPassword = (str: string): boolean => {
+  if (!/^[a-zA-Z]\w{5,15}$/.test(str)) return false;
+  else return true;
+};
+```
+
+### Strong cipher
+
+```ts
+/**
+ * Strong cipher (The value contains 6 to 16 letters, digits, and special characters)
+ * @param str string
+ * @returns
+ */
+const verifyPasswordPowerful = (str: string): boolean => {
+  if (
+    !/^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&\.*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&\.*]+$)(?![\d!@#$%^&\.*]+$)[a-zA-Z\d!@#$%^&\.*]{6,16}$/.test(
+      str,
+    )
+  )
+    return false;
+  else return true;
 };
 ```
 
