@@ -156,6 +156,10 @@ export default defineConfig({
         title: 'Array Object',
         path: '/usually/array',
       },
+      {
+        title: 'Cache',
+        path: '/usually/cache',
+      },
     ],
     '/zh-CN/usually': [
       // 省略，配置同上
@@ -195,6 +199,10 @@ export default defineConfig({
       {
         title: '数组对象',
         path: '/usually/array',
+      },
+      {
+        title: '缓存',
+        path: '/usually/cache',
       },
     ],
   },
