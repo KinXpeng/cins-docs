@@ -33,29 +33,6 @@ const isObjectValueEqual = <T>(a: T, b: T): boolean => {
 };
 ```
 
-## 数组对象根据字段去重
-
-```ts
-/**
- * 数组对象根据字段去重
- * @param arr 要去重的数组
- * @param key 根据去重的字段名
- * @return arr
- * */
-const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
-  if (arr.length === 0) return;
-  let list: Array<any> = [];
-  const map: any = {};
-  arr.forEach((item) => {
-    if (!map[item[key]]) {
-      map[item[key]] = item;
-    }
-  });
-  list = Object.values(map);
-  return list;
-};
-```
-
 ## 模糊搜索
 
 ```ts
@@ -115,7 +92,32 @@ const pickAttrs = (obj, ...props) => {
 };
 ```
 
-## 数组、数组对象去重
+## 去重
+
+### 数组对象根据字段去重
+
+```ts
+/**
+ * 数组对象根据字段去重
+ * @param arr 要去重的数组
+ * @param key 根据去重的字段名
+ * @return arr
+ * */
+const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
+  if (arr.length === 0) return;
+  let list: Array<any> = [];
+  const map: any = {};
+  arr.forEach((item) => {
+    if (!map[item[key]]) {
+      map[item[key]] = item;
+    }
+  });
+  list = Object.values(map);
+  return list;
+};
+```
+
+### 数组、数组对象去重
 
 ```ts
 /**

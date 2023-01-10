@@ -33,29 +33,6 @@ const isObjectValueEqual = <T>(a: T, b: T): boolean => {
 };
 ```
 
-## Array objects are de-weighted according to fields
-
-```ts
-/**
- * Array objects are de-weighted according to fields
- * @param arr The array to be removed
- * @param key Based on the name of the field to be deleted
- * @return arr
- * */
-const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
-  if (arr.length === 0) return;
-  let list: Array<any> = [];
-  const map: any = {};
-  arr.forEach((item) => {
-    if (!map[item[key]]) {
-      map[item[key]] = item;
-    }
-  });
-  list = Object.values(map);
-  return list;
-};
-```
-
 ## Fuzzy search
 
 ```ts
@@ -116,7 +93,32 @@ const pickAttrs = (obj, ...props) => {
 };
 ```
 
-## Array, array object deweight
+## Duplicate removal
+
+### Array objects are de-weighted according to fields
+
+```ts
+/**
+ * Array objects are de-weighted according to fields
+ * @param arr The array to be removed
+ * @param key Based on the name of the field to be deleted
+ * @return arr
+ * */
+const uniqueArrayObject = (arr: Array<any> = [], key: string) => {
+  if (arr.length === 0) return;
+  let list: Array<any> = [];
+  const map: any = {};
+  arr.forEach((item) => {
+    if (!map[item[key]]) {
+      map[item[key]] = item;
+    }
+  });
+  list = Object.values(map);
+  return list;
+};
+```
+
+### Array, array object deweight
 
 ```ts
 /**

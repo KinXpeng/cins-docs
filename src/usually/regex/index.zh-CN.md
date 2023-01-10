@@ -286,3 +286,65 @@ const isNonNegFloatNumber = (str: string): boolean => {
   return pattern.test(str);
 };
 ```
+
+## 邮政编码
+
+```ts
+/**
+ * 邮政编码
+ * @param str 当前值字符串
+ * @returns
+ */
+const verifyPostalCode = (str: string): boolean => {
+  if (!/^[1-9][0-9]{5}$/.test(str)) return false;
+  else return true;
+};
+```
+
+## 密码强度
+
+```ts
+/**
+ * 密码强度
+ * @param str 当前值字符串
+ * @description 弱：纯数字，纯字母，纯特殊字符
+ * @description 中：字母+数字，字母+特殊字符，数字+特殊字符
+ * @description 强：字母+数字+特殊字符
+ * @returns 返回处理后的字符串：弱、中、强
+ */
+const verifyPasswordStrength = (str: string): boolean => {
+  let v = '';
+  // 弱：纯数字，纯字母，纯特殊字符
+  if (/^(?:\d+|[a-zA-Z]+|[!@#$%^&\.*]+){6,16}$/.test(str)) v = '弱';
+  // 中：字母+数字，字母+特殊字符，数字+特殊字符
+  if (/^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&\.*]+$)[a-zA-Z\d!@#$%^&\.*]{6,16}$/.test(str)) v = '中';
+  // 强：字母+数字+特殊字符
+  if (
+    /^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&\.*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&\.*]+$)(?![\d!@#$%^&\.*]+$)[a-zA-Z\d!@#$%^&\.*]{6,16}$/.test(
+      str,
+    )
+  )
+    v = '强';
+  // 返回结果
+  return v;
+};
+```
+
+## IP 地址
+
+```ts
+/**
+ * IP地址
+ * @param str 当前值字符串
+ * @returns
+ */
+const verifyIPAddress = (str: string): boolean => {
+  if (
+    !/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/.test(
+      str,
+    )
+  )
+    return false;
+  else return true;
+};
+```

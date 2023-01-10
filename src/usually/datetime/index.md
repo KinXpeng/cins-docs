@@ -288,3 +288,25 @@ const daysDistance = (date1, date2) => {
   return _days;
 };
 ```
+
+## Time greeting
+
+```ts
+/**
+ * Time greeting
+ * @param param current time,string
+ * @description param  `formatAxis('2022-12-12 09:12:11')` Output 'Good morning'
+ * @returns Returns the concatenated time string
+ */
+const formatAxis = (param: string): string => {
+  let hour: number = new Date(param).getHours();
+  if (hour < 6) return 'Good early morning';
+  else if (hour < 9) return 'Good morning';
+  else if (hour < 12) return 'Good antemeridiem';
+  else if (hour < 14) return 'Good nooning';
+  else if (hour < 17) return 'Good afternoon';
+  else if (hour < 19) return 'Good evenfall';
+  else if (hour < 22) return 'Good evening';
+  else return 'Good nighttime';
+};
+```

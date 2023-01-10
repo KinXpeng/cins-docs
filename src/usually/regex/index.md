@@ -286,3 +286,66 @@ const isNonNegFloatNumber = (str: string): boolean => {
   return pattern.test(str);
 };
 ```
+
+## Postal code
+
+```ts
+/**
+ * Postal code
+ * @param str string
+ * @returns
+ */
+const verifyPostalCode = (str: string): boolean => {
+  if (!/^[1-9][0-9]{5}$/.test(str)) return false;
+  else return true;
+};
+```
+
+## Cryptographic strength
+
+```ts
+/**
+ * Cryptographic strength
+ * @param str string
+ * @description Weak: pure numbers, pure letters, pure special characters
+ * @description Medium: Letters + digits, letters + special characters, digits + special characters
+ * @description Strong: letters + digits + special characters
+ * @returns Returns the processed string: weak, medium, and strong
+ */
+const verifyPasswordStrength = (str: string): boolean => {
+  let v = '';
+  // Weak: pure numbers, pure letters, pure special characters
+  if (/^(?:\d+|[a-zA-Z]+|[!@#$%^&\.*]+){6,16}$/.test(str)) v = 'Weak';
+  // Medium: Letters + digits, letters + special characters, digits + special characters
+  if (/^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&\.*]+$)[a-zA-Z\d!@#$%^&\.*]{6,16}$/.test(str))
+    v = 'Medium';
+  // Strong: letters + digits + special characters
+  if (
+    /^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&\.*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&\.*]+$)(?![\d!@#$%^&\.*]+$)[a-zA-Z\d!@#$%^&\.*]{6,16}$/.test(
+      str,
+    )
+  )
+    v = 'Strong';
+  // result
+  return v;
+};
+```
+
+## IP address
+
+```ts
+/**
+ * IP address
+ * @param str string
+ * @returns
+ */
+const verifyIPAddress = (str: string): boolean => {
+  if (
+    !/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/.test(
+      str,
+    )
+  )
+    return false;
+  else return true;
+};
+```

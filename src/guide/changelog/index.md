@@ -8,7 +8,12 @@ nav:
 
 ### Common
 
+- 2023/01/10 Regex - Added **Cryptographic strength.**
+- 2023/01/10 Regex - Added **Cryptographic strength.**
+- 2023/01/10 Regex - Added **Postal code.**
+- 2023/01/10 Datetime - Added **Time greeting.**
 - 2023/01/09 Array Object - Added **Determines whether two objects are the same.**
+- 2022/12/29 Datetime - Added **Count the number of days between two dates.**
 - 2022/12/29 Common(group first) - Added **Deep clone(MessageChannel).**
 - 2022/12/29 Common(group first) - Added **Deep clone(Map).**
 - 2022/12/27 Array Object - Added **Filter object attributes.**
