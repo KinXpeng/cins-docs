@@ -8,6 +8,8 @@ nav:
 
 ### Common
 
+- 2023/01/10 File - Added **FileToBase64.**
+- 2023/01/10 Added **Common->File** menu.
 - 2023/01/10 Cache - Added **Storage.**
 - 2023/01/10 Common(group second) - Added **Color conversion.**
 - 2023/01/10 Regex - Added **Amount separation.**

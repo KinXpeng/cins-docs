@@ -141,6 +141,10 @@ export default defineConfig({
         path: '/usually/regex',
       },
       {
+        title: 'File',
+        path: '/usually/file',
+      },
+      {
         title: 'Location',
         path: '/usually/location',
       },
@@ -183,6 +187,10 @@ export default defineConfig({
       {
         title: '正则',
         path: '/usually/regex',
+      },
+      {
+        title: '文件',
+        path: '/usually/file',
       },
       {
         title: '位置',
