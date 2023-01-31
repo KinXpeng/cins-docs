@@ -85,7 +85,7 @@ export default defineConfig({
 
     '/library': [
       {
-        title: 'Overview',
+        title: 'Winnow',
         path: '/library/overview',
         children: [
           // 菜单子项（可选）
@@ -93,7 +93,7 @@ export default defineConfig({
         ],
       },
       {
-        title: 'Choiceness CSS',
+        title: 'CSS',
         path: '/library/css',
         // children: ['library/css/index.md'],
       },
@@ -101,7 +101,7 @@ export default defineConfig({
     '/zh-CN/library': [
       // 省略，配置同上
       {
-        title: '总览',
+        title: '精选',
         path: '/library/overview',
         children: [
           // 菜单子项（可选）
@@ -109,7 +109,7 @@ export default defineConfig({
         ],
       },
       {
-        title: '精选CSS',
+        title: 'CSS',
         path: '/library/css',
         // children: [
         //   // 菜单子项（可选）

@@ -1,6 +1,6 @@
 ---
 nav:
-  title: 总览
+  title: 精选
   path: /library
 ---
 
