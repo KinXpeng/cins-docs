@@ -8,6 +8,7 @@ nav:
 
 ### Common
 
+- 2023/02/03 File - Added **ImgUrlToBase64.**
 - 2023/01/10 File - Added **FileToBase64.**
 - 2023/01/10 Added **Common->File** menu.
 - 2023/01/10 Cache - Added **Storage.**

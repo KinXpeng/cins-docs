@@ -60,3 +60,39 @@ const fileToBase64 = (file: any) => {
   });
 };
 ```
+
+## imgUrlToBase64
+
+```ts
+const imgUrlToBase64 = (url: string) => {
+  return new Promise((resolve, reject) => {
+    if (!url) {
+      reject('Please pass in the url content');
+    }
+
+    if (/\.(png|jpe?g|gif|svg)(\?.*)?$/.test(url)) {
+      // ImgUrl
+      const image = new Image();
+      // Set the cross-domain problem
+      image.setAttribute('crossOrigin', 'anonymous');
+      // ImgUrl
+      image.src = url;
+      image.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx: any = canvas.getContext('2d');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.drawImage(image, 0, 0, image.width, image.height);
+        // Get picture suffix
+        const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        // convert base64
+        const dataUrl = canvas.toDataURL(`image/${ext}`);
+        resolve(dataUrl || '');
+      };
+    } else {
+      // Non-picture address
+      reject('Not(png/jpe?g/gif/svg)address');
+    }
+  });
+};
+```
