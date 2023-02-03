@@ -97,6 +97,10 @@ export default defineConfig({
         path: '/library/css',
         // children: ['library/css/index.md'],
       },
+      {
+        title: 'Mini program',
+        path: '/library/mini-program',
+      },
     ],
     '/zh-CN/library': [
       // 省略，配置同上
@@ -115,6 +119,10 @@ export default defineConfig({
         //   // 菜单子项（可选）
         //   'library/css/index.zh-CN.md',
         // ],
+      },
+      {
+        title: '小程序',
+        path: '/library/mini-program',
       },
     ],
 
