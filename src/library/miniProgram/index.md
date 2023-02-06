@@ -8,7 +8,7 @@ nav:
 
 #### h5 page return applet
 
-- uni sdk（[Get SDK](https://github.com/KinXpeng/Note/tree/master/WEB/utils),It is also available on uniapp.）
+- uni sdk（[Get SDK](https://github.com/KinXpeng/cins-docs/tree/main/utils),It is also available on uniapp.）
 
   ```js
   import '@/utils/uni-webview.js'; // uni-webview SDK

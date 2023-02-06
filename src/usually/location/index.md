@@ -86,7 +86,7 @@ const txMapToBdMap = (lng, lat) => {
 ## Tencent map API（JS）
 
 - Request `API` Cross-domain problems may be encountered `jsonp` request resolution across domains。
-- Get [`jsonp`](https://kinxpeng.oss-cn-beijing.aliyuncs.com/files/cins-docs/jsonp.js?versionId=CAEQOBiBgICcsJnunRgiIGVmY2YxNTY1NTI3OTRkZjQ5OTU1Y2EwN2UwMjQ0NGMx) File。
+- Get [jsonp](https://github.com/KinXpeng/cins-docs/tree/main/utils) File。
 - `jsonp.js` Content is not much, source code as follows.
 
 ```js

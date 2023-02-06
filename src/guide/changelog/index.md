@@ -38,6 +38,8 @@ nav:
 
 ### Winnow
 
+- 2023/02/06 Widgets - Added **mobile prompt component.**
+- 2023/02/06 Added **Winnow->Widgets** menu.
 - 2023/02/03 Mini program - Added **the webview is used in uniapp.**
 - 2023/02/03 Added **Winnow->Mini program** menu.
 - 2022/12/03 CSS - Added **achieve button throttling effect by CSS.**

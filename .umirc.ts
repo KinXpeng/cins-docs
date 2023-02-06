@@ -101,6 +101,10 @@ export default defineConfig({
         title: 'Mini program',
         path: '/library/mini-program',
       },
+      {
+        title: 'Widgets',
+        path: '/library/widgets',
+      },
     ],
     '/zh-CN/library': [
       // 省略，配置同上
@@ -123,6 +127,10 @@ export default defineConfig({
       {
         title: '小程序',
         path: '/library/mini-program',
+      },
+      {
+        title: '小组件',
+        path: '/library/widgets',
       },
     ],
 

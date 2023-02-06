@@ -8,7 +8,7 @@ nav:
 
 #### h5 页面返回小程序
 
-- 引入 uni 的 SDK（[获取 SDK](https://github.com/KinXpeng/Note/tree/master/WEB/utils)，也可在 uniapp 官网获取。）
+- 引入 uni 的 SDK（[获取 SDK](https://github.com/KinXpeng/cins-docs/tree/main/utils)，也可在 uniapp 官网获取。）
 
   ```js
   import '@/utils/uni-webview.js'; // uni-webview SDK

@@ -86,7 +86,7 @@ const txMapToBdMap = (lng, lat) => {
 ## 腾讯地图 API（JS）
 
 - 请求 `API` 时可能会遇到跨域问题，可采用 `jsonp` 请求解决跨域。
-- 获取 [`jsonp`](https://kinxpeng.oss-cn-beijing.aliyuncs.com/files/cins-docs/jsonp.js?versionId=CAEQOBiBgICcsJnunRgiIGVmY2YxNTY1NTI3OTRkZjQ5OTU1Y2EwN2UwMjQ0NGMx) 文件。
+- 获取 [jsonp](https://github.com/KinXpeng/cins-docs/tree/main/utils) 文件。
 - `jsonp.js` 内容不多，源码如下。
 
 ```js
