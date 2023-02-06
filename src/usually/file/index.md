@@ -96,3 +96,38 @@ const imgUrlToBase64 = (url: string) => {
   });
 };
 ```
+
+## Download the file using the url
+
+- window.open
+
+  ```js
+  window.open(url, '_blank');
+  ```
+
+- Tag a
+
+  ```js
+  const a = document.createElement('a'); // Create a new A tag
+  a.href = url; // File link
+  a.download = name; // Download name
+  a.click();
+  a.remove();
+  ```
+
+- blob
+
+  ```js
+  // There may be cross-domain issues
+  fetch(url).then((res) =>
+    res.blob().then((blob) => {
+      const a = document.createElement('a');
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = name; // Download name
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    }),
+  );
+  ```

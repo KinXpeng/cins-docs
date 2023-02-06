@@ -96,3 +96,38 @@ const imgUrlToBase64 = (url: string) => {
   });
 };
 ```
+
+## 通过 URL 下载文件
+
+- window.open
+
+  ```js
+  window.open(url, '_blank');
+  ```
+
+- a 标签
+
+  ```js
+  const a = document.createElement('a'); //新建一个a标签
+  a.href = url; // 文件链接
+  a.download = name; // 下载名称
+  a.click();
+  a.remove();
+  ```
+
+- blob
+
+  ```js
+  // 可能会存在跨域问题
+  fetch(url).then((res) =>
+    res.blob().then((blob) => {
+      const a = document.createElement('a');
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = name; // 下载名称
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    }),
+  );
+  ```
