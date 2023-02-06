@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Library
+  title: Winnow
   path: /library
 ---
 

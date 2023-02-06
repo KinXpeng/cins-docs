@@ -1,6 +1,6 @@
 ---
 nav:
-  title: 小组件
+  title: 精选
   path: /library
 ---
 
