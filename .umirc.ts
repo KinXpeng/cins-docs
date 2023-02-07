@@ -239,6 +239,11 @@ export default defineConfig({
           'column/introduction/index.md',
         ],
       },
+      // 英文模式不展示
+      // {
+      //   title: 'SEO',
+      //   path: '/column/seo',
+      // },
     ],
 
     '/zh-CN/column': [
@@ -250,6 +255,10 @@ export default defineConfig({
           // 菜单子项（可选）
           'column/introduction/index.zh-CN.md',
         ],
+      },
+      {
+        title: 'SEO',
+        path: '/column/seo',
       },
     ],
   },
