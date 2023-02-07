@@ -12,6 +12,7 @@ nav:
 
 ### Common
 
+- 2023/02/07 File - Added **Combine pictures and text into one image.**
 - 2023/02/06 File - Added **Download the file using the url.**
 - 2023/02/03 File - Added **ImgUrlToBase64.**
 - 2023/01/10 File - Added **FileToBase64.**

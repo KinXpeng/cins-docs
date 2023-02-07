@@ -131,3 +131,73 @@ const imgUrlToBase64 = (url: string) => {
     }),
   );
   ```
+
+## Combine pictures and text into one image
+
+- Download dependency
+
+  ```bash
+  npm install html2canvas --save
+  ```
+
+- Import it what page you need
+
+  ```js
+  import html2canvas from 'html2canvas';
+  ```
+
+- Page
+
+  ```html
+  <template>
+    <div>
+      <div class="download_img" ref="canvas">
+        <img src="https://t7.baidu.com/it/u=1595072465,3644073269&fm=193&f=GIF" alt="" />
+        <p>testName</p>
+      </div>
+      <el-button type="primary" @click="handleDownload('test')"
+        >Download pictures and text</el-button
+      >
+    </div>
+  </template>
+  ```
+
+- Build download by `ref`
+
+  ```js
+  // download
+  handleDownload(name) {
+    window.pageYoffset = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    // First get the dom node that you want to convert to img
+    // const node = document.getElementById("canvas"); // The id name passed in
+    const node = this.$refs.canvas
+    // console.log("node", node);
+    const width = node.offsetWidth; // width
+    const height = node.offsetHeight; // height
+    const scale = 4; // Magnification This is equivalent to sharpness a little bit more clarity
+    html2canvas(node, {
+      width: width,
+      heigth: height,
+      backgroundColor: "#ffffff", //Background color
+      dpi: window.devicePixelRatio * 2, // Increase pixels by screen pixel ratio
+      scale: scale,
+      X: 0,
+      Y: 0,
+      scrollX: -3, // Set this offset to -3 or more if you have multiple white edges to the left
+      scrollY: -10,
+      useCORS: true,
+      allowTaint: true,
+    }).then((canvas) => {
+      // console.log("canvas", canvas);
+      const url = canvas.toDataURL();
+      const a = document.createElement("a"); // Create an a tag to download
+      a.download = name; // Set the name of the image to download
+      const event = new MouseEvent("click"); // Add a click event
+      this.dataURL = url;
+      a.href = url;
+      a.dispatchEvent(event);
+    });
+  }
+  ```
