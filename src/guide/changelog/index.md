@@ -6,6 +6,10 @@ nav:
 
 ## Changelog
 
+### Column
+
+- 2023/02/07 Added**Column**navigation menu.
+
 ### Common
 
 - 2023/02/06 File - Added **Download the file using the url.**

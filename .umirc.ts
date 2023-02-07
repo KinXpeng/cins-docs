@@ -229,6 +229,29 @@ export default defineConfig({
         path: '/usually/cache',
       },
     ],
+
+    '/column': [
+      {
+        title: 'Column',
+        path: '/column/introduction',
+        children: [
+          // 菜单子项（可选）
+          'column/introduction/index.md',
+        ],
+      },
+    ],
+
+    '/zh-CN/column': [
+      // 省略，配置同上
+      {
+        title: '专栏',
+        path: '/column/introduction',
+        children: [
+          // 菜单子项（可选）
+          'column/introduction/index.zh-CN.md',
+        ],
+      },
+    ],
   },
 
   // more config: https://d.umijs.org/config
