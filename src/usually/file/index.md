@@ -195,7 +195,6 @@ const imgUrlToBase64 = (url: string) => {
       const a = document.createElement("a"); // Create an a tag to download
       a.download = name; // Set the name of the image to download
       const event = new MouseEvent("click"); // Add a click event
-      this.dataURL = url;
       a.href = url;
       a.dispatchEvent(event);
     });

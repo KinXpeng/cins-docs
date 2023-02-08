@@ -15,7 +15,7 @@ nav:
  **/
 ```
 
-- `/src/http/axio.ts` File
+- `/src/http/axios.ts` File
 
   ```ts
   import axios from 'axios';

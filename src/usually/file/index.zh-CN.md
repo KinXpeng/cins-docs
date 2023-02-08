@@ -193,7 +193,6 @@ const imgUrlToBase64 = (url: string) => {
       const a = document.createElement("a"); // 创建一个a标签 用来下载
       a.download = name; // 设置下载的图片名称
       const event = new MouseEvent("click"); // 增加一个点击事件
-      this.dataURL = url;
       a.href = url;// 此处的url为base64格式的图片资源
       a.dispatchEvent(event); // 触发a的单击事件 即可完成下载
     });
