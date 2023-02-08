@@ -239,7 +239,6 @@ export default defineConfig({
           'column/introduction/index.md',
         ],
       },
-      // 英文模式不展示
       // {
       //   title: 'SEO',
       //   path: '/column/seo',
