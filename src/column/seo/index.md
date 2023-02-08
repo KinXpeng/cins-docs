@@ -133,9 +133,9 @@ Depending on the modular nature of ES6,ES6 module dependencies are determined,in
 
 Static analysis is the ability to literally analyze code without having to execute it.The previous modularity,For example, Common.js is dynamically loaded,it is only after execution that we know what module is being referenced. It cannot be optimized using static analysis. It is based on this that tree-shaking is possible.
 
-**Tree shaking 并不是万能的**
+**Tree shaking is not a panacea**
 
-并不是说所有无用的代码都可以被消除，还是上面的代码，换个写法 tree-shaking 就失效了。
+That's not to say that all useless code can be eliminated. It is still the code above, when written tree-shaking, that stops working.
 
 ```js
 // util.js
@@ -153,40 +153,39 @@ import util from '../util';
 util.targetType(null);
 ```
 
-同样的，项目中只使用了 targetType 方法，未使用 deepClone 方法，项目打包后，deepClone 方法还是被打包到项目里。
+In the same way,only used targetType in the project,but not used deepClone,after the project is packaged,deepClone will be packaged into the project.
 
-究其原因，export default 导出的是一个对象，无法通过静态分析判断出一个对象的哪些变量未被使用，所以 tree-shaking 只对使用 export 导出的变量生效。
+The reason is that export default exports an object. It cannot determine which variables of an object are not being used using static analysis. Therefore, tree-shaking only takes effect on variables exported using export.
 
-这也是函数式编程越来越火的原因，因为可以很好利用 tree-shaking 精简项目的体积，也是 vue3 全面拥抱了函数式编程的原因之一。
+That's why functional programming is becoming more and more popular. It is taking advantage of the volume of tree-shaking projects. It is also one of the reasons why vue3 is fully embracing functional programming.
 
-## 骨架屏优化白屏时长
+## Skeleton screen optimizes white screen duration
 
-使用骨架屏，可以缩短白屏时间，提升用户体验。国内大多数的主流网站都使用了骨架屏，特别是手机端的项目。
+Using a skeleton screen can shorten the white screen time and improve user experience. Most of the mainstream websites in China use skeleton screens, especially for mobile projects.
 
-SPA 单页应用，无论 vue 还是 react，最初的 html 都是空白的，需要通过加载 JS 将内容挂载到根节点上，这套机制的副作用：会造成长时间的白屏。
+SPA single page application,whether vue or react,the original html was blank,you need to mount the content to the root node by loading js,side effect of this mechanism: long white screen.
 
-常见的骨架屏插件就是基于这种原理，在项目打包时将骨架屏的内容直接放到 html 文件的根节点中。
+Common skeleton screen plug-ins are based on this principle, placing the contents of the skeleton screen directly into the root node of the html file when the project is packaged.
 
-骨架屏确实是优化白屏的不二选择，极大缩短白屏时间，使用示例可参考 [ElementUI](https://element.eleme.io/#/zh-CN/component/skeleton)以及 [Vant](https://vant-ui.github.io/vant/v3/#/zh-CN/skeleton)。
+Skeleton screen is really the best choice for optimizing white screen, greatly shortening white screen time,use examples are available [ElementUI](https://element.eleme.io/#/zh-CN/component/skeleton)and [Vant](https://vant-ui.github.io/vant/v3/#/zh-CN/skeleton).
 
-## 长列表虚拟滚动
+## Long list virtual scroll
 
-首页中不乏有需要渲染长列表的场景，当渲染条数过多时，所需要的渲染时间会很长，滚动时还会造成页面卡顿，整体体验非常不好。
+There are many scenes in the home page that need to render a long list. When there are too many render strips, the rendering time will be very long, and the page will be stuck when scrolling, so the overall experience is very bad.
 
-**虚拟滚动——指的是只渲染可视区域的列表项，非可见区域**的不渲染，在滚动时动态更新可视区域，该方案在优化大量数据渲染时效果是很明显的。
+**Virtual scrolling - refers to list items that render only visible areas, not visible areas**are not rendered,dynamically updating the viewable area while scrolling, this scheme is particularly effective when optimizing large amounts of data rendering.
 
-虚拟滚动基本原理：
+Basic principles of virtual scrolling:
 
-计算出 totalHeight 列表总高度，并在触发时滚动事件时根据 scrollTop 值不断更新 startIndex 以及 endIndex ，以此从列表数据 listData 中截取对应元素。
+Calculate the total height of the list,And when triggered, the event is rolled according to scrollTop constantly update startIndex and endIndex,to intercept the corresponding element from the list data.
 
-**虚拟滚动插件**
+**Virtual scroll plug-in**
 
-虚拟滚动的插件有很多，比如 vue-virtual-scroller、vue-virtual-scroll-list、react-tiny-virtual-list、react-virtualized 等。
+There are many plug-ins for virtual scrolling,such as vue-virtual-scroller、vue-virtual-scroll-list、react-tiny-virtual-list、react-virtualized and so on.
 
-这里简单介绍 [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller) 的使用：
+Here is a brief introduction use of[vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller):
 
 ```js
-// 安装插件
 npm install vue-virtual-scroller
 
 // main.js
@@ -208,19 +207,19 @@ Vue.use(VueVirtualScroller)
 </template>
 ```
 
-该插件主要有 RecycleScroller.vue、DynamicScroller.vue 这两个组件，其中 RecycleScroller 需要 item 的高度为静态的，也就是列表每个 item 的高度都是一致的，而 DynamicScroller 可以兼容 item 的高度为动态的情况。
+The plug-in mainly has RecycleScroller.vue、DynamicScroller.vue components,among them RecycleScroller need the height of item is static,that is, the height of each item in the list is the same,but DynamicScroller is compatible with the case where the height of the item is dynamic.
 
-## Web Worker 优化长任务
+## Web Worker optimizes long tasks
 
-由于浏览器 GUI 渲染线程与 JS 引擎线程是互斥的关系，当页面中有很多长任务时，会造成页面 UI 阻塞，出现界面卡顿、掉帧等情况。
+Since browser rendering threads GUI and js engine threads are mutually exclusive,when there are a lot of long tasks on the page, it can cause the page to block,the interface is stuck or frames are dropped.
 
-查看页面的长任务：
+Long task to view the page:
 
-打开控制台，选择 Performance 工具，点击 Start 按钮，展开 Main 选项，会发现有很多红色的三角，这些就属于长任务（长任务：执行时间超过 50ms 的任务）。
+Open the `console` and select the `Performance` tool,click the `Start` button, expand the `Main` option,you'll find a lot of red triangles,these are long tasks (long tasks: tasks that take longer than 50ms to execute).
 
-测试实验：
+Test experiment:
 
-如果直接把下面这段代码直接丢到主线程中，计算过程中页面一直处于卡死状态，无法操作。
+If you drop the following code directly into the main thread, the page will remain stuck during the calculation and cannot be operated.
 
 ```js
 let sum = 0;
@@ -231,101 +230,101 @@ for (let i = 0; i < 200000; i++) {
 }
 ```
 
-使用 Web Worker 执行上述代码时，计算过程中页面正常可操作、无卡顿：
+When the above code is executed using the Web Worker, the page can be operated normally and there is no deadlock in the calculation process:
 
 ```js
 // worker.js
 onmessage = function (e) {
-  // onmessage获取传入的初始值
+  // onmessage gets the initial value passed in
   let sum = e.data;
   for (let i = 0; i < 200000; i++) {
     for (let i = 0; i < 10000; i++) {
       sum += Math.random();
     }
   }
-  // 将计算的结果传递出去
+  // Pass on the results of the calculation
   postMessage(sum);
 };
 ```
 
-Web Worker 具体的使用与案例，详情见 [一文彻底了解 Web Worker，十万、百万条数据都是弟弟 🔥](https://juejin.cn/post/7137728629986820126)。
+See the detailed usage and case of Web Worker [一文彻底了解 Web Worker，十万、百万条数据都是弟弟 🔥](https://juejin.cn/post/7137728629986820126)。
 
-**Web Worker 的通信时长**
+**Communication duration of the Web Worker**
 
-并不是执行时间超过 50ms 的任务，就可以使用 Web Worker，还要先考虑通信时长的问题。
+It is not necessary to use a Web Worker for tasks that take longer than 50ms to execute. You need to consider the communication time first.
 
-假如一个运算执行时长为 100ms，但是通信时长为 300ms， 用了 Web Worker 可能会更慢。
+If the execution time of an operation is 100ms, but the communication time is 300ms, the Web Worker may be slower.
 
-比如新建一个 web worker, 浏览器会加载对应的 worker.js 资源。
+For example, if you create a web worker, the browser will load the corresponding worker.js resource.
 
-当任务的运算时长 - 通信时长 > 50ms，推荐使用 Web Worker。
+If the task operation duration - communication duration > 50ms, Web Worker is recommended.
 
-## requestAnimationFrame 制作动画
+## requestAnimationFrame
 
-`requestAnimationFrame` 是浏览器专门为动画提供的 API，它的刷新频率与显示器的频率保持一致，使用该 api 可以解决用 setTimeout/setInterval 制作动画卡顿的情况。
+`requestAnimationFrame` It is an api that browsers provide specifically for animation,it refreshes at the same rate as the monitor,making animation of the situation in setTimeout/setInterval can be solved using the api.
 
-**setTimeout/setInterval、requestAnimationFrame 三者的区别：**
+**The difference between setTimeout/setInterval、requestAnimationFrame:**
 
-1）引擎层面
+1. Engine level
 
-setTimeout/setInterval 属于 JS 引擎，requestAnimationFrame 属于 GUI 引擎。 JS 引擎与 GUI 引擎是互斥的，也就是说 GUI 引擎在渲染时会阻塞 JS 引擎的计算。
+setTimeout/setInterval belong to js engine,requestAnimationFrame belong to GUI engine. JS engine and GUI engine is mutually exclusive,this means that the GUI engine will block the js engine's calculations when rendering.
 
-2）时间是否准确
+2）Whether the time is accurate
 
-requestAnimationFrame 刷新频率是固定且准确的，但 setTimeout/setInterval 是宏任务，根据事件轮询机制，其他任务会阻塞或延迟 js 任务的执行，会出现定时器不准的情况。
+requestAnimationFrame the refresh rate is fixed and accurate,but setTimeout/setInterval is a macro task,according to the event polling mechanism, other tasks will block or delay the execution of the js task, and the timer will be inaccurate.
 
-3）性能层面
+3）Performance level
 
-当页面被隐藏或最小化时，setTimeout/setInterval 定时器仍会在后台执行动画任务，而使用 requestAnimationFrame 当页面处于未激活的状态下，屏幕刷新任务会被系统暂停。
+When pages are hidden or minimized,setTimeout/setInterval the timer still performs the animation task in the background,but use requestAnimationFrame, when the page is inactive, the screen refresh task is suspended.
 
-## JS 的 6 种加载方式
+## 6 loading modes of js
 
-**1）正常模式**
+**1）Normal mode**
 
 ```js
 <script src="index.js"></script>
 ```
 
-这种情况下 JS 会阻塞 dom 渲染，浏览器必须等待 index.js 加载和执行完成后才能去做其它事情。
+In this case js blocks dom rendering and the browser must wait for index.js to load and execute before it can do anything else.
 
-**2）async 模式**
+**2）async mode**
 
 ```js
 <script async src="index.js"></script>
 ```
 
-async 模式下，它的加载是异步的，JS 不会阻塞 DOM 的渲染，async 加载是无顺序的，当它加载结束，JS 会立即执行。
+async mode,it loads asynchronously,js won't block DOM's rendering,async loading is out of order,when it finishes loading, js executes immediately.
 
-使用场景：若该 JS 资源与 DOM 元素没有依赖关系，也不会产生其他资源所需要的数据时，可以使用 async 模式，比如埋点统计。
+Application scenario:If the js resource has no dependencies on DOM element,async patterns can be used when data is not generated that is required by other resources, such as buried statistics.
 
-**3）defer 模式**
+**3）defer mode**
 
 ```js
 <script defer src="index.js"></script>
 ```
 
-defer 模式下，JS 的加载也是异步的，defer 资源会在  `DOMContentLoaded`  执行之前，并且 defer 是有顺序的加载。
+defer mode,js is also loaded asynchronously,the defer resource will come before `DOMContentLoaded` execute,and defer is loaded sequentially.
 
-如果有多个设置了 defer 的 script 标签存在，则会按照引入的前后顺序执行，即便是后面的 script 资源先返回。
+If there are multiple script tags with defer set, then defer is executed in the order introduced, even if the later script resources return first.
 
-所以 defer 可以用来控制 JS 文件的执行顺序，比如 element-ui.js 和 vue.js，因为 element-ui.js 依赖于 vue，所以必须先引入 vue.js，再引入 element-ui.js。
+So defer can be used to control the execution order of the js files, like elements-ui.js and vue.js. Since elements-ui.js depend on vue, defer must be introduced to vue.js before elements-ui.js.
 
 ```js
 <script defer src="vue.js"></script>
 <script defer src="element-ui.js"></script>
 ```
 
-defer 使用场景：一般情况下都可以使用 defer，特别是需要控制资源加载顺序时。
+Use defer scenario: Use defer as a general rule, especially if you need to control the loading order of resources.
 
-**4）module 模式**
+**4）module mode**
 
 ```js
 <script type="module">import {a} from './a.js'</script>
 ```
 
-在主流的现代浏览器中，script 标签的属性可以加上  `type="module"`，浏览器会对其内部的 import 引用发起 HTTP 请求，获取模块内容。这时 script 的行为会像是  defer 一样，在后台下载，并且等待 DOM 解析。
+In mainstream modern browsers, the properties of the script tag `type="module"` can be added,the browser will send an HTTP request to its internal import reference to obtain the module content. At this time, the script will behave like defer, download in the background, and wait for DOM parsing.
 
-Vite 就是利用浏览器支持原生的 `es module` 模块，开发时跳过打包的过程，提升编译效率。
+Vite uses browsers to support native `es module` modules,skip the packaging process during development to improve compilation efficiency.
 
 **5） preload**
 
@@ -333,15 +332,15 @@ Vite 就是利用浏览器支持原生的 `es module` 模块，开发时跳过�
 <link rel="preload" as="script" href="index.js">
 ```
 
-link 标签的 preload 属性：用于提前加载一些需要的依赖。
+The preload attribute of the link tag: used to load some required dependencies ahead of time.
 
-vue2 项目打包生成的 index.html 文件，会自动给首页所需要的资源，全部添加 preload，实现关键资源的提前加载。
+The index.html file generated by the package of vue2 project will automatically add preload to all the resources required by the home page to realize the advance loading of key resources.
 
-**preload 特点：**
+**preload features:**
 
-1）preload 加载的资源是在浏览器渲染机制之前进行处理的，并且不会阻塞 onload 事件；
+1）Resources loaded by preload are processed before the browser rendering mechanism and do not block onload events;
 
-2）preload 加载的 JS 脚本其加载和执行的过程是分离的，即 preload 会预加载相应的脚本代码，待到需要时自行调用；
+2）The process of loading and executing the JS script loaded by preload is separate, that is, preload will preload the corresponding script code and call it when needed;
 
 **6）prefetch**
 
@@ -349,97 +348,97 @@ vue2 项目打包生成的 index.html 文件，会自动给首页所需要的资
 <link rel="prefetch" as="script" href="index.js">
 ```
 
-prefetch 是利用浏览器的空闲时间，加载页面将来可能用到的资源的一种机制；通常可以用于加载其他页面（非首页）所需要的资源，以便加快后续页面的打开速度。
+Prefetch is a mechanism to use the idle time of the browser to load the resources that the page may use in the future; It can usually be used to load the resources required by other pages (not the first page) to speed up the opening of subsequent pages.
 
-prefetch 特点：
+prefetch features:
 
-1）pretch 加载的资源可以获取非当前页面所需要的资源，并且将其放入缓存至少 5 分钟（无论资源是否可以缓存）。
+1）The resources loaded by preview can obtain resources that are not required by the current page, and put them in the cache for at least 5 minutes (regardless of whether the resources can be cached or not).
 
-2）当页面跳转时，未完成的 prefetch 请求不会被中断。
+2）When the page jumps, the unfinished prefetch request will not be interrupted.
 
-**加载方式总结**
+**Summary of loading methods**
 
-async、defer 是  script 标签的专属属性，对于网页中的其他资源，可以通过  link  的 preload、prefetch  属性来预加载。
+Async and defer are the exclusive attributes of the script tag. For other resources in the web page, you can preload them through the link's preload and prefetch attributes.
 
-如今现代框架已经将 preload、prefetch 添加到打包流程中了，通过灵活的配置，去使用这些预加载功能，同时我们也可以审时度势地向 script 标签添加 async、defer 属性去处理资源，这样可以显著提升性能。
+Now the modern framework has added preload and prefetch to the packaging process. Through flexible configuration, we can use these preload functions. At the same time, we can also add async and defer attributes to the script tag to process resources, which can significantly improve performance.
 
-## 图片的优化
+## Optimization of pictures
 
-平常大部分性能优化工作都集中在 JS 方面，但图片也是页面上非常重要的部分。
+Usually, most performance optimization work is focused on JS, but pictures are also a very important part of the page.
 
-特别是对于移动端来说，完全没有必要去加载原图，浪费带宽。如何去压缩图片，让图片更快的展示出来，有很多优化工作可以做。
+Especially for mobile terminals, there is no need to load the original image and waste bandwidth. How to compress images and make them display faster, there are many optimization works to be done.
 
-图片的动态裁剪很多云服务，比如 [阿里云](https://help.aliyun.com/document_detail/144582.html) 或 [七牛云](https://developer.qiniu.com/dora/3683/img-directions-for-use)，都提供了图片的动态裁剪功能，效果很棒，确实是钱没有白花只需在图片的 url 地址上动态添加参数，就可以得到你所需要的尺寸大小，比如：`http://7xkv1q.com1.z0.glb.clouddn.com/grape.jpg?imageView2/1/w/200/h/200`
+Dynamic tailoring of images Many cloud services, such as [Alibaba Cloud](https://help.aliyun.com/document_detail/144582.html) or [Qiniuyun](https://developer.qiniu.com/dora/3683/img-directions-for-use),They all provide the dynamic cropping function of the image, which is very good. It's really worth the money. Just add parameters dynamically to the URL address of the image, and you can get the size you need, for example:`http://7xkv1q.com1.z0.glb.clouddn.com/grape.jpg?imageView2/1/w/200/h/200`
 
-经过动态裁剪后的图片，加载速度会有非常明显的提升。
+After dynamic cropping, the loading speed will be significantly improved.
 
-**图片的懒加载**
+**Lazy loading of pictures**
 
-对于一些图片量比较大的首页，用户打开页面后，只需要呈现出在屏幕可视区域内的图片，当用户滑动页面时，再去加载出现在屏幕内的图片，以优化图片的加载效果。
+For some home pages with large amount of pictures, users only need to present the pictures in the visible area of the screen after opening the page. When users slide the page, they load the pictures that appear in the screen to optimize the loading effect of the pictures.
 
-图片懒加载实现原理：
+Implementation principle of image lazy loading:
 
-由于浏览器会自动对页面中的 img 标签的 src 属性发送请求并下载图片，可以通过 html5 自定义属性 data-xxx 先暂存 src 的值，然后在图片出现在屏幕可视区域的时候，再将 data-xxx 的值重新赋值到 img 的 src 属性即可。
+Since the browser will automatically send a request to the src attribute of the img tag in the page and download the image, you can temporarily store the src value through the html5 custom attribute data-xxx, and then reassign the value of data-xxx to the src attribute of the img when the image appears in the visible area of the screen.
 
 ```js
 <img src="" alt="" data-src="./images/1.jpg">
 <img src="" alt="" data-src="./images/2.jpg">
 ```
 
-这里以 `vue-lazyload` 插件为例：
+Take the `vue-lazyload` plug-in as an example:
 
 ```js
-// 安装
+// install
 npm install vue-lazyload
 
-// main.js 注册
+// main.js register
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload)
-// 配置项
+// Configuration item
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: 'dist/error.png', // 图片加载失败时的占位图
-  loading: 'dist/loading.gif', // 图片加载中时的占位图
+  error: 'dist/error.png', // Bitmap occupation in case of image loading failure
+  loading: 'dist/loading.gif', // Bitmap occupation in case of image loading failure
   attempt: 1
 })
 
-// 通过 v-lazy 指令使用
+// Use with the v-lazy instruction
 <ul>
-    <li v-for="img in list">
-        <img v-lazy="img.src" :key="img.src" >
-    </li>
+  <li v-for="img in list">
+    <img v-lazy="img.src" :key="img.src" >
+  </li>
 </ul>
 ```
 
-**使用字体图标**
+**Use font icon**
 
-字体图标是页面使用小图标的不二选择，最常用的就是 [iconfont](https://www.iconfont.cn/)
+Font icons are the best choice for small icons on the page. The most common one is [iconfont](https://www.iconfont.cn/)
 
-字体图标的优点：
+Advantages of font icons:
 
-1）轻量级：一个图标字体要比一系列的图像要小。一旦字体加载了，图标就会马上渲染出来，减少了 http 请求。
+1）Lightweight: An icon font is smaller than a series of images. Once the font is loaded, the icon will be rendered immediately, reducing http requests.
 
-2）灵活性：可以随意的改变颜色、产生阴影、透明效果、旋转等。
+2）Flexibility: You can change colors, generate shadows, transparency, rotation, etc. at will.
 
-3）兼容性：几乎支持所有的浏览器，请放心使用。
+3）Compatibility: almost all browsers are supported, please feel free to use.
 
-**图片转 base64 格式**
+**Picture to base64 format**
 
-将小图片转换为 base64 编码字符串，并写入 HTML 或者 CSS 中，减少 http 请求。
+Convert small images into base64 encoded strings and write them into HTML or CSS to reduce http requests.
 
-转 base64 格式的优缺点：
+Advantages and disadvantages of converting to base64 format:
 
-1）它处理的往往是非常小的图片，因为 Base64 编码后，图片大小会膨胀为原文件的 4/3，如果对大图也使用 Base64 编码，后者的体积会明显增加，即便减少了 http 请求，也无法弥补这庞大的体积带来的性能开销，得不偿失。
+1. It often deals with very small images, because after Base64 encoding, the image size will expand to 4/3 of the original file. If Base64 encoding is also used for large images, the size of the latter will increase significantly. Even if the http request is reduced, it cannot make up for the performance cost caused by this huge volume, which is more than worth the loss.
 
-2）在传输非常小的图片的时候，Base64 带来的文件体积膨胀、以及浏览器解析 Base64 的时间开销，与它节省掉的 http 请求开销相比，可以忽略不计，这时候才能真正体现出它在性能方面的优势。
+2. When transmitting very small images, the file volume expansion brought by Base64 and the time cost of browser parsing Base64 can be ignored compared with the cost of http requests saved by it. Only then can it truly reflect its performance advantages.
 
-项目可以使用 `url-loader` 将图片转 base64：
+Projects can use `url loader` to transfer pictures to base64:
 
 ```js
-// 安装
+// install
 npm install url-loader --save-dev
 
-// 配置
+// config
 module.exports = {
   module: {
     rules: [{
@@ -447,7 +446,7 @@ module.exports = {
         use: [{
             loader: 'url-loader',
             options: {
-              // 小于 10kb 的图片转化为 base64
+              // Convert images smaller than 10kb to base64
               limit: 1024 * 10
             }
         }]
@@ -456,11 +455,11 @@ module.exports = {
 };
 ```
 
-## 优化总结
+## Optimization Summary
 
-本文主要介绍的是 代码层面 的性能优化，经过上面的一系列优化，首页打开速度有了明显的提升，虽然都是一些常规方案，但其中可以深挖的知识点并不少。
+This article mainly introduces the performance optimization at the code level. After the above series of optimization, the opening speed of the home page has been significantly improved. Although these are some conventional solutions, there are not many knowledge points that can be dug deeply.
 
-## 参考文章
+## Reference articles
 
 [路由懒加载原理及使用](https://blog.csdn.net/weixin_44003156/article/details/107541856)
 
@@ -476,4 +475,4 @@ module.exports = {
 
 [使用 Preload&Prefetch 优化前端页面的资源加载](https://zhuanlan.zhihu.com/p/273298222)
 
-**注** 本文来自[前端性能优化——首页资源压缩 63%、白屏时间缩短 86%](https://juejin.cn/post/7188894691356573754)，如有侵权，联系我删除！
+**Notes** This article is from [前端性能优化——首页资源压缩 63%、白屏时间缩短 86%](https://juejin.cn/post/7188894691356573754),In case of infringement, please contact me to delete it!

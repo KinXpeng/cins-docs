@@ -239,10 +239,10 @@ export default defineConfig({
           'column/introduction/index.md',
         ],
       },
-      // {
-      //   title: 'SEO',
-      //   path: '/column/seo',
-      // },
+      {
+        title: 'SEO',
+        path: '/column/seo',
+      },
     ],
 
     '/zh-CN/column': [

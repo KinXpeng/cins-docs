@@ -8,6 +8,7 @@ nav:
 
 ### Column
 
+- 2023/02/08 Column - Added**SEO menu ->front-end performance optimization.**
 - 2023/02/07 Added**Column**navigation menu.
 
 ### Common
