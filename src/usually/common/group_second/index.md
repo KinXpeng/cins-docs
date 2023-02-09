@@ -132,3 +132,16 @@ const useChangeColor = () => {
   };
 };
 ```
+
+## Determines if the function passed in is marked async
+
+```ts
+/**
+ * Determines if the function passed in is marked async
+ * @param { Function } func Incoming function
+ * @return { Boolean }
+ */
+const isAsyncFunction = (func) => {
+  return func[Symbol.toStringTag] === 'AsyncFunction';
+};
+```

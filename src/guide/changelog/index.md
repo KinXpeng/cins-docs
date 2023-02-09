@@ -8,11 +8,13 @@ nav:
 
 ### Column
 
-- 2023/02/08 Column - Added**SEO menu ->front-end performance optimization.**
-- 2023/02/07 Added**Column**navigation menu.
+- 2023/02/09 Column - Added **Questions** menu.
+- 2023/02/08 Column - Added **SEO menu ->front-end performance optimization.**
+- 2023/02/07 Added **Column** navigation menu.
 
 ### Common
 
+- 2023/02/09 Common(group second) - Added **Determines if the function passed in is marked async.**
 - 2023/02/07 File - Added **Combine pictures and text into one image.**
 - 2023/02/06 File - Added **Download the file using the url.**
 - 2023/02/03 File - Added **ImgUrlToBase64.**

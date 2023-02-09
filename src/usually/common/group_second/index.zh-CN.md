@@ -141,3 +141,16 @@ const useChangeColor = () => {
   };
 };
 ```
+
+## 判断传入的函数是否标记了 async
+
+```ts
+/**
+ * 判断传入的函数是否标记了async
+ * @param { Function } func 传入的函数
+ * @return { Boolean }
+ */
+const isAsyncFunction = (func) => {
+  return func[Symbol.toStringTag] === 'AsyncFunction';
+};
+```

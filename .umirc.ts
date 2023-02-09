@@ -243,6 +243,10 @@ export default defineConfig({
         title: 'SEO',
         path: '/column/seo',
       },
+      {
+        title: 'Questions',
+        path: '/column/questions',
+      },
     ],
 
     '/zh-CN/column': [
@@ -258,6 +262,10 @@ export default defineConfig({
       {
         title: 'SEO',
         path: '/column/seo',
+      },
+      {
+        title: '常见问题',
+        path: '/column/questions',
       },
     ],
   },
