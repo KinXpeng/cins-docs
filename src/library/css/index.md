@@ -111,3 +111,27 @@ export default () => {
   );
 };
 ```
+
+## Beyond multiline omission
+
+```tsx
+import React from 'react';
+import './styles/ellipsis.css';
+export default () => {
+  return (
+    <div className="throttle-wrap">
+      <div className="ellipsis-overflow">
+        Test the ability to use ellipses beyond a line of text.
+      </div>
+      <div className="ellipsis-double ellipsis">
+        Test the ellipsis function for more than two lines of text. Test the ellipsis function for
+        more than two lines of text.
+      </div>
+      <div className="ellipsis-triple ellipsis">
+        Test the ability to use ellipses beyond multiple lines, test the ability to use ellipses
+        beyond multiple lines, test the ability to use ellipses beyond multiple lines.
+      </div>
+    </div>
+  );
+};
+```

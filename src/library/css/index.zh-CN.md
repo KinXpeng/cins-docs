@@ -111,3 +111,23 @@ export default () => {
   );
 };
 ```
+
+## 超出多行省略
+
+```tsx
+import React from 'react';
+import './styles/ellipsis.css';
+export default () => {
+  return (
+    <div className="throttle-wrap">
+      <div className="ellipsis-overflow">测试一下超出一行文字出现省略号的功能。</div>
+      <div className="ellipsis-double ellipsis">
+        测试一下超出两行文字出现省略号的功能，测试一下超出两行文字出现省略号的功能。
+      </div>
+      <div className="ellipsis-triple ellipsis">
+        测试一下超出多行文字出现省略号的功能，测试一下超出多行文字出现省略号的功能，测试一下超出多行文字出现省略号的功能。
+      </div>
+    </div>
+  );
+};
+```
