@@ -47,6 +47,7 @@ nav:
 
 ### Winnow
 
+- 2023/03/03 Added **Winnow->Tips** menu.
 - 2023/02/15 CSS - Added **Beyond multiline omission.**
 - 2023/02/06 Widgets - Added **mobile prompt component.**
 - 2023/02/06 Added **Winnow->Widgets** menu.

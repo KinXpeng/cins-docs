@@ -98,6 +98,10 @@ export default defineConfig({
         // children: ['library/css/index.md'],
       },
       {
+        title: 'Tips',
+        path: '/library/tips',
+      },
+      {
         title: 'Mini program',
         path: '/library/mini-program',
       },
@@ -123,6 +127,10 @@ export default defineConfig({
         //   // 菜单子项（可选）
         //   'library/css/index.zh-CN.md',
         // ],
+      },
+      {
+        title: '小技巧',
+        path: '/library/tips',
       },
       {
         title: '小程序',
