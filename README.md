@@ -39,13 +39,13 @@ git clone https://github.com/KinXpeng/cins-docs.git
 cd cins-docs
 
 # 安装依赖
-yarn add
+pnpm install
 
 # 运行项目
-yarn start
+pnpm run dev
 
 # 打包发布
-yarn build
+pnpm run build
 ```
 
 #### 📚 开发文档

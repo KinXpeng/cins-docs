@@ -1,19 +1,21 @@
 ---
+title: CINS
 hero:
   title: CINS
-  desc: 📖 A library of common methods for easy development
+  description: 📖 为便捷开发而生的方法库，常用方法统统齐全，一键开启！
   actions:
-    - text: Getting Started
-      link: /guide
+    - text: 快速上手
+      link: /guide/changelog
+    - text: 开始使用
+      link: /usually/array
 features:
-  - icon: https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/out-of-box.png?versionId=CAEQOBiBgMCMkZG0mBgiIDVmMTgwNGEwNjRiYjQ4Njk4MWE5MDNjNjk5MTRjMzdi
-    title: Out of the box
-    desc: Out of the box, focus on method usage and work output
-  - icon: https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/apply-diverse.png?versionId=CAEQOBiBgICHkZG0mBgiIDdlNDRlM2Y3MmY4OTQ3MzdhZTQ1N2I3NDUwM2ZkMTEy
-    title: Apply diverse
-    desc: A variety of API based on TypeScript type definition
-  - icon: https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/conv-dev.png?versionId=CAEQOBiBgMCNkZG0mBgiIGViODY1Y2E3NDFlZTQzODdhZTI5ZTkxMjcxNDljMTYy
-    title: Convenient development
-    desc: One-line command digitizes library assets and connects them with downstream productivity tools
-footer: Developed by KinXpeng. | Copyright©2022 <br />Powered by [cins](https://docs.cins.cc)
+  - title: 开箱即用
+    emoji: 💎
+    description: 开箱即用，将注意力集中方法使用和项目开发上
+  - title: 多端适用
+    emoji: 🌈
+    description: 基于 TypeScript 类型定义，js 和 ts 均可使用，跨平台通用，多端共进
+  - title: 便捷开发
+    emoji: 🚀
+    description: 一键复制即可使用，节约开发成本，轻松便捷使用，根据需求改进方法
 ---
