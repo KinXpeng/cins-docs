@@ -1,5 +1,5 @@
 ---
-title: CINS
+title: Documentation of common front-end methods
 hero:
   title: CINS
   description: 📖 A library of common methods for easy development

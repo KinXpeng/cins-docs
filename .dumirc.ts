@@ -10,7 +10,7 @@ export default defineConfig({
   publicPath: withGH(''),
   outputPath: 'docs-dist',
   themeConfig: {
-    name: 'cins',
+    name: 'CINS',
     logo: withGH('cins-docs.png'),
     social: {
       github: {
@@ -29,7 +29,7 @@ export default defineConfig({
     thumbBackground: true,
     settingPanelVisible: true,
     hero: {
-      showVersionBadge: true
+      showVersionBadge: false
     }
   },
   locales: [

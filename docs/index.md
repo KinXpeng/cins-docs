@@ -1,5 +1,5 @@
 ---
-title: CINS
+title: 前端常用方法文档
 hero:
   title: CINS
   description: 📖 为便捷开发而生的方法库，常用方法统统齐全，一键开启！
