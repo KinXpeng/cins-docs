@@ -6,7 +6,13 @@ nav:
 
 ## Picture size adaptive
 
-```html
+```js
+<template>
+  <div>
+    <img src="./1.jpg" />
+  </div>
+</template>
+
 <style>
   div {
     display: flex;
@@ -19,8 +25,4 @@ nav:
     height: 100vmin;
   }
 </style>
-
-<div>
-  <img src="./1.jpg" />
-</div>
 ```
