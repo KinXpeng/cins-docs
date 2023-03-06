@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",
-    "docs:build": "cross-env BROWSERSLIST_IGNORE_OLD_DATA=1 dumi build",
+    "docs:build": "BROWSERSLIST_IGNORE_OLD_DATA=1 dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
     "build": "father build",
     "deploy": "npm run docs:build && npm run docs:deploy",
