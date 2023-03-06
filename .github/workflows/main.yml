@@ -11,9 +11,9 @@ jobs:
     # 服务器环境：最新版 Ubuntu
     runs-on: ubuntu-latest
     # node版本
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [14.x, 16.x]
 
     steps:
       # 拉取代码
@@ -25,7 +25,8 @@ jobs:
       - name: Build
         run: |
           yarn  # 安装依赖
-          yarn docs:build  # 执行打包
+          # yarn docs:build  # 执行打包
+          yarn build
 
       # 部署到 GitHub Pages
       - name: Deploy
