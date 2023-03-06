@@ -18,7 +18,19 @@ export default defineConfig({
         link: 'https://github.com/KinXpeng/cins-docs'
       },
     },
-    footer: `Copyright © ${new Date().getFullYear()} cins.cc`
+    footer: `Copyright © ${new Date().getFullYear()} cins.cc`,
+    announcementBar: {
+      isCloseable: true,
+      id: 'notice',
+      content: 'cins文档2.0全新出场！！！',
+      backgroundColor: '#f9fafc',
+      // textColor:''
+    },
+    thumbBackground: true,
+    settingPanelVisible: true,
+    hero: {
+      showVersionBadge: true
+    }
   },
   locales: [
     {
