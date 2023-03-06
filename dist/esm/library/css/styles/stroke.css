@@ -1,0 +1,6 @@
+.stroke-text {
+  color: transparent;
+  font-size: 40px;
+  /* 仅适用于部分浏览器 */
+  -webkit-text-stroke: 2px #f60;
+}
