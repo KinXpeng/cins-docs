@@ -2,6 +2,26 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   title: 'cins',
+  // theme: {
+  //   // 修改 dumi 默认主题的主色
+  //   '@c-primary': '#85f589',
+  // },
+  // cssnano: {
+  //   normalizeUrl: false,
+  // },
+  // optimization: {
+  //   emitOnErrors: true,
+  //   minimize: true,
+  //   minimizer: [
+  //     new CssMinimizerPlugin(),
+  //   ],
+  // },
+  terserOptions: {
+    compress: {},
+    optimization: {
+      noEmitOnErrors: true,
+    },
+  },
   favicon:
     'https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/logo_net.png?versionId=CAEQOBiBgMDLq.DsnRgiIGE2YzFkZDY4Njc2ZDQ5MzdhMWU5ZTM5YWE1NzM0YjYx',
   logo: 'https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/logo_net.png?versionId=CAEQOBiBgMDLq.DsnRgiIGE2YzFkZDY4Njc2ZDQ5MzdhMWU5ZTM5YWE1NzM0YjYx',
