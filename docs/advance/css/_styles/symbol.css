@@ -1,0 +1,58 @@
+.symbol-legend {
+  display: flex;
+  align-items: center;
+}
+
+.symbol-legend > span {
+  padding: 4px 8px;
+  border: 1px solid #589ff8;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.symbol-legend > span :last-child {
+  margin: 0;
+}
+
+.symbol-legend > span.loading {
+  /* 装卸中 */
+  background: linear-gradient(to right, #e5f3ff 40%, transparent 40%);
+}
+
+.symbol-legend > span.complete {
+  /* 装卸完成 */
+  background-color: #e5f3ff;
+}
+
+.symbol-legend > span.leave {
+  /* 离场 */
+  background-color: #cbcccc;
+}
+
+.symbol-legend > span.timeout {
+  /* 执行超时 */
+  background-image: repeating-linear-gradient(
+    -30deg,
+    red,
+    red 1px,
+    transparent 0,
+    transparent 6px
+  );
+}
+
+.symbol-legend > span.late {
+  /* 迟到 */
+  border-color: red;
+}
+
+.symbol-legend > span.selected {
+  /* 选中 */
+  border: 1px dashed green;
+  background-color: #f1f6df;
+}
+
+.symbol-legend > span.recommend {
+  /* 推荐 */
+  border: 1px dashed yellow;
+  background-color: #fefeed;
+}

@@ -48,3 +48,110 @@ export default () => {
   );
 };
 ```
+
+## 文字描边
+
+```tsx
+import React from 'react';
+import './_styles/stroke.css';
+export default () => {
+  return <div className="stroke-text">你好，这里是CINS！</div>;
+};
+```
+
+## 网站变成灰色效果
+
+```tsx
+import React from 'react';
+import './_styles/gray.css';
+export default () => {
+  return (
+    <div className="content">
+      <div className="gray-text">默认状态，色彩斑斓！</div>
+      <div className="gray-text silence">默认状态，色彩斑斓！</div>
+    </div>
+  );
+};
+```
+
+## CSS 伪类实现提示语图标效果
+
+```tsx
+import React from 'react';
+import './_styles/pseudo.css';
+export default () => {
+  return <div className="pseudo-text">这是一条有图标的提示语！</div>;
+};
+```
+
+## CSS 节流
+
+```tsx
+import React from 'react';
+import './_styles/index.less';
+import './_styles/throttle.css';
+export default () => {
+  const throttleTips = () => {
+    alert('按钮已点击！');
+  };
+  return (
+    <div className="throttle-button">
+      <div className="button-wrap">
+        <button className="cins-button" onClick={throttleTips}>
+          未节流
+        </button>
+        <span>（不间断触发）</span>
+      </div>
+      <div className="button-wrap">
+        <button onClick={throttleTips} className="cins-button ant-throttle">
+          节流
+        </button>
+        <span>（2s触发一次）</span>
+      </div>
+    </div>
+  );
+};
+```
+
+## 超出多行省略
+
+```tsx
+import React from 'react';
+import './_styles/ellipsis.css';
+export default () => {
+  return (
+    <div className="throttle-wrap">
+      <div className="ellipsis-overflow">
+        测试一下超出一行文字出现省略号的功能。
+      </div>
+      <div className="ellipsis-double ellipsis">
+        测试一下超出两行文字出现省略号的功能，测试一下超出两行文字出现省略号的功能。
+      </div>
+      <div className="ellipsis-triple ellipsis">
+        测试一下超出多行文字出现省略号的功能，测试一下超出多行文字出现省略号的功能，测试一下超出多行文字出现省略号的功能。
+      </div>
+    </div>
+  );
+};
+```
+
+## CSS 实现按钮的不同背景
+
+```tsx
+import React from 'react';
+import './_styles/symbol.css';
+export default () => {
+  return (
+    <div class="symbol-legend">
+      <span>未装卸</span>
+      <span class="loading">装卸中</span>
+      <span class="complete">装卸完成</span>
+      <span class="leave">离场</span>
+      <span class="timeout">执行超时</span>
+      <span class="late">迟到</span>
+      <span class="selected">选中</span>
+      <span class="recommend">推荐</span>
+    </div>
+  );
+};
+```
