@@ -8,13 +8,19 @@ nav:
 
 ## Picture size adaptive
 
-```js
+- html
+
+```html
 <template>
   <div>
     <img src="./1.jpg" />
   </div>
 </template>
+```
 
+- css
+
+```css
 <style>
   div {
     display: flex;
