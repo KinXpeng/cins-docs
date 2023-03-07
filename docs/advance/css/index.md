@@ -10,7 +10,7 @@ nav:
 
 ```tsx
 import React, { useState } from 'react';
-import './index.less';
+import './_styles/index.less';
 import './_styles/shake.css';
 
 export default () => {

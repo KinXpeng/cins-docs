@@ -10,7 +10,7 @@ nav:
 
 ```tsx
 import React, { useState } from 'react';
-import { Button, Input, message } from 'antd';
+import './_styles/index.less';
 import './_styles/shake.css';
 
 export default () => {
@@ -24,7 +24,7 @@ export default () => {
   };
   const trigger = () => {
     if (isMobilePhone(value)) {
-      message.success('The format of mobile phone number is correct!');
+      console.log('The format of mobile phone number is correct!');
     } else {
       setShake(true);
       setTimeout(() => {
@@ -34,13 +34,13 @@ export default () => {
   };
   return (
     <div className="apply-shake-input">
-      <Input
+      <input
         className={shake ? 'apply-shake' : ''}
         status={isMobilePhone(value) || !value ? '' : 'error'}
         placeholder="Please enter your mobile number"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-      />
+      ></input>
       <button type="primary" onClick={trigger}>
         Verify
       </button>
