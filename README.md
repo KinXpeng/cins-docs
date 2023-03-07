@@ -9,7 +9,7 @@
 
 #### ⛱️ 线上预览
 
-- 线上文档预览 <a href="https://docs.cins.cc/zh-CN" target="_blank">https://docs.cins.cc/zh-CN</a>
+- 线上文档预览 <a href="https://docs.cins.cc" target="_blank">https://docs.cins.cc</a>
 
 #### 💒 代码仓库
 
