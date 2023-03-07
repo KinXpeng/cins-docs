@@ -56,3 +56,15 @@
   border: 1px dashed yellow;
   background-color: #fefeed;
 }
+
+.symbol-legend > span.other {
+  /* 推荐 */
+  background: white;
+  background-image: linear-gradient(
+      90deg,
+      rgba(200, 0, 0, 0.5) 50%,
+      transparent 0
+    ),
+    linear-gradient(rgba(200, 0, 0, 0.5) 50%, transparent 0);
+  background-size: 10px 10px;
+}

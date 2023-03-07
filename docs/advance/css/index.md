@@ -1,6 +1,6 @@
 ---
 title: CSS
-order: 1
+order: 0
 nav:
   title: 进阶
   order: 2
@@ -151,6 +151,7 @@ export default () => {
       <span class="late">迟到</span>
       <span class="selected">选中</span>
       <span class="recommend">推荐</span>
+      <span class="other">其它</span>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 ---
 title: CSS
-order: 1
+order: 0
 nav:
   title: Advance
   order: 2
@@ -154,6 +154,7 @@ export default () => {
       <span class="late">late</span>
       <span class="selected">selected</span>
       <span class="recommend">recommend</span>
+      <span class="other">other</span>
     </div>
   );
 };
