@@ -5,7 +5,7 @@ hero:
   description: 📖 A library of common methods for easy development
   actions:
     - text: Easystart
-      link: /guide/changelog
+      link: /guide/introduction
     - text: Getstart
       link: /usually/array
 features:

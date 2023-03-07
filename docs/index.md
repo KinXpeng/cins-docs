@@ -5,7 +5,7 @@ hero:
   description: 📖 为便捷开发而生的方法库，常用方法统统齐全，一键开启！
   actions:
     - text: 快速上手
-      link: /guide/changelog
+      link: /guide/introduction
     - text: 开始使用
       link: /usually/array
 features:
