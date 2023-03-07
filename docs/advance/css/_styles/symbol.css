@@ -58,7 +58,7 @@
 }
 
 .symbol-legend > span.other {
-  /* 推荐 */
+  /* 其它 */
   background: white;
   background-image: linear-gradient(
       90deg,
