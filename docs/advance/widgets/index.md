@@ -2,7 +2,7 @@
 title: 小组件
 order: 2
 nav:
-  title: 精选
+  title: 进阶
   order: 2
 ---
 

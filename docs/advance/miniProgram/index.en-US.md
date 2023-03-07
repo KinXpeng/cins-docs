@@ -2,7 +2,7 @@
 title: Mini program
 order: 0
 nav:
-  title: Winnow
+  title: Advance
   order: 2
 ---
 

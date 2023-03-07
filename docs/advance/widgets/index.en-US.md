@@ -2,7 +2,7 @@
 title: Widgets
 order: 2
 nav:
-  title: Winnow
+  title: Advance
   order: 2
 ---
 

@@ -2,7 +2,7 @@
 title: CSS
 order: 1
 nav:
-  title: 精选
+  title: 进阶
   order: 2
 ---
 
@@ -12,7 +12,7 @@ nav:
 import React, { useState } from 'react';
 import { Button, Input, message } from 'antd';
 import 'antd/dist/antd.css';
-import './_styles/shake.css';
+import './shake.css';
 
 export default () => {
   const [shake, setShake] = useState(false);
@@ -54,7 +54,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import './_styles/stroke.css';
+import './stroke.css';
 export default () => {
   return <div className="stroke-text">你好，这里是CINS！</div>;
 };
@@ -64,7 +64,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import './_styles/gray.css';
+import './gray.css';
 export default () => {
   return (
     <div className="content">
@@ -79,7 +79,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import './_styles/pseudo.css';
+import './pseudo.css';
 export default () => {
   return <div className="pseudo-text">这是一条有图标的提示语！</div>;
 };
@@ -90,7 +90,7 @@ export default () => {
 ```tsx
 import React from 'react';
 import { Button, message } from 'antd';
-import './_styles/throttle.css';
+import './throttle.css';
 export default () => {
   const throttleTips = () => {
     message.success('按钮已点击！');
@@ -118,7 +118,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import './_styles/ellipsis.css';
+import './ellipsis.css';
 export default () => {
   return (
     <div className="throttle-wrap">

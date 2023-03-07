@@ -1,14 +1,14 @@
 ---
-title: Tips
+title: 小技巧
 order: 3
 nav:
-  title: Winnow
+  title: 进阶
   order: 2
 ---
 
-## Picture size adaptive
+## 图片大小自适应
 
-- html
+- html 部分
 
 ```html
 <template>
@@ -18,7 +18,7 @@ nav:
 </template>
 ```
 
-- css
+- css 部分
 
 ```css
 <style>
@@ -26,8 +26,8 @@ nav:
     display: flex;
     align-items: center;
   }
-  /* vmin：Take the smaller values vw and vh */
-  /* vmax：Take the larger values vw and vh */
+  /* vmin：取 vw 和 vh 较小的值 */
+  /* vmax：取 vw 和 vh 较大的值 */
   img {
     width: 100vmin;
     height: 100vmin;

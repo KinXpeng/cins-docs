@@ -1,14 +1,14 @@
 ---
-title: 小技巧
+title: Tips
 order: 3
 nav:
-  title: 精选
+  title: Advance
   order: 2
 ---
 
-## 图片大小自适应
+## Picture size adaptive
 
-- html 部分
+- html
 
 ```html
 <template>
@@ -18,7 +18,7 @@ nav:
 </template>
 ```
 
-- css 部分
+- css
 
 ```css
 <style>
@@ -26,8 +26,8 @@ nav:
     display: flex;
     align-items: center;
   }
-  /* vmin：取 vw 和 vh 较小的值 */
-  /* vmax：取 vw 和 vh 较大的值 */
+  /* vmin：Take the smaller values vw and vh */
+  /* vmax：Take the larger values vw and vh */
   img {
     width: 100vmin;
     height: 100vmin;

@@ -2,7 +2,7 @@
 title: 小程序
 order: 0
 nav:
-  title: 精选
+  title: 进阶
   order: 2
 ---
 
