@@ -1,6 +1,6 @@
 ---
 title: 更新日志
-order: 0
+order: 1
 nav:
   title: 指南
   order: 0

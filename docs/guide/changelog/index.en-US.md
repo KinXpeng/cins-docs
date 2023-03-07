@@ -1,6 +1,6 @@
 ---
 title: Changelog
-order: 0
+order: 1
 nav:
   title: Guide
   order: 0

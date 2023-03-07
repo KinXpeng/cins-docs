@@ -1,6 +1,6 @@
 ---
 title: Introduction
-order: 1
+order: 0
 nav:
   title: Guide
   order: 0
