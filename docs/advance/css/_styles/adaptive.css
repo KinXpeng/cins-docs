@@ -1,0 +1,25 @@
+.mix-adaptive {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(45deg, #000 0, #000 50%, #fff 50%);
+}
+.mix-adaptive span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  mix-blend-mode: difference;
+  animation: move 3s infinite linear alternate;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(-30%, -50%);
+  }
+  100% {
+    transform: translate(-70%, -50%);
+  }
+}

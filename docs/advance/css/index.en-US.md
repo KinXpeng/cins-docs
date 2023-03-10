@@ -159,3 +159,17 @@ export default () => {
   );
 };
 ```
+
+## The css implements intelligent text adaptation
+
+```tsx
+import React from 'react';
+import './_styles/adaptive.css';
+export default () => {
+  return (
+    <div class="mix-adaptive">
+      <span>The css implements intelligent text adaptation</span>
+    </div>
+  );
+};
+```

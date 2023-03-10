@@ -156,3 +156,17 @@ export default () => {
   );
 };
 ```
+
+## CSS 实现文字智能适配
+
+```tsx
+import React from 'react';
+import './_styles/adaptive.css';
+export default () => {
+  return (
+    <div class="mix-adaptive">
+      <span>CSS实现文字智能适配背景</span>
+    </div>
+  );
+};
+```

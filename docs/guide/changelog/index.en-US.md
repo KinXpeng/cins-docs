@@ -47,6 +47,7 @@ nav:
 
 ### Advance
 
+- 2023/03/10 CSS - Added **The css implements intelligent text adaptation.**
 - 2023/03/07 CSS - Added **Implement different backgrounds for buttons.**
 - 2023/03/03 Added **Winnow->Tips** menu.
 - 2023/02/15 CSS - Added **Beyond multiline omission.**
