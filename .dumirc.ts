@@ -19,17 +19,18 @@ export default defineConfig({
       },
     },
     footer: `Copyright © ${new Date().getFullYear()} cins.cc`,
-    announcementBar: {
-      isCloseable: true,
-      id: 'notice',
-      content: 'cins文档2.0全新出场！！！',
-      backgroundColor: '#f9fafc',
-      // textColor:''
-    },
+    // 通知
+    // announcementBar: {
+    //   isCloseable: true,
+    //   id: 'notice',
+    //   content: 'cins文档2.0全新出场！！！',
+    //   backgroundColor: '#f9fafc',
+    //   // textColor:''
+    // },
     thumbBackground: true,
     settingPanelVisible: true,
     hero: {
-      showVersionBadge: false
+      showVersionBadge: true
     }
   },
   locales: [

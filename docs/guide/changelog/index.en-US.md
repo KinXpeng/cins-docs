@@ -14,6 +14,8 @@ nav:
 
 ### Common
 
+- 2023/03/13 Array Object - Added **Determine data type.**
+- 2023/03/13 Array Object - Added **To reinvent the solution.**
 - 2023/02/09 Common(group second) - Added **Determines if the function passed in is marked async.**
 - 2023/02/07 File - Added **Combine pictures and text into one image.**
 - 2023/02/06 File - Added **Download the file using the url.**

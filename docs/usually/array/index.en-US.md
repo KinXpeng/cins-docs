@@ -97,6 +97,20 @@ const pickAttrs = (obj, ...props) => {
 };
 ```
 
+## Determine data type
+
+```js
+/**
+ * @param { any } value data
+ * @param { string } type  string/number/null/object/array/underfined
+ * @return { boolean }
+ */
+const isType = (value, type) => {
+  type = type[0].toUpperCase() + type.substring(1).toLowerCase();
+  return Object.prototype.toString.call(value) === `[object ${type}]`;
+};
+```
+
 ## Duplicate removal
 
 ### Array objects are de-weighted according to fields
@@ -151,5 +165,54 @@ const removeDuplicate = (arr: EmptyArrayType, attr?: any) => {
       return [...new Set(arr)];
     }
   }
+};
+```
+
+### To reinvent the solution
+
+```js
+/**
+ * @param { any } list Data to judge
+ * @return  Returns the de-duplicated data
+ */
+const duplicateRemoval = (list) => {
+  const newArr = [...list];
+  for (let i = 0; i < newArr.length; i++) {
+    for (let j = i + 1; j < newArr.length; j++) {
+      if (equals(newArr[i], newArr[j])) {
+        newArr.splice(j, 1);
+        j--;
+      }
+    }
+  }
+
+  // Determine whether two values are equal
+  function equals(val1, val2) {
+    if (isType(val1, 'object') && isType(val2, 'object')) {
+      const keys1 = Object.keys(val1),
+        keys2 = Object.keys(val2);
+      if (keys1.length !== keys2.length) {
+        return false;
+      }
+      for (const k of keys1) {
+        if (!keys2.includes(k)) {
+          return false;
+        }
+        if (!equals(val1[k], val2[k])) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return val1 === val2;
+    }
+  }
+
+  // Determine data type
+  function isType(value, type) {
+    type = type[0].toUpperCase() + type.substring(1).toLowerCase();
+    return Object.prototype.toString.call(value) === `[object ${type}]`;
+  }
+  return newArr;
 };
 ```

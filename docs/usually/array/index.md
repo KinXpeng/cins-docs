@@ -96,6 +96,20 @@ const pickAttrs = (obj, ...props) => {
 };
 ```
 
+## 判断数据类型
+
+```js
+/**
+ * @param { any } value 需要判断的数据
+ * @param { string } type 数据类型 string/number/null/object/array/underfined
+ * @return { boolean }
+ */
+const isType = (value, type) => {
+  type = type[0].toUpperCase() + type.substring(1).toLowerCase();
+  return Object.prototype.toString.call(value) === `[object ${type}]`;
+};
+```
+
 ## 去重
 
 ### 数组对象根据字段去重
@@ -150,5 +164,56 @@ const removeDuplicate = (arr: EmptyArrayType, attr?: any) => {
       return [...new Set(arr)];
     }
   }
+};
+```
+
+### 去重全新解决方案
+
+```js
+/**
+ * @param { any } list 需要判断的数据
+ * @return  返回去重后的数据
+ */
+const duplicateRemoval = (list) => {
+  const newArr = [...list];
+  for (let i = 0; i < newArr.length; i++) {
+    // 去掉i+1开始后续的值
+    for (let j = i + 1; j < newArr.length; j++) {
+      if (equals(newArr[i], newArr[j])) {
+        // 去掉该值
+        newArr.splice(j, 1);
+        j--;
+      }
+    }
+  }
+
+  // 判断两个值是否相等
+  function equals(val1, val2) {
+    if (isType(val1, 'object') && isType(val2, 'object')) {
+      const keys1 = Object.keys(val1),
+        keys2 = Object.keys(val2);
+      if (keys1.length !== keys2.length) {
+        return false;
+      }
+      for (const k of keys1) {
+        if (!keys2.includes(k)) {
+          return false;
+        }
+        if (!equals(val1[k], val2[k])) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return val1 === val2;
+    }
+  }
+
+  // 判断数据类型
+  function isType(value, type) {
+    type = type[0].toUpperCase() + type.substring(1).toLowerCase();
+    return Object.prototype.toString.call(value) === `[object ${type}]`;
+  }
+  return newArr;
 };
 ```
