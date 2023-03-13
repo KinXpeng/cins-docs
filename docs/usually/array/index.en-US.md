@@ -102,7 +102,7 @@ const pickAttrs = (obj, ...props) => {
 ```js
 /**
  * @param { any } value data
- * @param { string } type  string/number/null/object/array/underfined
+ * @param { string } type  string/number/null/object/array/undefined
  * @return { boolean }
  */
 const isType = (value, type) => {

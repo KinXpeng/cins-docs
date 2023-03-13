@@ -101,7 +101,7 @@ const pickAttrs = (obj, ...props) => {
 ```js
 /**
  * @param { any } value 需要判断的数据
- * @param { string } type 数据类型 string/number/null/object/array/underfined
+ * @param { string } type 数据类型 string/number/null/object/array/undefined
  * @return { boolean }
  */
 const isType = (value, type) => {
