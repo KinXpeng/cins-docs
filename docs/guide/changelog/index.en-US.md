@@ -51,12 +51,13 @@ nav:
 
 ### Advance
 
+- 2023/03/14 Component - Added **Upload component.**
 - 2023/03/10 CSS - Added **The css implements intelligent text adaptation.**
 - 2023/03/07 CSS - Added **Implement different backgrounds for buttons.**
 - 2023/03/03 Added **Winnow->Tips** menu.
 - 2023/02/15 CSS - Added **Beyond multiline omission.**
-- 2023/02/06 Widgets - Added **mobile prompt component.**
-- 2023/02/06 Added **Winnow->Widgets** menu.
+- 2023/02/06 Component - Added **mobile prompt component.**
+- 2023/02/06 Added **Winnow->Component** menu.
 - 2023/02/03 Mini program - Added **the webview is used in uniapp.**
 - 2023/02/03 Added **Winnow->Mini program** menu.
 - 2022/12/03 CSS - Added **achieve button throttling effect by CSS.**

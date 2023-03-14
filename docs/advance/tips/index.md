@@ -1,5 +1,5 @@
 ---
-title: 小技巧
+title: 技巧
 order: 3
 nav:
   title: 进阶
