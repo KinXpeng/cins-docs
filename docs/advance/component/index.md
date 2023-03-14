@@ -20,6 +20,8 @@ export default () => {
     // console.log(resultList);
     setFilesList([...filesList, ...resultList]);
   };
+
+  // 选择
   const handleSelect = (type: string) => {
     if (type === 'clear') {
       setFilesList([]);
@@ -43,6 +45,11 @@ export default () => {
     };
     input.click();
   };
+
+  // 上传
+  const handleUpload = () => {
+    console.log('上传文件列表=>>>', filesList);
+  };
   return (
     <div className="upload">
       <div
@@ -62,6 +69,10 @@ export default () => {
       <button className="cins-button" onClick={() => handleSelect('clear')}>
         清空
       </button>
+      <button className="cins-button" onClick={handleUpload}>
+        上传
+      </button>
+      <span className="upload-desc">（打开控制台查看上传列表）</span>
       <div className="upload-files">
         <p className="files-row title">
           <span>序号</span>

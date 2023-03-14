@@ -20,6 +20,8 @@ export default () => {
     // console.log(resultList);
     setFilesList([...filesList, ...resultList]);
   };
+
+  // Select
   const handleSelect = (type: string) => {
     if (type === 'clear') {
       setFilesList([]);
@@ -43,6 +45,11 @@ export default () => {
     };
     input.click();
   };
+
+  // Upload
+  const handleUpload = () => {
+    console.log('Upload file list=>>>', filesList);
+  };
   return (
     <div className="upload">
       <div
@@ -62,6 +69,12 @@ export default () => {
       <button className="cins-button" onClick={() => handleSelect('clear')}>
         Clear
       </button>
+      <button className="cins-button" onClick={handleUpload}>
+        上传
+      </button>
+      <span className="upload-desc">
+        (Open the console to view the upload list)
+      </span>
       <div className="upload-files">
         <p className="files-row title">
           <span>Sn</span>

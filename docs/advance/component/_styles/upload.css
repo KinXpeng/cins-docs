@@ -21,6 +21,9 @@
 .upload .cins-button {
   margin-right: 10px;
 }
+.upload .upload-desc {
+  color: #ccc;
+}
 
 .upload .upload-files {
   overflow: auto;
