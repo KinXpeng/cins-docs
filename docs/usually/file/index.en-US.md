@@ -11,21 +11,40 @@ nav:
 ```ts
 /**
   Unified Upload Method
-  @params type Upload File Type string
-  @params flag Whether multiple files can be uploaded  boolean
-  @params size Upload file size（The unit is KB） number
+  @param {string} type Upload File Type 
+  @param {boolean} multiple Whether multiple files can be uploaded  
+  @param {number} size Upload file size（The unit is KB） 
+  @param {boolean} isDirectory Whether to upload file directories
+  @return {Array} FileList
 */
-const upload = (type: string, flag: boolean, size: number) => {
+interface Iparams {
+  type: string;
+  multiple: boolean;
+  size: number;
+  isDirectory: boolean;
+}
+const upload = ({
+  type,
+  multiple = false,
+  size,
+  isDirectory = false,
+}: Iparams) => {
   return new Promise((resolve, reject) => {
     const input: HTMLInputElement = document.createElement('input');
     input.type = 'file';
-    if (flag) input.multiple = true;
+    if (multiple) input.multiple = true;
+    if (isDirectory) {
+      // Compatibility with different browsers
+      input.webkitdirectory = true;
+      // input.mozdirectory = true
+      // input.odirectory = true
+    }
     input.accept = type;
     input.onchange = ({ target }) => {
       const files = (target as EventTarget & { files: FileList }).files;
       let overSize = true; // Default not exceeding
       if (size) {
-        // Limit the size of the
+        // Limit the size
         for (let key in files) {
           if (files[key].size && files[key].size / 1024 > size) {
             overSize = false;
@@ -205,3 +224,57 @@ const imgUrlToBase64 = (url: string) => {
     });
   }
   ```
+
+## Slice upload
+
+- Get [spark-md5](https://github.com/KinXpeng/cins-docs/tree/main/utils)
+
+```js
+// Slice upload
+const sliceUpload = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.onchange = async (e) => {
+    const file = input.files[0];
+    if (!file) {
+      return;
+    }
+    const chunks = createChunks(file, 10 * 1024 * 1024);
+    const result = await hash(chunks);
+    console.log(result); // hash
+  };
+  input.click();
+};
+
+// get the value of hash
+const hash = (chunks) => {
+  return new Promise((resolve) => {
+    // import md5
+    const spark = new SparkMD5();
+    function _read(i) {
+      if (i >= chunks.length) {
+        resolve(spark.end());
+        return; // Read completion
+      }
+      const blob = chunks[i];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const bytes = e.target.result; // The byte array that was read
+        spark.append(bytes);
+        _read(i + 1);
+      };
+      reader.readAsArrayBuffer(blob);
+    }
+    _read(0);
+  });
+};
+
+// slice
+const createChunks = (file, chunkSize) => {
+  const result = [];
+  for (let i = 0; i < file.size; i += chunkSize) {
+    result.push(file.slice(i, i + chunkSize));
+  }
+  return result;
+};
+```

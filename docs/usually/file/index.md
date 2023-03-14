@@ -11,15 +11,34 @@ nav:
 ```ts
 /**
   上传统一方法
-  @param type 上传文件类型 string
-  @param flag 是否支持多个文件上传  boolean
-  @param size 上传文件大小(单位为KB) number
+  @param {string} type 上传文件类型 
+  @param {boolean} multiple 是否支持多个文件上传  
+  @param {number} size 上传文件大小(单位为KB) 
+  @param {boolean} isDirectory 是否支持上传文件目录
+  @return {Array} FileList
 */
-const upload = (type: string, flag: boolean, size: number) => {
+interface Iparams {
+  type: string;
+  multiple: boolean;
+  size: number;
+  isDirectory: boolean;
+}
+const upload = ({
+  type,
+  multiple = false,
+  size,
+  isDirectory = false,
+}: Iparams) => {
   return new Promise((resolve, reject) => {
     const input: HTMLInputElement = document.createElement('input');
     input.type = 'file';
-    if (flag) input.multiple = true;
+    if (multiple) input.multiple = true;
+    if (isDirectory) {
+      // 兼容不同浏览器
+      input.webkitdirectory = true;
+      // input.mozdirectory = true
+      // input.odirectory = true
+    }
     input.accept = type;
     input.onchange = ({ target }) => {
       const files = (target as EventTarget & { files: FileList }).files;
@@ -205,3 +224,57 @@ const imgUrlToBase64 = (url: string) => {
     });
   }
   ```
+
+## 切片上传
+
+- 获取 [spark-md5](https://github.com/KinXpeng/cins-docs/tree/main/utils)
+
+```js
+// 切片上传
+const sliceUpload = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.onchange = async (e) => {
+    const file = input.files[0];
+    if (!file) {
+      return;
+    }
+    const chunks = createChunks(file, 10 * 1024 * 1024);
+    const result = await hash(chunks);
+    console.log(result); // hash值
+  };
+  input.click();
+};
+
+// 获取hash值
+const hash = (chunks) => {
+  return new Promise((resolve) => {
+    // 此处需要引入md5
+    const spark = new SparkMD5();
+    function _read(i) {
+      if (i >= chunks.length) {
+        resolve(spark.end());
+        return; // 读取完成
+      }
+      const blob = chunks[i];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const bytes = e.target.result; // 读取到的字节数组
+        spark.append(bytes);
+        _read(i + 1);
+      };
+      reader.readAsArrayBuffer(blob);
+    }
+    _read(0);
+  });
+};
+
+// 切片
+const createChunks = (file, chunkSize) => {
+  const result = [];
+  for (let i = 0; i < file.size; i += chunkSize) {
+    result.push(file.slice(i, i + chunkSize));
+  }
+  return result;
+};
+```
