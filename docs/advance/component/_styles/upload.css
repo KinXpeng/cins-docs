@@ -18,6 +18,11 @@
   font-weight: bold;
   color: #eee;
 }
+.upload .upload-drag .tips-info {
+  font-size: 14px;
+  font-weight: bold;
+  color: #eee;
+}
 .upload .cins-button {
   margin-right: 10px;
 }

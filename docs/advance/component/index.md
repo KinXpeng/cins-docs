@@ -16,7 +16,11 @@ import './_styles/upload.css';
 export default () => {
   const [filesList, setFilesList] = useState<Array<any>>([]);
   const handleDrop = async (e: any) => {
-    let resultList = await dropHandler(e);
+    let resultList = await dropHandler(
+      e,
+      ['.jpg', '.jpeg', '.bmp', '.webp', '.gif', '.png'],
+      1024 * 1024,
+    );
     // console.log(resultList);
     setFilesList([...filesList, ...resultList]);
   };
@@ -39,7 +43,11 @@ export default () => {
 
     input.onchange = async ({ target }) => {
       const files = (target as EventTarget & { files: FileList }).files;
-      const resultList = addFiles(...files);
+      const resultList = addFiles(
+        files,
+        ['.jpg', '.jpeg', '.bmp', '.webp', '.gif', '.png'],
+        1024 * 1024,
+      );
       setFilesList([...filesList, ...resultList]);
       // console.log(resultList);
     };
@@ -59,6 +67,7 @@ export default () => {
         onDrop={handleDrop}
       >
         <p className="tips">将文件或文件夹拖动到此处进行上传</p>
+        <p className="tips-info">（限制上传大小1M，仅支持图片格式的文件）</p>
       </div>
       <button className="cins-button" onClick={() => handleSelect('file')}>
         选择文件

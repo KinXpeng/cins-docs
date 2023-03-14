@@ -16,7 +16,11 @@ import './_styles/upload.css';
 export default () => {
   const [filesList, setFilesList] = useState<Array<any>>([]);
   const handleDrop = async (e: any) => {
-    let resultList = await dropHandler(e);
+    let resultList = await dropHandler(
+      e,
+      ['.jpg', '.jpeg', '.bmp', '.webp', '.gif', '.png'],
+      1024 * 1024,
+    );
     // console.log(resultList);
     setFilesList([...filesList, ...resultList]);
   };
@@ -39,9 +43,13 @@ export default () => {
 
     input.onchange = async ({ target }) => {
       const files = (target as EventTarget & { files: FileList }).files;
-      const resultList = addFiles(...files);
+      const resultList = addFiles(
+        files,
+        ['.jpg', '.jpeg', '.bmp', '.webp', '.gif', '.png'],
+        1024 * 1024,
+      );
       setFilesList(resultList);
-      console.log(resultList);
+      // console.log(resultList);
     };
     input.click();
   };
@@ -59,6 +67,9 @@ export default () => {
         onDrop={handleDrop}
       >
         <p className="tips">Drag a file or folder here to upload</p>
+        <p className="tips-info">
+          (Limit the upload size to 1 MB and support only image files)
+        </p>
       </div>
       <button className="cins-button" onClick={() => handleSelect('file')}>
         Select file
