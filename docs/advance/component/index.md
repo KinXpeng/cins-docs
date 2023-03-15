@@ -66,8 +66,10 @@ export default () => {
         onDragOver={dragInHandler}
         onDrop={handleDrop}
       >
-        <p className="tips">将文件或文件夹拖动到此处进行上传</p>
-        <p className="tips-info">（限制上传大小1M，仅支持图片格式的文件）</p>
+        <div>
+          <p className="tips">将文件或文件夹拖动到此处进行上传</p>
+          <p className="tips-info">（限制上传大小1M，仅支持图片格式的文件）</p>
+        </div>
       </div>
       <button className="cins-button" onClick={() => handleSelect('file')}>
         选择文件

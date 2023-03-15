@@ -66,10 +66,12 @@ export default () => {
         onDragOver={dragInHandler}
         onDrop={handleDrop}
       >
-        <p className="tips">Drag a file or folder here to upload</p>
-        <p className="tips-info">
-          (Limit the upload size to 1 MB and support only image files)
-        </p>
+        <div>
+          <p className="tips">Drag a file or folder here to upload</p>
+          <p className="tips-info">
+            (Limit the upload size to 1 MB and support only image files)
+          </p>
+        </div>
       </div>
       <button className="cins-button" onClick={() => handleSelect('file')}>
         Select file
