@@ -8,6 +8,9 @@ nav:
 
 ### Column
 
+- 2023/03/16 Column - Added **JS** menu.
+- 2023/03/16 Column - Added **React** menu.
+- 2023/03/16 Column - Added **Interview** menu.
 - 2023/03/13 Questions - Added **Failed to load js on the page.**
 - 2023/02/09 Column - Added **Questions** menu.
 - 2023/02/08 Column - Added **SEO menu ->front-end performance optimization.**

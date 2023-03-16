@@ -8,5 +8,11 @@ nav:
 
 ## Introduction
 
-- This column focuses on the front end issues.
-- About front-end performance optimization,Vue、React and so on.
+- Collect some front-end complications, common problems.
+- About front-end performance optimization.
+- Some exception handling on the front end.
+- Some front-end related knowledge documentation.
+
+## Notice
+
+- Some of this column is not yet available in English
