@@ -142,16 +142,16 @@ import React from 'react';
 import './_styles/symbol.css';
 export default () => {
   return (
-    <div class="symbol-legend">
+    <div className="symbol-legend">
       <span>未装卸</span>
-      <span class="loading">装卸中</span>
-      <span class="complete">装卸完成</span>
-      <span class="leave">离场</span>
-      <span class="timeout">执行超时</span>
-      <span class="late">迟到</span>
-      <span class="selected">选中</span>
-      <span class="recommend">推荐</span>
-      <span class="other">其它</span>
+      <span className="loading">装卸中</span>
+      <span className="complete">装卸完成</span>
+      <span className="leave">离场</span>
+      <span className="timeout">执行超时</span>
+      <span className="late">迟到</span>
+      <span className="selected">选中</span>
+      <span className="recommend">推荐</span>
+      <span className="other">其它</span>
     </div>
   );
 };
@@ -164,8 +164,41 @@ import React from 'react';
 import './_styles/adaptive.css';
 export default () => {
   return (
-    <div class="mix-adaptive">
+    <div className="mix-adaptive">
       <span>CSS实现文字智能适配背景</span>
+    </div>
+  );
+};
+```
+
+## 拼音标注
+
+```tsx
+import React from 'react';
+import './_styles/index.less';
+export default () => {
+  return (
+    <div className="ft-max ft-bold align-center">
+      <ruby>
+        拼<rp>（</rp>
+        <rt>pīn</rt>
+        <rp>）</rp>
+      </ruby>
+      <ruby>
+        音<rp>（</rp>
+        <rt>yīn</rt>
+        <rp>）</rp>
+      </ruby>
+      <ruby>
+        标<rp>（</rp>
+        <rt>biāo</rt>
+        <rp>）</rp>
+      </ruby>
+      <ruby>
+        注<rp>（</rp>
+        <rt>zhù</rt>
+        <rp>）</rp>
+      </ruby>
     </div>
   );
 };

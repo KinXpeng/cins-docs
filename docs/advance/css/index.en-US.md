@@ -145,16 +145,16 @@ import React from 'react';
 import './_styles/symbol.css';
 export default () => {
   return (
-    <div class="symbol-legend">
+    <div className="symbol-legend">
       <span>unloaded</span>
-      <span class="loading">loading</span>
-      <span class="complete">complete</span>
-      <span class="leave">leave</span>
-      <span class="timeout">timeout</span>
-      <span class="late">late</span>
-      <span class="selected">selected</span>
-      <span class="recommend">recommend</span>
-      <span class="other">other</span>
+      <span className="loading">loading</span>
+      <span className="complete">complete</span>
+      <span className="leave">leave</span>
+      <span className="timeout">timeout</span>
+      <span className="late">late</span>
+      <span className="selected">selected</span>
+      <span className="recommend">recommend</span>
+      <span className="other">other</span>
     </div>
   );
 };
@@ -167,8 +167,41 @@ import React from 'react';
 import './_styles/adaptive.css';
 export default () => {
   return (
-    <div class="mix-adaptive">
+    <div className="mix-adaptive">
       <span>The css implements intelligent text adaptation</span>
+    </div>
+  );
+};
+```
+
+## Pinyin labeling
+
+```tsx
+import React from 'react';
+import './_styles/index.less';
+export default () => {
+  return (
+    <div className="ft-max ft-bold align-center">
+      <ruby>
+        拼<rp>（</rp>
+        <rt>pīn</rt>
+        <rp>）</rp>
+      </ruby>
+      <ruby>
+        音<rp>（</rp>
+        <rt>yīn</rt>
+        <rp>）</rp>
+      </ruby>
+      <ruby>
+        标<rp>（</rp>
+        <rt>biāo</rt>
+        <rp>）</rp>
+      </ruby>
+      <ruby>
+        注<rp>（</rp>
+        <rt>zhù</rt>
+        <rp>）</rp>
+      </ruby>
     </div>
   );
 };
