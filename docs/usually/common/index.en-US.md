@@ -1,6 +1,6 @@
 ---
-title: Usually
-order: 0
+title: Common
+order: 2
 nav:
   title: Usually
   order: 1

@@ -1,6 +1,6 @@
 ---
-title: 常用
-order: 0
+title: 通用
+order: 2
 nav:
   title: 常用
   order: 1
