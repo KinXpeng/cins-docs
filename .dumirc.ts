@@ -31,7 +31,8 @@ export default defineConfig({
     settingPanelVisible: true,
     hero: {
       showVersionBadge: true
-    }
+    },
+    esbuildMinifyIIFE: true
   },
   locales: [
     {
