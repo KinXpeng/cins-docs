@@ -1,0 +1,17 @@
+.underline {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  cursor: default;
+}
+
+.underline span {
+  background: linear-gradient(to right, #ec695c, #61c454) no-repeat right bottom;
+  background-size: 0 2px;
+  transition: background-size 1300ms;
+}
+
+.underline span:hover {
+  background-position-x: left;
+  background-size: 100% 2px;
+}

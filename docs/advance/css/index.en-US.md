@@ -206,3 +206,17 @@ export default () => {
   );
 };
 ```
+
+## Underline dynamic effect
+
+```tsx
+import React from 'react';
+import './_styles/underline.css';
+export default () => {
+  return (
+    <div className="underline">
+      <span>Mouse hover text appears underline dynamic effect</span>
+    </div>
+  );
+};
+```

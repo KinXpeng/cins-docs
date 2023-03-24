@@ -54,6 +54,7 @@ nav:
 
 ### Advance
 
+- 2023/03/24 CSS - Added **Underline dynamic effect.**
 - 2023/03/10 CSS - Added **Pinyin labeling.**
 - 2023/03/14 Component - Added **Upload component.**
 - 2023/03/10 CSS - Added **The css implements intelligent text adaptation.**

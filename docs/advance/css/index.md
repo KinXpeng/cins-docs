@@ -203,3 +203,17 @@ export default () => {
   );
 };
 ```
+
+## 下划线动态效果
+
+```tsx
+import React from 'react';
+import './_styles/underline.css';
+export default () => {
+  return (
+    <div className="underline">
+      <span>鼠标hover文字出现下划线动态效果</span>
+    </div>
+  );
+};
+```
