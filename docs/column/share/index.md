@@ -76,4 +76,38 @@ nav:
 
 <a href="https://neumorphism.io/" target="_blank">Neumorphism/Soft UI CSS shadow generator</a>
 
+## 算法数据
+
+<a href="http://github.com/trekhleb/javascript-algorithms" target="_blank">JavaScript 算法与数据结构 | 多种基于 JavaScript 的算法与数据结构</a>
+
+<a href="https://github.com/azl397985856/leetcode" target="_blank">leetcode 解题之路 | 私藏 LeetCode 解题攻略 </a>
+
+<a href="https://github.com/MisterBooo/LeetCodeAnimation" target="_blank">五分钟学算法 | 每天拿出五分钟 学学算法</a>
+
+<a href="https://github.com/biaochenxuying/blog/issues/43" target="_blank">数据结构与算法项目推荐 | Github 上 170K+Star 的前端学习数据结构和算法题目</a>
+
+<a href="https://github.com/biaochenxuying/blog/issues/42" target="_blank">JavaScript 十大经典排序算法 | JavaScript 排序必会题目 作者功力很深 值得学习</a>
+
+<a href="https://github.com/algorithm-visualizer/algorithm-visualizer" target="_blank">算法可视化工具 | 用可视化工具和交互方式 让你从代码中可视化算法</a>
+
+<a href="https://visualgo.net/en" target="_blank">算法可视化来源</a>
+
+<a href="https://github.com/skidding/illustrated-algorithms" target="_blank">算法的工作方式 | 变量和操作的可视化表示 增强了控制流和实际源代码</a>
+
+## 前端面试
+
+<a href="https://interview.poetries.top/" target="_blank">前端面试常考问题整理 | 按模块和知识点分类 </a>
+
+<a href="https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions" target="_blank">前端开发面试题</a>
+
+<a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions/" target="_blank">WEB 前端面试宝典</a>
+
+<a href="https://github.com/shfshanyue/blog/blob/master/post/juejin-interview.md" target="_blank">掘金前端面试题合集</a>
+
+<a href="https://github.com/biaochenxuying/blog/issues/47" target="_blank">前端面试开源项目汇总 | Github 上 100K+ Star 的前端面试开源项目汇总</a>
+
+<a href="https://www.yuque.com/yuqueyonghuxrjrwo/ly400w/abghpc#j3zh3" target="_blank">前端面试题 - 来语雀</a>
+
+<a href="https://q.shanyue.tech/fe/" target="_blank">前端常见面试题总结 | 大厂面试题每日一题</a>
+
 ## 未完待续。。。

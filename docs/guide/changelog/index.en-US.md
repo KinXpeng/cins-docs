@@ -6,17 +6,6 @@ nav:
   order: 0
 ---
 
-### Column
-
-- 2023/03/24 Column - Added **Share** menu.
-- 2023/03/16 Column - Added **JS** menu.
-- 2023/03/16 Column - Added **React** menu.
-- 2023/03/16 Column - Added **Interview** menu.
-- 2023/03/13 Questions - Added **Failed to load js on the page.**
-- 2023/02/09 Column - Added **Questions** menu.
-- 2023/02/08 Column - Added **SEO menu ->front-end performance optimization.**
-- 2023/02/07 Added **Column** navigation menu.
-
 ### Common
 
 - 2023/03/14 File - Added **Slice upload.**
@@ -71,3 +60,15 @@ nav:
 - 2022/12/01 CSS - Added **the site turns gray.**
 - 2022/11/28 CSS - Added **a text stroke.**
 - 2022/11/02 CSS - Added **the input box jitter.**
+
+### Column
+
+- 2023/03/24 Share - Added **Algorithmic data** & **Front-end interview**.
+- 2023/03/24 Column - Added **Share** menu.
+- 2023/03/16 Column - Added **JS** menu.
+- 2023/03/16 Column - Added **React** menu.
+- 2023/03/16 Column - Added **Interview** menu.
+- 2023/03/13 Questions - Added **Failed to load js on the page.**
+- 2023/02/09 Column - Added **Questions** menu.
+- 2023/02/08 Column - Added **SEO menu ->front-end performance optimization.**
+- 2023/02/07 Added **Column** navigation menu.
