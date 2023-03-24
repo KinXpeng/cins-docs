@@ -9,6 +9,7 @@ export default defineConfig({
   base: withGH(''),
   publicPath: withGH(''),
   outputPath: 'docs-dist',
+  esbuildMinifyIIFE: true, // 修复tab页问题
   themeConfig: {
     name: 'CINS',
     logo: withGH('cins-docs.png'),
@@ -32,7 +33,6 @@ export default defineConfig({
     hero: {
       showVersionBadge: true
     },
-    esbuildMinifyIIFE: true
   },
   locales: [
     {
