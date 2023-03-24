@@ -8,6 +8,7 @@ nav:
 
 ### Column
 
+- 2023/03/24 Column - Added **Share** menu.
 - 2023/03/16 Column - Added **JS** menu.
 - 2023/03/16 Column - Added **React** menu.
 - 2023/03/16 Column - Added **Interview** menu.
