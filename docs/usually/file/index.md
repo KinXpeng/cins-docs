@@ -74,8 +74,8 @@ const fileToBase64 = (file: File): Promise<string> => {
 
 ```ts
 /**
- * @param { string } url
- * @return { Promise<string> }
+ * @param {string} url
+ * @return {Promise<string>}
  */
 const imgUrlToBase64 = (url: string): Promise<string> => {
   return new Promise((resolve, reject) => {

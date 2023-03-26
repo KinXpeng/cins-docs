@@ -40,14 +40,14 @@ const isObjectValueEqual = <T>(a: T, b: T): boolean => {
 ```ts
 /**
  * 模糊搜索
- * @param list 原数组
- * @param keyWord 查询的关键词
- * @param attribute 数组需要检索属性
+ * @param {Array<any>} list 原数组
+ * @param {string} keyword 查询的关键词
+ * @param {string} attribute 数组需要检索属性
  * @return arr
  * */
-const fuzzyQuery = (list: Array<any>, keyWord: string, attribute: string) => {
-  const reg = new RegExp(keyWord);
-  const arr = [];
+const fuzzyQuery = <T>(list: T[], keyword: string, attribute: keyof T): T[] => {
+  const reg = new RegExp(keyword);
+  const arr: T[] = [];
   for (let i = 0; i < list.length; i++) {
     if (reg.test(list[i][attribute])) {
       arr.push(list[i]);
@@ -62,21 +62,21 @@ const fuzzyQuery = (list: Array<any>, keyWord: string, attribute: string) => {
 ```ts
 /**
  * 遍历树节点
- * @param data 树数据
- * @param callback 回调函数
- * @param childrenName 子节点数组
+ * @param {Array<any>} data 树数据
+ * @param {Function} callback 回调函数
+ * @param {string} childrenName 子节点数组
  * */
 const foreachTree = (
   data: Array<any>,
   callback: (params: any) => void,
   childrenName = 'children',
 ) => {
-  for (let i = 0; i < data.length; i++) {
-    callback(data[i]);
-    if (data[i][childrenName] && data[i][childrenName].length > 0) {
-      foreachTree(data[i][childrenName], callback, childrenName);
+  data.forEach((item) => {
+    callback(item);
+    if (item[childrenName]?.length) {
+      foreachTree(item[childrenName], callback, childrenName);
     }
-  }
+  });
 };
 ```
 
@@ -84,29 +84,15 @@ const foreachTree = (
 
 ```js
 /**
- * @param { Object } 对象
- * @param { string } 属性名（多个属性以逗号隔开）
- * @return { Object } 筛选后的对象
- * pickAttrs({a:1,b:2,c:3},'a','b') ==>>>> { a: 1, b: 2 }
+ * @param {object} 对象
+ * @param {string} 属性名（多个属性以逗号隔开）
+ * @return {Object} 筛选后的对象
+ * pickAttrs({a:1,b:2,c:3},'a','b') ==>>>> {a: 1, b: 2}
  */
 const pickAttrs = (obj, ...props) => {
   return Object.fromEntries(
     Object.entries(obj).filter(([k]) => props.includes(k)),
   );
-};
-```
-
-## 判断数据类型
-
-```js
-/**
- * @param { any } value 需要判断的数据
- * @param { string } type 数据类型 string/number/null/object/array/undefined
- * @return { boolean }
- */
-const isType = (value, type) => {
-  type = type[0].toUpperCase() + type.substring(1).toLowerCase();
-  return Object.prototype.toString.call(value) === `[object ${type}]`;
 };
 ```
 
@@ -171,7 +157,7 @@ const removeDuplicate = (arr: EmptyArrayType, attr?: any) => {
 
 ```js
 /**
- * @param { any } list 需要判断的数据
+ * @param {any} list 需要判断的数据
  * @return  返回去重后的数据
  */
 const duplicateRemoval = (list) => {

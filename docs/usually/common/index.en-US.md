@@ -75,7 +75,7 @@ const getParamsAsJson = (url: string): object => {
 ```ts
 /**
  * Convert the data of json to URL parameters
- * @param { IJson } obj
+ * @param { object } json
  * @return { string }
  * */
 
@@ -166,11 +166,11 @@ const getType = (value: unknown): string => {
 ```ts
 /**
  * Debounce
- * @param function Function
- * @param time The time interval
+ * @param { Function } function Function
+ * @param { number } time The time interval
  * */
 const debounce = (() => {
-  let timer: any = null;
+  let timer: NodeJS.Timeout | null = null;
   return (callback: () => void, wait: number = 800) => {
     timer && clearTimeout(timer);
     timer = setTimeout(callback, wait);
@@ -183,8 +183,8 @@ const debounce = (() => {
 ```ts
 /**
  * Throttle
- * @param function Function
- * @param time The time interval
+ * @param { Function } function Function
+ * @param { number } time The time interval
  * */
 const throttle = (() => {
   let last: number = 0;
@@ -282,23 +282,22 @@ document.addEventListener('visibilitychange', () => {
 
 - navigator.share()：Return a promise that will resolve if the share is successfu. This interface calls the native sharing mechanism and takes the data you want to share as an argument. Note that it can only be called when the user presses a link or button. In other words, it requires transient activation.
 
-```js
+```ts
 /**
- * Page to share
- * @param url Links to share
- * @param text Text to share
- * @param title Titles to share
- * @param files Represents an array of File objects to share
+ * Page sharing
+ * @param {string} url - Links to share
+ * @param {string} text - Text to be shared
+ * @param {string} title - Titles to share
+ * @param {File[]} files - An array of File objects to share
  * */
+interface ShareData {
+  url: string;
+  text: string;
+  title: string;
+  files: File[];
+}
 
-// let shareData = {
-//   url:url,
-//   text:text,
-//   title:title,
-//   files:files
-// };
-
-const shareQuote = async (shareData) => {
+const shareQuote = async (shareData: ShareData): Promise<void> => {
   try {
     await navigator.share(shareData);
   } catch (error) {
@@ -311,58 +310,70 @@ const shareQuote = async (shareData) => {
 
 ### JSON.parse
 
-```js
+```ts
 /**
  * @param { object | array} obj
+ * @return
  **/
-obj = JSON.parse(JSON.stringify(obj));
+const deepClone = <T>(obj: T): T => {
+  return JSON.parse(JSON.stringify(obj));
+};
 ```
 
 ### hash
 
-```js
+```ts
 /**
- * Deep clone
- * @param { object } obj
- * @return { object } obj
+ * Deep copy
+ * @param {object} obj The object to copy
+ * @param hash
+ * @returns Returns the new object after copy
  */
-const deepClone = (obj, hash = new WeakMap()) => {
-  if (obj == null) {
-    return;
+const deepClone = <T>(obj: T, hash = new WeakMap<any, any>()): T => {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
   }
+
   if (obj instanceof Date) {
-    return new Date(obj);
+    return new Date(obj) as unknown as T;
   }
+
   if (obj instanceof RegExp) {
-    return new RegExp(obj);
+    return new RegExp(obj) as unknown as T;
   }
-  // The above special types are returned by direct copy
+
   if (hash.has(obj)) {
-    return hash.get(obj); // Look up the table, there is no duplicate copy, to solve the circular redundancy
+    return hash.get(obj);
   }
-  let newobj = {};
-  // Recursively copy the coexistence table
+
+  let newobj: any = Array.isArray(obj) ? [] : {};
+
   hash.set(obj, newobj);
-  for (let i in obj) {
-    if (obj[i] instanceof Object) {
-      newobj[i] = deepClone(obj[i], hash);
+
+  for (let key in obj) {
+    const value = obj[key];
+    if (typeof value === 'object' && value !== null) {
+      newobj[key] = deepClone(value, hash);
     } else {
-      newobj[i] = obj[i];
+      newobj[key] = value;
     }
   }
+
   return newobj;
 };
 ```
 
 ### Map
 
-```js
+```ts
 /**
- * @param { object | array} obj
- **/
-const deepClone = (obj) => {
+ * 深拷贝
+ * @param {object|array} obj 要拷贝的对象
+ * @returns 返回拷贝后的对象
+ */
+const deepClone = <T>(obj: T): T => {
   const objectMap = new Map();
-  const _deepClone = (value) => {
+  const _deepClone = (value: any): any => {
     const type = typeof value;
     if (type !== 'object' || type === null) {
       return value;

@@ -20,8 +20,8 @@ nav:
 ```ts
 /**
  * 获取地址栏参数(支持hash和history路由)
- * @param { string } key 获取参数的name
- * @return { string|null } 参数值
+ * @param {string} key 获取参数的name
+ * @return {string|null} 参数值
  * */
 const getRouteParam = (key: string): string | null => {
   const urlSearchParams = new URLSearchParams(window.location.search);
@@ -57,8 +57,8 @@ const getRouteParam = (key: string): string | null => {
 ```ts
 /**
  * 解析URL参数
- * @param { string } url
- * @return { object }
+ * @param {string} url
+ * @return {object}
  * */
 const getParamsAsJson = (url: string): object => {
   const queryString = url.split('?')[1];
@@ -75,8 +75,8 @@ const getParamsAsJson = (url: string): object => {
 ```ts
 /**
  * 将json数据转换为URL参数
- * @param { json } obj
- * @return { string }
+ * @param {object} json
+ * @return {string}
  * */
 
 // 示例
@@ -119,8 +119,8 @@ const jsonToParams = (json: object): string => {
 ```ts
 /**
  * 校验数据类型
- * @param { unknown } value 数据
- * @return { string } type
+ * @param {unknown} value 数据
+ * @return {string} type
  * */
 const typeOf = (value: unknown): string => {
   return Object.prototype.toString.call(value).slice(8, -1).toLowerCase();
@@ -132,8 +132,8 @@ const typeOf = (value: unknown): string => {
 ```ts
 /**
  * 校验数据类型
- * @param { unknown } value 数据
- * @return { string } type
+ * @param {unknown} value 数据
+ * @return {string} type
  * */
 const getType = (value: unknown): string => {
   if (typeof value === 'object') {
@@ -166,11 +166,11 @@ const getType = (value: unknown): string => {
 ```ts
 /**
  * 防抖
- * @param function 需要防抖的函数
- * @param time 防抖时间间隔
+ * @param {Function} function 需要防抖的函数
+ * @param {number} time 防抖时间间隔
  * */
 const debounce = (() => {
-  let timer: any = null;
+  let timer: NodeJS.Timeout | null = null;
   return (callback: () => void, wait: number = 800) => {
     timer && clearTimeout(timer);
     timer = setTimeout(callback, wait);
@@ -183,8 +183,8 @@ const debounce = (() => {
 ```ts
 /**
  * 节流
- * @param function 需要节流的函数
- * @param time 节流时间间隔
+ * @param {Function} function 需要节流的函数
+ * @param {number} time 节流时间间隔
  * */
 const throttle = (() => {
   let last: number = 0;
@@ -282,23 +282,22 @@ document.addEventListener('visibilitychange', () => {
 
 - navigator.share()：返回一个 promise，如果分享成功的话，该 promise 将会 resolve。该接口会调用原生分享机制，并接收你想分享的数据作为参数。注意，它只能在用户按下链接或按钮时调用。也就是说，它需要 transient activation（瞬时激活）。
 
-```js
+```ts
 /**
  * 页面分享
- * @param url 要分享的链接
- * @param text 要分享的文本
- * @param title 要分享的标题
- * @param files 表示要分享的File对象数组
+ * @param {string} url - 要分享的链接
+ * @param {string} text - 要分享的文本
+ * @param {string} title - 要分享的标题
+ * @param {File[]} files - 要分享的File对象数组
  * */
+interface ShareData {
+  url: string;
+  text: string;
+  title: string;
+  files: File[];
+}
 
-// let shareData = {
-//   url:url,
-//   text:text,
-//   title:title,
-//   files:files
-// };
-
-const shareQuote = async (shareData) => {
+const shareQuote = async (shareData: ShareData): Promise<void> => {
   try {
     await navigator.share(shareData);
   } catch (error) {
@@ -311,58 +310,71 @@ const shareQuote = async (shareData) => {
 
 ### JSON.parse 的方式
 
-```js
+```ts
 /**
- * @param { object | array} obj
- **/
-obj = JSON.parse(JSON.stringify(obj));
+ * 对象或数组深拷贝
+ * @param {object|array} obj 要深拷贝的对象或数组
+ * @return 返回深拷贝后的对象或数组
+ */
+const deepClone = <T>(obj: T): T => {
+  return JSON.parse(JSON.stringify(obj));
+};
 ```
 
 ### hash 的方式
 
-```js
+```ts
 /**
  * 深拷贝
- * @param { object } obj
- * @return { object } obj
+ * @param {object} obj 要拷贝的对象
+ * @param hash 哈希表，用于解决循环引用的问题
+ * @return 返回拷贝后的新对象
  */
-const deepClone = (obj, hash = new WeakMap()) => {
-  if (obj == null) {
-    return;
+const deepClone = <T>(obj: T, hash = new WeakMap<any, any>()): T => {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
   }
+
   if (obj instanceof Date) {
-    return new Date(obj);
+    return new Date(obj) as unknown as T;
   }
+
   if (obj instanceof RegExp) {
-    return new RegExp(obj);
+    return new RegExp(obj) as unknown as T;
   }
-  //将以上几种特殊类型直接copy返回
+
   if (hash.has(obj)) {
-    return hash.get(obj); //查表,存在就不重复拷贝，解决循环冗余
+    return hash.get(obj);
   }
-  let newobj = {};
-  //递归拷贝并存表
+
+  let newobj: any = Array.isArray(obj) ? [] : {};
+
   hash.set(obj, newobj);
-  for (let i in obj) {
-    if (obj[i] instanceof Object) {
-      newobj[i] = deepClone(obj[i], hash);
+
+  for (let key in obj) {
+    const value = obj[key];
+    if (typeof value === 'object' && value !== null) {
+      newobj[key] = deepClone(value, hash);
     } else {
-      newobj[i] = obj[i];
+      newobj[key] = value;
     }
   }
+
   return newobj;
 };
 ```
 
 ### Map 的方式
 
-```js
+```ts
 /**
- * @param { object | array} obj
- **/
-const deepClone = (obj) => {
+ * 深拷贝
+ * @param {object|array} obj 要拷贝的对象
+ * @returns 返回拷贝后的对象
+ */
+const deepClone = <T>(obj: T): T => {
   const objectMap = new Map();
-  const _deepClone = (value) => {
+  const _deepClone = (value: any): any => {
     const type = typeof value;
     if (type !== 'object' || type === null) {
       return value;
@@ -385,10 +397,10 @@ const deepClone = (obj) => {
 
 ```js
 /**
- * @param { object | array} obj
- *  deepClone({ a: 1, b: [{ c: 1 }] }).then((res) => {
+ * @param {object | array} obj
+ *  deepClone({a: 1, b: [{c: 1}]}).then((res) => {
  *    console.log(res);
- *  });
+ * });
  **/
 const deepClone = (obj) => {
   return new Promise((resolve) => {
@@ -405,7 +417,7 @@ const deepClone = (obj) => {
 
 ```ts
 /**
- * @param { string } 文本内容
+ * @param {string} 文本内容
  */
 const copyToClipboard = (text: string) => {
   return navigator.clipboard.writeText(text);
@@ -598,8 +610,8 @@ const useChangeColor = () => {
 ```ts
 /**
  * 判断传入的函数是否标记了async
- * @param { Function } func 传入的函数
- * @return { Boolean }
+ * @param {Function} func 传入的函数
+ * @return {Boolean}
  */
 const isAsyncFunction = (func) => {
   return func[Symbol.toStringTag] === 'AsyncFunction';

@@ -40,14 +40,14 @@ const isObjectValueEqual = <T>(a: T, b: T): boolean => {
 ```ts
 /**
  * Fuzzy search
- * @param list The original array
- * @param keyWord Keywords for query
- * @param attribute The array needs to retrieve attributes
+ * @param {Array<any>} list The original array
+ * @param {string} keyword Keywords for query
+ * @param {string} attribute The array needs to retrieve attributes
  * @return arr
  * */
-const fuzzyQuery = (list: Array<any>, keyWord: string, attribute: string) => {
-  const reg = new RegExp(keyWord);
-  const arr = [];
+const fuzzyQuery = <T>(list: T[], keyword: string, attribute: keyof T): T[] => {
+  const reg = new RegExp(keyword);
+  const arr: T[] = [];
   for (let i = 0; i < list.length; i++) {
     if (reg.test(list[i][attribute])) {
       arr.push(list[i]);
@@ -62,21 +62,21 @@ const fuzzyQuery = (list: Array<any>, keyWord: string, attribute: string) => {
 ```ts
 /**
  * Traverse the tree nodes
- * @param data Tree data
- * @param callback The callback function
- * @param childrenName Array of child nodes
+ * @param {Array<any>} data Tree data
+ * @param {Function} callback The callback function
+ * @param {string} childrenName Array of child nodes
  * */
 const foreachTree = (
   data: Array<any>,
   callback: (params: any) => void,
   childrenName = 'children',
 ) => {
-  for (let i = 0; i < data.length; i++) {
-    callback(data[i]);
-    if (data[i][childrenName] && data[i][childrenName].length > 0) {
-      foreachTree(data[i][childrenName], callback, childrenName);
+  data.forEach((item) => {
+    callback(item);
+    if (item[childrenName]?.length) {
+      foreachTree(item[childrenName], callback, childrenName);
     }
-  }
+  });
 };
 ```
 
@@ -84,7 +84,7 @@ const foreachTree = (
 
 ```js
 /**
- * @param { Object } object
+ * @param { object } obj
  * @param { string } attrName
  * @return { Object } The filtered object
  * pickAttrs({a:1,b:2,c:3},'a','b') ==>>>> { a: 1, b: 2 }
@@ -94,20 +94,6 @@ const pickAttrs = (obj, ...props) => {
   return Object.fromEntries(
     Object.entries(obj).filter(([k]) => props.includes(k)),
   );
-};
-```
-
-## Determine data type
-
-```js
-/**
- * @param { any } value data
- * @param { string } type  string/number/null/object/array/undefined
- * @return { boolean }
- */
-const isType = (value, type) => {
-  type = type[0].toUpperCase() + type.substring(1).toLowerCase();
-  return Object.prototype.toString.call(value) === `[object ${type}]`;
 };
 ```
 

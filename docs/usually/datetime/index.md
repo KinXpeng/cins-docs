@@ -11,9 +11,9 @@ nav:
 ```ts
 /**
  * 时间格式转化
- * @param { Date } date
- * @param { string } format
- * @return { string }
+ * @param {Date} date
+ * @param {string} format
+ * @return {string}
  *  YYYY：四位数年份
     MM：两位数月份（01-12）
     DD：两位数日期（01-31）
@@ -66,8 +66,8 @@ const dateToWeek = (date: string): string => {
 
 ```ts
 /**
- * @param { number } n  天数，选填，默认为0，days为0时返回当前日期，days为1时返回一天前日期
- * @return { string }  几天前的日期
+ * @param {number} n  天数，选填，默认为0，days为0时返回当前日期，days为1时返回一天前日期
+ * @return {string}  几天前的日期
  * */
 const getNDaysAgo = (n: number = 0): string => {
   if (isNaN(n) || n < 0) {
@@ -85,8 +85,8 @@ const getNDaysAgo = (n: number = 0): string => {
 
 ```ts
 /**
- * @param { number } m 月数 负数时为前m个月的当前日期
- * @return { string } 几月前的日期
+ * @param {number} m 月数 负数时为前m个月的当前日期
+ * @return {string} 几月前的日期
  * */
 const dateOfMonths = (m: number = 0): string => {
   const date = new Date();
@@ -102,8 +102,8 @@ const dateOfMonths = (m: number = 0): string => {
 
 ```ts
 /**
- * @param { string|null } time 时分秒 // 20:00:01 ->> xxxxxx
- * @return { number|undefined } 时间戳
+ * @param {string|null} time 时分秒 // 20:00:01 ->> xxxxxx
+ * @return {number|undefined} 时间戳
  * */
 const timeToSec = (time: string | null): number | undefined => {
   if (!time) {
@@ -135,9 +135,9 @@ export const isWeekday = (date: string): boolean => {
 ```ts
 /**
  * 传入年份和月份 获取该年对应月份的天数
- * @param { number } year
- * @param { number } month
- * @return { number } days
+ * @param {number} year
+ * @param {number} month
+ * @return {number} days
  **/
 const getMonthDays = (year: number, month: number): number => {
   const date = new Date(year, month, 0); //当天数为0 js自动处理为上一月的最后一天
@@ -150,9 +150,9 @@ const getMonthDays = (year: number, month: number): number => {
 ```ts
 /**
  * 获取指定年月的每一天
- * @param { number } year
- * @param { number } month
- * @return { Array<Item> }
+ * @param {number} year
+ * @param {number} month
+ * @return {Array<Item>}
  **/
 interface Item {
   yeardate: string;
@@ -178,9 +178,9 @@ const getDateList = (year: number, month: number): Array<Item> => {
 ```ts
 /**
  * 获取单个指定块的结束时间
- * @param { string } stime 15:40
- * @param { number } duration 22
- * @return { string } =>>>  16:02
+ * @param {string} stime 15:40
+ * @param {number} duration 22
+ * @return {string} =>>>  16:02
  */
 const getEndTime = (stime: string, duration: number): string => {
   let [hour, minute] = stime.split(':');
@@ -201,11 +201,11 @@ const getEndTime = (stime: string, duration: number): string => {
 ```ts
 /**
  * 获取两个时间之间的时长
- * @param { string } time1 15:40
- * @param { string } time2 17:33
- * @param { number } num 1 时段的标准时长，默认为一小时
- * @param { number } type 'start' / 'end' // start算出来是正数，反之为负数
- * @return { number } =>>>  1.8833333333333333 // 计算两个时间的差为num的倍数
+ * @param {string} time1 15:40
+ * @param {string} time2 17:33
+ * @param {number} num 1 时段的标准时长，默认为一小时
+ * @param {number} type 'start' / 'end' // start算出来是正数，反之为负数
+ * @return {number} =>>>  1.8833333333333333 // 计算两个时间的差为num的倍数
  */
 const timeToInteger = (
   time1: string,
@@ -234,8 +234,8 @@ const timeToInteger = (
 ```js
 /**
  * 获取某个日期位于当年的第几天
- * @param { string } date '2022-12-27'
- * @return { number } =>>>  361
+ * @param {string} date '2022-12-27'
+ * @return {number} =>>>  361
  */
 const dateOfYear = (date) => {
   date = new Date(date);
@@ -251,9 +251,9 @@ const dateOfYear = (date) => {
 ```js
 /**
  * 计算两个日期之间的天数
- * @param { string } date1 '2022-12-27'
- * @param { string } date2 '2022-12-28'
- * @return { number }  =>>>  1
+ * @param {string} date1 '2022-12-27'
+ * @param {string} date2 '2022-12-28'
+ * @return {number}  =>>>  1
  */
 const daysDistance = (date1, date2) => {
   date1 = Date.parse(date1);

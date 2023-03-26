@@ -11,9 +11,9 @@ nav:
 ```ts
 /**
  * Time format conversion
- * @param { Date } date
- * @param { string } format
- * @return { string }
+ * @param {Date} date
+ * @param {string} format
+ * @return {string}
  *  YYYY：Four-digit year
     MM：Double digit month（01-12）
     DD：Two-digit date（01-31）
@@ -74,8 +74,8 @@ const dateToWeek = (date: string): string => {
 
 ```ts
 /**
- * @param { number } n The default value is 0. If days is 0, the current date is returned. If days is 1, the previous date is returned
- * @return { string }  A few days before the date
+ * @param {number} n The default value is 0. If days is 0, the current date is returned. If days is 1, the previous date is returned
+ * @return {string}  A few days before the date
  * */
 const getNDaysAgo = (n: number = 0): string => {
   if (isNaN(n) || n < 0) {
@@ -93,8 +93,8 @@ const getNDaysAgo = (n: number = 0): string => {
 
 ```ts
 /**
- * @param { number } m A negative number of months is the current date of the previous m months
- * @return { string } Date a few months ago
+ * @param {number} m A negative number of months is the current date of the previous m months
+ * @return {string} Date a few months ago
  * */
 const dateOfMonths = (m: number = 0): string => {
   const date = new Date();
@@ -110,8 +110,8 @@ const dateOfMonths = (m: number = 0): string => {
 
 ```js
 /**
- * @param { string|null } time Hour Minute Second // 20:00:01 ->> xxxxxx
- * @return { number|undefined } The time stamp
+ * @param {string|null} time Hour Minute Second // 20:00:01 ->> xxxxxx
+ * @return {number|undefined} The time stamp
  * */
 const timeToSec = (time: string | null): number | undefined => {
   if (!time) {
@@ -143,9 +143,9 @@ export const isWeekday = (date: string): boolean => {
 ```ts
 /**
  * Incoming Year and Month Gets the number of days in the month of the year
- * @param { number } year
- * @param { number } month
- * @return { number } days
+ * @param {number} year
+ * @param {number} month
+ * @return {number} days
  **/
 const getMonthDays = (year: number, month: number): number => {
   const date = new Date(year, month, 0); // If the number of the current day is 0, js automatically processes it as the last day of the previous month
@@ -158,9 +158,9 @@ const getMonthDays = (year: number, month: number): number => {
 ```ts
 /**
  * Get each day of the specified year
- * @param { number } year
- * @param { number } month
- * @return { Array<Item> }
+ * @param {number} year
+ * @param {number} month
+ * @return {Array<Item>}
  **/
 interface Item {
   yeardate: string;
@@ -186,9 +186,9 @@ const getDateList = (year: number, month: number): Array<Item> => {
 ```ts
 /**
  * The endtime of single appoint block
- * @param { string } stime 15:40
- * @param { number } duration 22
- * @return { string } =>>>  16:02
+ * @param {string} stime 15:40
+ * @param {number} duration 22
+ * @return {string} =>>>  16:02
  */
 const getEndTime = (stime: string, duration: number): string => {
   let [hour, minute] = stime.split(':');
@@ -209,11 +209,11 @@ const getEndTime = (stime: string, duration: number): string => {
 ```ts
 /**
  * Gets the duration between two times
- * @param { string } time1 15:40
- * @param { string } time2 17:33
- * @param { number } num 1 Period Standard duration. The default value is one hour
- * @param { number } type 'start' / 'end' // start => It's a positive number,and vice versa is negative.
- * @return { number } =>>>  1.8833333333333333 // Calculate the difference between the two times as a multiple of num
+ * @param {string} time1 15:40
+ * @param {string} time2 17:33
+ * @param {number} num 1 Period Standard duration. The default value is one hour
+ * @param {number} type 'start' / 'end' // start => It's a positive number,and vice versa is negative.
+ * @return {number} =>>>  1.8833333333333333 // Calculate the difference between the two times as a multiple of num
  */
 const timeToInteger = (
   time1: string,
@@ -242,8 +242,8 @@ const timeToInteger = (
 ```js
 /**
  * Gets the day of the year in which a date is located
- * @param { string } date '2022-12-27'
- * @return { number } =>>>  361
+ * @param {string} date '2022-12-27'
+ * @return {number} =>>>  361
  */
 const dateOfYear = (date) => {
   date = new Date(date);
@@ -259,9 +259,9 @@ const dateOfYear = (date) => {
 ```js
 /**
  * Count the number of days between two dates
- * @param { string } date1 '2022-12-27'
- * @param { string } date2 '2022-12-28'
- * @return { number }  =>>>  1
+ * @param {string} date1 '2022-12-27'
+ * @param {string} date2 '2022-12-28'
+ * @return {number}  =>>>  1
  */
 const daysDistance = (date1, date2) => {
   date1 = Date.parse(date1);

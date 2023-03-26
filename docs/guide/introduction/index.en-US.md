@@ -10,8 +10,9 @@ nav:
 
 CINS: For **convenient development**, the integration of common regular, upload, array and other methods, greatly improve the efficiency of work development!
 
-- **Common** methods do not install dependencies。
-- The **library** integrates a variety of more complex methods and the writing of some components.
+- **Common** methods do not install dependencies.
+- **Advance** integrates a variety of more complex methods and the writing of some components.
+- **Column** collected some basics, some questions, and links to useful documentation.
 
 ## Features
 

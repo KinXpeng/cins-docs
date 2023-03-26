@@ -114,9 +114,9 @@ const Session = {
 
 ```ts
 /**
- * @param { string } name
- * @param { string } value
- * @param { number } expiresInMinutes
+ * @param {string} name
+ * @param {string} value
+ * @param {number} expiresInMinutes
  */
 const setCookie = (
   name: string,
@@ -134,8 +134,8 @@ const setCookie = (
 
 ```ts
 /**
- * @param { string } name
- * @return { string }
+ * @param {string} name
+ * @return {string}
  */
 const getCookie = (name: string): string => {
   const nameString = name + '=';
@@ -150,7 +150,7 @@ const getCookie = (name: string): string => {
 
 ```ts
 /**
-  @param { string } name 
+  @param {string} name 
 */
 const clearCookie = (name: string) => {
   set(name, '', -1);
