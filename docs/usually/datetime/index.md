@@ -6,60 +6,40 @@ nav:
   order: 1
 ---
 
-## 日期时间格式化（JS）
+## 日期时间格式化
 
-```js
+```ts
 /**
- * JS时间格式转化
- * @param {Number} day
- * @param {String} fmt
- * @param {String} time
- * @returns
- * 调用示例
- * formatTime(1,'yyyy-MM-dd hh:mm:ss','2022-01-03 00:00:00')
-   // 2022-01-04 00:00:00
-   formatTime(0,'yyyy-M-d','2021-04-06')
-   // 2021-04-06
-   formatTime(-1,'yyyy-MM-dd hh:mm:ss','2021-04-06 13:52:05')
-   // 2021-04-05 13:52:05
-   formatTime(2,'yyyy-MM-dd','2021-04-06 13:52:05')
-   // 2021-04-08
+ * 时间格式转化
+ * @param { Date } date
+ * @param { string } format
+ * @return { string }
+ *  YYYY：四位数年份
+    MM：两位数月份（01-12）
+    DD：两位数日期（01-31）
+    HH：两位数小时（00-23）
+    mm：两位数分钟（00-59）
+    ss：两位数秒钟（00-59）
  */
-const formatTime = (day, fmt, time) => {
-  //获取当前时间的毫秒值
-  let now = (time ? new Date(time) : new Date()).getTime();
-  // 获取前后n天时间
-  let recent = new Date(now + day * 24 * 60 * 60 * 1000);
+const formatDateTime = (date: Date, format: string): string => {
+  const year = date.getFullYear().toString();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const hour = date.getHours().toString().padStart(2, '0');
+  const minute = date.getMinutes().toString().padStart(2, '0');
+  const second = date.getSeconds().toString().padStart(2, '0');
 
-  // key：正则匹配表达式，value：对应的时间、日期
-  let fmtObj = {
-    'M+': recent.getMonth() + 1, //月份
-    'd+': recent.getDate(), //日
-    'h+': recent.getHours(), //时
-    'm+': recent.getMinutes(), //分
-    's+': recent.getSeconds(), //秒
-  };
-  // 获取匹配年份替换
-  if (/(y+)/.test(fmt)) {
-    //RegExp.$1 匹配结果，替换成对应的长度。如：yyyy就替换成整个年份2021，yy就替换成后两位21，以此类推
-    fmt = fmt.replace(
-      RegExp.$1,
-      (recent.getFullYear() + '').substr(4 - RegExp.$1.length),
-    );
-  }
-  for (let key in fmtObj) {
-    if (new RegExp(`(${key})`).test(fmt)) {
-      //日期，时、分、秒替换，判断fmt是否需要补0，如：yyyy-M-d h:m:s 不补0,yyyy-MM-dd hh:mm:ss 则自动补0
-      fmt = fmt.replace(
-        RegExp.$1,
-        RegExp.$1.length == 1
-          ? fmtObj[key]
-          : ('00' + fmtObj[key]).substr(('' + fmtObj[key]).length),
-      );
-    }
-  }
-  return fmt;
+  return format
+    .replace('YYYY', year)
+    .replace('MM', month)
+    .replace('DD', day)
+    .replace('HH', hour)
+    .replace('mm', minute)
+    .replace('ss', second);
 };
+
+const formatted = formatDateTime(new Date(), 'YYYY-MM-DD HH:mm:ss');
+console.log(formatted); // 输出 "2023-03-26 12:34:56"
 ```
 
 ## 根据日期返回星期几
@@ -86,25 +66,18 @@ const dateToWeek = (date: string): string => {
 
 ```ts
 /**
- * @param days 天数，选填，默认为0，days为0时返回当前日期，days为1时返回一天前日期
- * @return date 几天前的日期
+ * @param { number } n  天数，选填，默认为0，days为0时返回当前日期，days为1时返回一天前日期
+ * @return { string }  几天前的日期
  * */
-const dateOfDays = (days?: number): string => {
-  if (!days) {
-    days = 0;
+const getNDaysAgo = (n: number = 0): string => {
+  if (isNaN(n) || n < 0) {
+    throw new Error('Invalid number of days');
   }
-  let date: Date = new Date();
-  let currentdate;
-  // n天前日期
-  let nowTime: number = date.getTime();
-  let endTime: number = nowTime - 24 * 60 * 60 * 1000 * days;
-  let endDate: Date = new Date(endTime);
-  let Month: string = String(endDate.getMonth() + 1);
-  Month = Number(Month) >= 10 ? Month : '0' + Month;
-  let Day: string = String(endDate.getDate());
-  Day = Number(Day) >= 10 ? Day : '0' + Day;
-  currentdate = endDate.getFullYear() + '-' + Month + '-' + Day;
-  return currentdate;
+  const pastDate = new Date(Date.now() - n * 24 * 60 * 60 * 1000);
+  const year = pastDate.getFullYear();
+  const month = (pastDate.getMonth() + 1).toString().padStart(2, '0');
+  const day = pastDate.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
 };
 ```
 
@@ -112,37 +85,35 @@ const dateOfDays = (days?: number): string => {
 
 ```ts
 /**
- * @param m 月数 负数时为前m个月的当前日期
- * @return date 几月前的日期
+ * @param { number } m 月数 负数时为前m个月的当前日期
+ * @return { string } 几月前的日期
  * */
-const dateOfMonths = (m?: number): string => {
+const dateOfMonths = (m: number = 0): string => {
   const date = new Date();
-  date.setMonth(date.getMonth() + Number(m));
-  let year: number = date.getFullYear();
-  let month: number = date.getMonth() + 1;
-  month = (month < 10 ? '0' + month : month) as number;
-  let day: number = date.getDate();
-  day = (day < 10 ? '0' + day : day) as number;
-  return year + '-' + month + '-' + day;
+  date.setMonth(date.getMonth() + m);
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
 };
 ```
 
-## 时分秒转换为时间戳（JS）
+## 时分秒转换为时间戳
 
-```js
+```ts
 /**
- * @param time 时分秒 // 20:00:01 ->> xxxxxx
- * @return 时间戳
+ * @param { string|null } time 时分秒 // 20:00:01 ->> xxxxxx
+ * @return { number|undefined } 时间戳
  * */
-const timeToSec = (time) => {
-  if (time !== null) {
-    let s = '';
-    let hour = time.split(':')[0];
-    let min = time.split(':')[1];
-    let sec = time.split(':')[2] ? time.split(':')[2] : 0;
-    s = Number(hour * 3600) + Number(min * 60) + Number(sec);
-    return s;
+const timeToSec = (time: string | null): number | undefined => {
+  if (!time) {
+    return undefined;
   }
+  const [hourStr, minStr, secStr] = time.split(':');
+  const hour = parseInt(hourStr, 10);
+  const min = parseInt(minStr, 10);
+  const sec = secStr ? parseInt(secStr, 10) : 0;
+  return hour * 3600 + min * 60 + sec;
 };
 ```
 
@@ -189,20 +160,16 @@ interface Item {
 }
 
 const getDateList = (year: number, month: number): Array<Item> => {
-  const _newdate = new Date(year, month, 0); // 当天数为0
-  const _length = _newdate.getDate();
-  month = month < 10 ? '0' + month : month;
-  const _result = [];
-  for (let i = 1; i <= _length; i++) {
-    i = i < 10 ? '0' + i : i;
-    const _yeardate = year + '-' + month + '-' + i;
-    const _date = month + '-' + i;
-    _result.push({
-      yeardate: _yeardate,
-      date: _date,
-    });
+  const lastDateOfMonth = new Date(year, month, 0).getDate();
+  const formattedMonth = month.toString().padStart(2, '0');
+  const result: Array<Item> = [];
+  for (let i = 1; i <= lastDateOfMonth; i++) {
+    const formattedDate = i.toString().padStart(2, '0');
+    const yeardate = `${year}-${formattedMonth}-${formattedDate}`;
+    const date = `${formattedMonth}-${formattedDate}`;
+    result.push({ yeardate, date });
   }
-  return _result;
+  return result;
 };
 ```
 
@@ -215,22 +182,17 @@ const getDateList = (year: number, month: number): Array<Item> => {
  * @param { number } duration 22
  * @return { string } =>>>  16:02
  */
-const getEndTime = (stime: string, duration: number) => {
+const getEndTime = (stime: string, duration: number): string => {
   let [hour, minute] = stime.split(':');
-  let _hour: string | number = Number(hour);
-  let _minute: string | number = Number(minute);
-  const _minutes = _minute + duration;
-  if (_minutes < 60) {
-    _minute += duration;
-    _minute = _minute < 10 ? '0' + _minute : _minute;
-  } else {
-    const _h = Math.floor(_minutes / 60);
-    let _m = _minutes - _h * 60;
-    _hour += _h;
-    _hour = _hour < 10 ? '0' + _hour : _hour;
-    _minute = _m < 10 ? '0' + _m : _m;
+  let _hour = Number(hour);
+  let _minute = Number(minute) + duration;
+  if (_minute >= 60) {
+    _hour += Math.floor(_minute / 60);
+    _minute = _minute % 60;
   }
-  return _hour + ':' + _minute;
+  const _hourStr = _hour < 10 ? '0' + _hour : _hour.toString();
+  const _minuteStr = _minute < 10 ? '0' + _minute : _minute.toString();
+  return _hourStr + ':' + _minuteStr;
 };
 ```
 
@@ -249,11 +211,11 @@ const timeToInteger = (
   time1: string,
   time2: string,
   num: number,
-  type: string,
-) => {
-  let [stime1, etime1]: Array<any> = time1.split(':');
-  let [stime2, etime2]: Array<any> = time2.split(':');
-  let h,
+  type: 'start' | 'end',
+): number => {
+  const [stime1, etime1] = time1.split(':').map(Number);
+  const [stime2, etime2] = time2.split(':').map(Number);
+  let h = 0,
     m = 0;
   if (type == 'start') {
     h = stime1 - stime2;
@@ -263,7 +225,7 @@ const timeToInteger = (
     m = etime2 - etime1;
   }
   let decimals = m / (60 * num);
-  return (h as number) / num + decimals;
+  return h / num + decimals;
 };
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: 数组对象
-order: 1
+order: 2
 nav:
   title: 常用
   order: 1

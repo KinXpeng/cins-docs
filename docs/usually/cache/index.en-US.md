@@ -6,7 +6,47 @@ nav:
   order: 1
 ---
 
-## LocalStorage
+## Browser cache
+
+### Session & Local
+
+```ts
+// Use example
+Storage.set('key', { name: 'John Doe' }); // set localStorage
+Storage.set('key', { name: 'John Doe' }, true); // set sessionStorage
+const value = Storage.get('key'); // get localStorage
+const value = Storage.get('key', true); // get sessionStorage
+Storage.remove('key'); // remove localStorage
+Storage.remove('key', true); // remove sessionStorage
+Storage.clear(); // clear localStorage
+Storage.clear(true); // clear sessionStorage
+
+const Storage = {
+  // Set cache
+  set(key: string, val: any, isSession: boolean = false) {
+    const storage = isSession ? window.sessionStorage : window.localStorage;
+    storage.setItem(key, JSON.stringify(val));
+  },
+  // Fetch cache
+  get(key: string, isSession: boolean = false) {
+    const storage = isSession ? window.sessionStorage : window.localStorage;
+    const json = storage.getItem(key);
+    return JSON.parse(json);
+  },
+  // Remove cache
+  remove(key: string, isSession: boolean = false) {
+    const storage = isSession ? window.sessionStorage : window.localStorage;
+    storage.removeItem(key);
+  },
+  // Remove all cache
+  clear(isSession: boolean = false) {
+    const storage = isSession ? window.sessionStorage : window.localStorage;
+    storage.clear();
+  },
+};
+```
+
+### LocalStorage
 
 ```ts
 /**
@@ -17,27 +57,27 @@ nav:
  * @method clear
  */
 const Local = {
-  // set
-  set(key: string, val: any) {
+  // Set permanent cache
+  set<T>(key: string, val: T) {
     window.localStorage.setItem(key, JSON.stringify(val));
   },
-  // get
-  get(key: string) {
-    let json = <string>window.localStorage.getItem(key);
-    return JSON.parse(json);
+  // Get permanent cache
+  get<T>(key: string): T | null {
+    const json = window.localStorage.getItem(key);
+    return json ? JSON.parse(json) : null;
   },
-  // remove
+  // Remove permanent cache
   remove(key: string) {
     window.localStorage.removeItem(key);
   },
-  // clear
+  // Remove all permanent caches
   clear() {
     window.localStorage.clear();
   },
 };
 ```
 
-## SessionStorage
+### SessionStorage
 
 ```ts
 /**
@@ -48,20 +88,20 @@ const Local = {
  * @method clear
  */
 const Session = {
-  // set
-  set(key: string, val: any) {
+  // Set temporary cache
+  set<T>(key: string, val: T) {
     window.sessionStorage.setItem(key, JSON.stringify(val));
   },
-  // get
-  get(key: string) {
-    let json = <string>window.sessionStorage.getItem(key);
-    return JSON.parse(json);
+  // Get temporary cache
+  get<T>(key: string): T | null {
+    const json = window.sessionStorage.getItem(key);
+    return json ? JSON.parse(json) : null;
   },
-  // remove
+  // Remove temporary cache
   remove(key: string) {
     window.sessionStorage.removeItem(key);
   },
-  // clear
+  // Remove all temporary cache
   clear() {
     window.sessionStorage.clear();
   },
@@ -74,19 +114,19 @@ const Session = {
 
 ```ts
 /**
- * @params cname cookie name
- * @params cvalue cookie value
- * @params extime expiration time
+ * @param { string } name
+ * @param { string } value
+ * @param { number } expiresInMinutes
  */
-const set = (cname: string, cvalue: string, extime: number) => {
-  // default 30 minutes
-  if (!extime) {
-    extime = 30;
-  }
-  var d = new Date();
-  d.setTime(d.getTime() + extime * 60 * 1000);
-  var expires = 'expires=' + d.toUTCString();
-  document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+const setCookie = (
+  name: string,
+  value: string,
+  expiresInMinutes: number = 30,
+): void => {
+  const expirationDate = new Date(
+    Date.now() + expiresInMinutes * 60 * 1000,
+  ).toUTCString();
+  document.cookie = `${name}=${value};expires=${expirationDate};path=/`;
 };
 ```
 
@@ -94,29 +134,25 @@ const set = (cname: string, cvalue: string, extime: number) => {
 
 ```ts
 /**
- * @params name cookie name
- * @return cookie value
- * */
-const get = (name: string): string => {
+ * @param { string } name
+ * @return { string }
+ */
+const getCookie = (name: string): string => {
   const nameString = name + '=';
-  const value = document.cookie.split(';').filter((item) => {
-    return item.includes(nameString);
-  });
-  if (value.length) {
-    return value[0].substring(nameString.length, value[0].length);
-  } else {
-    return '';
-  }
+  const value = document.cookie
+    .split(';')
+    .find((item) => item.trim().startsWith(nameString));
+  return value ? value.substring(nameString.length) : '';
 };
 ```
 
 ### Clear Cookie
 
 ```ts
-/*
-  @params name cookie name
+/**
+  @param { string } name 
 */
-const clear = (name: string) => {
+const clearCookie = (name: string) => {
   set(name, '', -1);
 };
 ```

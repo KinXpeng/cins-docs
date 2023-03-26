@@ -1,6 +1,6 @@
 ---
 title: Usually
-order: 2
+order: 1
 nav:
   title: Usually
   order: 1
@@ -20,18 +20,35 @@ nav:
 ```ts
 /**
  * Get Address Bar Parameters
- * @param name Gets the name of the parameter
- * @return value The parameter value
+ * @param  { string } key Gets the name of the parameter
+ * @return { string|null } The parameter value
  * */
-const urlParams = (name: string): string | null => {
-  const url = window.location.href;
-  const search = url && url.split('?')[1];
-  const obj = new URLSearchParams(search);
-  if (obj.get(name)) {
-    return obj.get(name);
-  } else {
-    return '';
+const getRouteParam = (key: string): string | null => {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  if (urlSearchParams.has(key)) {
+    return urlSearchParams.get(key);
   }
+
+  const hashParams = new URLSearchParams(window.location.hash.substr(1));
+  if (hashParams.has(key)) {
+    return hashParams.get(key);
+  }
+
+  const state = window.history.state;
+  if (state && typeof state === 'object' && key in state) {
+    return state[key];
+  }
+
+  const entries = window.location.search
+    .slice(1)
+    .split('&')
+    .map((entry) => entry.split('='));
+  for (const [entryKey, entryValue] of entries) {
+    if (decodeURIComponent(entryKey) === key) {
+      return decodeURIComponent(entryValue);
+    }
+  }
+  return null;
 };
 ```
 
@@ -40,17 +57,16 @@ const urlParams = (name: string): string | null => {
 ```ts
 /**
  * Analytical URL parameters
- * @return Object
+ * @param { string } url
+ * @return { object }
  * */
-const getSearchParams = () => {
-  const url = window.location.href;
-  const search = url && url.split('?')[1];
-  const searchParams: any = new URLSearchParams(search);
-  const paramsObj: any = {};
-  for (const [key, value] of searchParams.entries()) {
-    paramsObj[key] = value;
-  }
-  return paramsObj;
+const getParamsAsJson = (url: string): object => {
+  const queryString = url.split('?')[1];
+  if (!queryString) return {};
+  const params = new URLSearchParams(queryString);
+  const result: { [key: string]: string } = {};
+  params.forEach((value, key) => (result[key] = value));
+  return result;
 };
 ```
 
@@ -64,14 +80,7 @@ const getSearchParams = () => {
  * */
 
 // 示例
-interface IJson {
-  id: number;
-  name: string;
-  address: string;
-  sex: boolean;
-  other: string;
-}
-let dataobj: IJson = {
+let json = {
   id: 1,
   name: 'test',
   address: '北京市',
@@ -79,28 +88,76 @@ let dataobj: IJson = {
   other: 'xxxxx',
 };
 // result ==> id=1&name=test&address=北京市&sex=true&other=xxxxx
-const jsonToString = (obj: IJson): string => {
-  const _length: number = Object.keys(obj).length | 0;
-  let _str: string = '';
-  if (!_length) return _str;
-  for (let key in obj) {
-    _str += key + '=' + obj[key as keyof typeof dataobj] + '&';
+const jsonToParams = (json: object): string => {
+  const paramsArray = [];
+  for (const [key, value] of Object.entries(json)) {
+    paramsArray.push([key, value]);
   }
-  _str = _str.slice(0, _str.length - 1);
-  return _str;
+  const params = new URLSearchParams(paramsArray);
+  return params.toString();
 };
 ```
 
 ## Check data type
 
+- Supports multiple types of verification
+- Method 1 supports only the first seven types
+  - string
+  - number
+  - boolean
+  - null
+  - undefined
+  - object
+  - array
+  - date
+  - regexp
+  - map
+  - set
+
+### Method 1
+
 ```ts
 /**
  * Check data type
- * @param obj data
- * @return string type
+ * @param { unknown } value
+ * @return { string } type
  * */
-const typeOf = (obj: any): string => {
-  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+const typeOf = (value: unknown): string => {
+  return Object.prototype.toString.call(value).slice(8, -1).toLowerCase();
+};
+```
+
+### Method 2
+
+```ts
+/**
+ * Check data type
+ * @param { unknown } value
+ * @return { string } type
+ * */
+const getType = (value: unknown): string => {
+  if (typeof value === 'object') {
+    if (value === null) {
+      return 'null';
+    }
+    if (Array.isArray(value)) {
+      return 'array';
+    }
+    if (value instanceof Date) {
+      return 'date';
+    }
+    if (value instanceof RegExp) {
+      return 'regexp';
+    }
+    if (value instanceof Map) {
+      return 'map';
+    }
+    if (value instanceof Set) {
+      return 'set';
+    }
+    return 'object';
+  }
+  return typeof value;
 };
 ```
 

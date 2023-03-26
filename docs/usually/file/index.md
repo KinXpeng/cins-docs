@@ -11,51 +11,40 @@ nav:
 ```ts
 /**
   上传统一方法
-  @param {string} type 上传文件类型 
-  @param {boolean} multiple 是否支持多个文件上传  
-  @param {number} size 上传文件大小(单位为KB) 
-  @param {boolean} isDirectory 是否支持上传文件目录
+  @param {IUploadParams}  
   @return {Array} FileList
 */
-interface Iparams {
-  type: string;
-  multiple: boolean;
-  size: number;
-  isDirectory: boolean;
+interface IUploadParams {
+  type: string; // 上传文件类型
+  multiple?: boolean; // 是否支持多个文件上传
+  size?: number; // 上传文件大小(单位为KB)
+  isDirectory?: boolean; // 是否支持上传文件目录
 }
+
 const upload = ({
   type,
   multiple = false,
   size,
   isDirectory = false,
-}: Iparams) => {
+}: IUploadParams): Promise<FileList> => {
   return new Promise((resolve, reject) => {
     const input: HTMLInputElement = document.createElement('input');
     input.type = 'file';
-    if (multiple) input.multiple = true;
-    if (isDirectory) {
-      // 兼容不同浏览器
-      input.webkitdirectory = true;
-      // input.mozdirectory = true
-      // input.odirectory = true
-    }
     input.accept = type;
+    input.multiple = multiple;
+    input.webkitdirectory = isDirectory; // 兼容不同浏览器
     input.onchange = ({ target }) => {
       const files = (target as EventTarget & { files: FileList }).files;
-      let overSize = true; // 默认不超出
       if (size) {
         // 限制大小
-        for (let key in files) {
-          if (files[key].size && files[key].size / 1024 > size) {
-            overSize = false;
+        for (let i = 0; i < files.length; i++) {
+          if (files[i].size && files[i].size / 1024 > size) {
+            reject('上传大小超出限制！');
+            return;
           }
         }
       }
-      if (overSize) {
-        resolve(files);
-      } else {
-        reject('上传大小超出限制！');
-      }
+      resolve(files);
     };
     input.click();
   });
@@ -67,16 +56,15 @@ const upload = ({
 ```ts
 /**
  * 获取文件的Base64
- * @param file  {File}  文件
+ * @param file {File} 文件
+ * @returns {Promise<string>} Base64编码字符串
  */
-const fileToBase64 = (file: any) => {
+const fileToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve) => {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
-    fileReader.onload = ({ target }) => {
-      // resolve(e.target.result)
-      const result = (target as EventTarget & { result: string }).result;
-      resolve(result);
+    fileReader.onload = () => {
+      resolve(fileReader.result as string);
     };
   });
 };
@@ -85,34 +73,40 @@ const fileToBase64 = (file: any) => {
 ## imgUrl 转 base64
 
 ```ts
-const imgUrlToBase64 = (url: string) => {
+/**
+ * @param { string } url
+ * @return { Promise<string> }
+ */
+const imgUrlToBase64 = (url: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     if (!url) {
       reject('请传入url内容');
     }
 
-    if (/\.(png|jpe?g|gif|svg)(\?.*)?$/.test(url)) {
+    if (/\.(png|jpe?g|gif|svg|webp)(\?.*)?$/.test(url)) {
       // 图片地址
-      const image = new Image();
-      // 设置跨域问题
-      image.setAttribute('crossOrigin', 'anonymous');
-      // 图片地址
-      image.src = url;
-      image.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx: any = canvas.getContext('2d');
-        canvas.width = image.width;
-        canvas.height = image.height;
-        ctx.drawImage(image, 0, 0, image.width, image.height);
-        // 获取图片后缀
-        const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
-        // 转base64
-        const dataUrl = canvas.toDataURL(`image/${ext}`);
-        resolve(dataUrl || '');
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'blob';
+      xhr.onload = () => {
+        const blob = xhr.response;
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(blob);
+        fileReader.onload = () => {
+          const result = fileReader.result as string;
+          resolve(result);
+        };
+        fileReader.onerror = () => {
+          reject('文件读取失败');
+        };
       };
+      xhr.onerror = () => {
+        reject('网络错误');
+      };
+      xhr.send();
     } else {
       // 非图片地址
-      reject('非(png/jpe?g/gif/svg等)图片地址');
+      reject('非(png/jpe?g/gif/svg/webp等)图片地址');
     }
   });
 };
@@ -163,7 +157,7 @@ const imgUrlToBase64 = (url: string) => {
 
 - 在需要使用的页面引入
 
-  ```js
+  ```ts
   import html2canvas from 'html2canvas';
   ```
 
@@ -188,54 +182,51 @@ const imgUrlToBase64 = (url: string) => {
 
 - 通过 `ref` 构建下载
 
-  ```js
+  ```ts
   // 下载
-  handleDownload(name) {
-    window.pageYoffset = 0;
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    // 先获取你要转换为img的dom节点
-    // const node = document.getElementById("canvas"); // 传入的id名称
-    const node = this.$refs.canvas
-    // console.log("node", node);
-    const width = node.offsetWidth; // dom宽
-    const height = node.offsetHeight; // dom高
-    const scale = 4; // 放大倍数 这个相当于清晰度 调大一点更清晰一点
+  const handleDownload = (name: string) => {
+    window.scrollTo(0, 0);
+    const node = document.getElementById('canvas') || document.body;
+    const width = node.offsetWidth;
+    const height = node.offsetHeight;
+    const scale = 4;
     html2canvas(node, {
-      width: width,
-      heigth: height,
-      backgroundColor: "#ffffff", // 背景颜色 为null是透明
-      dpi: window.devicePixelRatio * 2, // 按屏幕像素比增加像素
-      scale: scale,
-      X: 0,
-      Y: 0,
-      scrollX: -3, // 如果左边多个白边 设置该偏移-3 或者更多
+      width,
+      height,
+      backgroundColor: '#ffffff',
+      dpi: window.devicePixelRatio * 2,
+      scale,
+      x: 0,
+      y: 0,
+      scrollX: -3,
       scrollY: -10,
-      useCORS: true, // 是否使用CORS从服务器加载图像 !!!
-      allowTaint: true, // 是否允许跨域图像污染画布  !!!
-    }).then((canvas) => {
-      // console.log("canvas", canvas);
-      const url = canvas.toDataURL(); // 这里上面不设值cors会报错
-      const a = document.createElement("a"); // 创建一个a标签 用来下载
-      a.download = name; // 设置下载的图片名称
-      const event = new MouseEvent("click"); // 增加一个点击事件
-      a.href = url;// 此处的url为base64格式的图片资源
-      a.dispatchEvent(event); // 触发a的单击事件 即可完成下载
+      useCORS: true,
+      allowTaint: true,
+    }).then((canvas: HTMLCanvasElement) => {
+      const url = canvas.toDataURL();
+      const a = document.createElement('a');
+      a.download = name;
+      a.href = url;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     });
-  }
+  };
   ```
 
 ## 切片上传
 
 - 获取 [spark-md5](https://github.com/KinXpeng/cins-docs/tree/main/utils)
 
-```js
+- 切片上传
+
+```ts
 // 切片上传
 const sliceUpload = () => {
   const input = document.createElement('input');
   input.type = 'file';
-  input.onchange = async (e) => {
-    const file = input.files[0];
+  input.onchange = async (e: Event) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
     if (!file) {
       return;
     }
@@ -245,21 +236,25 @@ const sliceUpload = () => {
   };
   input.click();
 };
+```
 
+- 获取 hash 值
+
+```ts
 // 获取hash值
-const hash = (chunks) => {
-  return new Promise((resolve) => {
+const hash = (chunks: Blob[]) => {
+  return new Promise<string>((resolve) => {
     // 此处需要引入md5
-    const spark = new SparkMD5();
-    function _read(i) {
+    const spark = new SparkMD5.ArrayBuffer();
+    function _read(i: number) {
       if (i >= chunks.length) {
         resolve(spark.end());
         return; // 读取完成
       }
       const blob = chunks[i];
       const reader = new FileReader();
-      reader.onload = (e) => {
-        const bytes = e.target.result; // 读取到的字节数组
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        const bytes = e.target?.result as ArrayBuffer; // 读取到的字节数组
         spark.append(bytes);
         _read(i + 1);
       };
@@ -268,9 +263,13 @@ const hash = (chunks) => {
     _read(0);
   });
 };
+```
 
+- 切片
+
+```ts
 // 切片
-const createChunks = (file, chunkSize) => {
+const createChunks = (file: File, chunkSize: number): Blob[] => {
   const result = [];
   for (let i = 0; i < file.size; i += chunkSize) {
     result.push(file.slice(i, i + chunkSize));

@@ -1,6 +1,6 @@
 ---
 title: Array Object
-order: 1
+order: 2
 nav:
   title: Usually
   order: 1

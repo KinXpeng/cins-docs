@@ -6,9 +6,9 @@ nav:
   order: 1
 ---
 
-## H5 获取位置（JS）
+## H5 获取位置
 
-```js
+```ts
 /**
  * 经纬度获取
  * 基于h5的获取位置进行优化
@@ -16,7 +16,7 @@ nav:
  * 获取位置时会有授权弹窗提示
  **/
 
-const getLocation = () => {
+const getLocation = (): Promise<{ lat: number; lng: number }> => {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -40,16 +40,19 @@ const getLocation = () => {
 };
 ```
 
-## 百度地图经纬度转为腾讯地图经纬度（JS）
+## 百度地图经纬度转为腾讯地图经纬度
 
-```js
+```ts
 /**
  * 百度地图经纬度转为腾讯地图经纬度
- * @param {Number} lat
- * @param {Number} lng
- * @returns
+ * @param lat {Number} 纬度
+ * @param lng {Number} 经度
+ * @return {Object} 返回经过转换后的经纬度对象，包括lng和lat两个属性
  */
-const bdMapToTxMap = (lat, lng) => {
+const bdMapToTxMap = (
+  lat: number,
+  lng: number,
+): { lng: number; lat: number } => {
   let pi = (3.14159265358979324 * 3000.0) / 180.0;
   let x = lng - 0.0065;
   let y = lat - 0.006;
@@ -61,17 +64,17 @@ const bdMapToTxMap = (lat, lng) => {
 };
 ```
 
-## 腾讯地图转百度地图经纬度（JS）
+## 腾讯地图转百度地图经纬度
 
-```js
+```ts
 /**
  * 腾讯地图转百度地图经纬度
  * @param {Number} lat
  * @param {Number} lng
- * @returns
+ * @return {Object}
  */
-const txMapToBdMap = (lng, lat) => {
-  let x_pi = (3.14159265358979324 * 3000.0) / 180.0;
+const txMapToBdMap = (lng: number, lat: number) => {
+  const x_pi = (Math.PI * 3000.0) / 180.0;
   let x = lng;
   let y = lat;
   let z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
@@ -85,31 +88,32 @@ const txMapToBdMap = (lng, lat) => {
 };
 ```
 
-## 腾讯地图 API（JS）
+## 腾讯地图 API
 
 - 请求 `API` 时可能会遇到跨域问题，可采用 `jsonp` 请求解决跨域。
 - 获取 [jsonp](https://github.com/KinXpeng/cins-docs/tree/main/utils) 文件。
 - `jsonp.js` 内容不多，源码如下。
 
-```js
-const jsonp = function (url, data) {
+```ts
+const jsonp = (url: string, data?: Record<string, any>): Promise<any> => {
   return new Promise((resolve, reject) => {
-    // 1.init url
+    // 1. 初始化 url
     let dataString = url.indexOf('?') === -1 ? '?' : '&';
-    let callbackName = `jsonpCB_${Date.now()}`;
+    const callbackName = `jsonpCB_${Date.now()}`;
     url += `${dataString}callback=${callbackName}`;
+
     if (data) {
-      // 2.put params to url
+      // 2. 将参数添加到 url 上
       for (let k in data) {
         url += `&${k}=${data[k]}`;
       }
     }
 
-    let scriptNode = document.createElement('script');
+    const scriptNode = document.createElement('script');
     scriptNode.src = url;
 
     // 3. callback
-    window[callbackName] = (result) => {
+    window[callbackName] = (result: any) => {
       result ? resolve(result) : reject('没有返回数据');
       delete window[callbackName];
       document.body.removeChild(scriptNode);
@@ -130,23 +134,40 @@ const jsonp = function (url, data) {
     document.body.appendChild(scriptNode);
   });
 };
+
 export { jsonp };
 ```
 
 - 使用方法 （[申请 key 官网](https://lbs.qq.com/)）
 
-```js
-import { jsonp } from './jsonp.js';
+```ts
+import { jsonp } from './jsonp';
 
-// 获取位置
-const getLocation = () => {
+interface LocationData {
+  lat: number;
+  lng: number;
+}
+
+interface LocationResult {
+  status: number;
+  message: string;
+  result: LocationData;
+}
+
+const getLocation = (): Promise<LocationData> => {
+  const key = 'YOUR_TENCENT_MAP_API_KEY';
   return new Promise((resolve, reject) => {
-    jsonp('https://apis.map.qq.com/ws/location/v1/ip', {
-      key: key, // 此处key可在腾讯地图官网申请
+    jsonp<LocationResult>('https://apis.map.qq.com/ws/location/v1/ip', {
+      key,
       output: 'jsonp',
     })
       .then((res) => {
-        resolve(res);
+        if (res.status === 0) {
+          const locationData = res.result;
+          resolve(locationData);
+        } else {
+          reject(res.message);
+        }
       })
       .catch((err) => {
         reject(err);
