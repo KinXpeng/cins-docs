@@ -31,7 +31,7 @@ export default defineConfig({
     thumbBackground: true,
     settingPanelVisible: true,
     hero: {
-      showVersionBadge: true
+      showVersionBadge: false
     },
   },
   locales: [
