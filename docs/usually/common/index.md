@@ -521,14 +521,14 @@ console.log(toChineseNumber(123456789.12)); // 输出 "壹亿贰仟叁佰肆拾�
 ```ts
 /**
  * 匹配文字变色（搜索时）
- * @param val 当前值字符串
- * @param text 要处理的字符串值
- * @param color 搜索到时字体高亮颜色
- * @returns 返回处理后的字符串
+ * @param {string} val 当前值字符串
+ * @param {string} text 要处理的字符串值
+ * @param {string} color 搜索到时字体高亮颜色
+ * @return 返回处理后的字符串
  */
 const textColor = (val: string, text = '', color = 'red'): string => {
   // 返回内容，添加颜色
-  let v = text.replace(
+  const v: string = text.replace(
     new RegExp(val, 'gi'),
     `<span style='color: ${color}'>${val}</span>`,
   );

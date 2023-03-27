@@ -513,13 +513,13 @@ console.log(toChineseNumber(123456789.12)); // 输出 "壹亿贰仟叁佰肆拾�
 ```ts
 /**
  * Matching text discoloration
- * @param val
- * @param text
- * @param color
- * @returns
+ * @param {string} val
+ * @param {string} text
+ * @param {string} color
+ * @return
  */
 const textColor = (val: string, text = '', color = 'red'): string => {
-  let v = text.replace(
+  const v: string = text.replace(
     new RegExp(val, 'gi'),
     `<span style='color: ${color}'>${val}</span>`,
   );
