@@ -78,7 +78,6 @@ const getParamsAsJson = (url: string): object => {
  * @param {object} json
  * @return {string}
  * */
-
 // 示例
 let json = {
   id: 1,

@@ -7,7 +7,7 @@ hero:
     - text: Easystart
       link: /guide/introduction
     - text: Getstart
-      link: /usually/array
+      link: /usually/common
 features:
   - title: Out of the box
     emoji: 💎
