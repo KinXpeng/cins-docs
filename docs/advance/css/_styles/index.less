@@ -1,25 +1,4 @@
-/* 输入框 */
-.cins-input {
-  border: 1px solid #eee;
-  padding: 0 10px;
-  font-size: 12px;
-  border-radius: 4px;
-}
-
-/* 按钮 */
-.cins-button {
-  background-color: #4387f7;
-  border-radius: 4px;
-  color: #fff;
-  padding: 4px 10px;
-  font-size: 12px;
-  outline: none;
-  &:active{
-    background-color: #5697f7;
-  }
-}
-
-/* 通用样式 */
+/* 通用样式 S */
 .flex{
   display: flex;
 }
@@ -45,3 +24,41 @@
 .align-center{
   text-align: center;
 }
+/* 通用样式 E */
+
+
+/* 输入框 S */
+.cins-input {
+  border: 1px solid #eee;
+  padding: 0 10px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+/* 输入框 E */
+
+/* 按钮 S */
+.cins-button {
+  background-color: #4387f7;
+  border-radius: 4px;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 12px;
+  outline: none;
+  &:active{
+    background-color: #5697f7;
+  }
+}
+/* 按钮 E */
+
+/* 图片大小自适应 S */
+.adaption-img {
+  display: flex;
+  align-items: center;
+  // vmin：取 vw 和 vh 较小的值
+  // vmax：取 vw 和 vh 较大的值
+  & > img {
+    width: 100vmin;
+    height: 100vmin;
+  }
+}
+/* 图片大小自适应 E */

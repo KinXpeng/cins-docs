@@ -220,3 +220,34 @@ export default () => {
   );
 };
 ```
+
+## Delimiter
+
+```tsx
+import React from 'react';
+import './_styles/separator.css';
+export default () => {
+  return (
+    <div className="separator">
+      <span>Home</span>
+      <span>Store</span>
+      <span>Cart</span>
+      <span>Me</span>
+    </div>
+  );
+};
+```
+
+## Dynamic avatar
+
+```tsx
+import React from 'react';
+import './_styles/portrait.css';
+export default () => {
+  return (
+    <div className="portrait">
+      <img className="portrait-img" src="/imgs/profile.webp" />
+    </div>
+  );
+};
+```

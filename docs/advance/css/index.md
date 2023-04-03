@@ -217,3 +217,34 @@ export default () => {
   );
 };
 ```
+
+## 分隔符
+
+```tsx
+import React from 'react';
+import './_styles/separator.css';
+export default () => {
+  return (
+    <div className="separator">
+      <span>首页</span>
+      <span>商城</span>
+      <span>购物车</span>
+      <span>我的</span>
+    </div>
+  );
+};
+```
+
+## 动态头像
+
+```tsx
+import React from 'react';
+import './_styles/portrait.css';
+export default () => {
+  return (
+    <div className="portrait">
+      <img className="portrait-img" src="/imgs/profile.webp" />
+    </div>
+  );
+};
+```

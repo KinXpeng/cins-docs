@@ -44,12 +44,13 @@ nav:
 
 ### Advance
 
+- 2023/04/03 CSS - Added **Dynamic avatar.**
+- 2023/04/03 CSS - Added **Delimiter.**
 - 2023/03/24 CSS - Added **Underline dynamic effect.**
 - 2023/03/10 CSS - Added **Pinyin labeling.**
 - 2023/03/14 Component - Added **Upload component.**
 - 2023/03/10 CSS - Added **The css implements intelligent text adaptation.**
 - 2023/03/07 CSS - Added **Implement different backgrounds for buttons.**
-- 2023/03/03 Added **Winnow->Tips** menu.
 - 2023/02/15 CSS - Added **Beyond multiline omission.**
 - 2023/02/06 Component - Added **mobile prompt component.**
 - 2023/02/06 Added **Winnow->Component** menu.
