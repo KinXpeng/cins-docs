@@ -13,6 +13,7 @@ export default defineConfig({
   themeConfig: {
     name: 'CINS',
     logo: withGH('cins-docs.png'),
+    prefersColor: { default: 'auto' }, // 主题跟随系统
     social: {
       github: {
         name: 'cins-docs',

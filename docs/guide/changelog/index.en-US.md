@@ -8,6 +8,7 @@ nav:
 
 ### Common
 
+- 2023/04/05 Common - Added **Turn on/off full screen.**
 - 2023/04/04 Array Object - Added **Filter out different items from two arrays.**
 - 2023/03/27 Http - Added **Axios advanced encapsulation.**
 - 2023/03/14 File - Added **Slice upload.**

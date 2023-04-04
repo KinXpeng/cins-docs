@@ -606,3 +606,46 @@ const isAsyncFunction = (func) => {
   return func[Symbol.toStringTag] === 'AsyncFunction';
 };
 ```
+
+## Turn on/off full screen
+
+- Turn on full screen
+
+  ```ts
+  /**
+   * Turn on full screen
+   * @param {HTMLElement} element Enable full screen dom elements
+   * @return void
+   * */
+  const launchFullscreen = (element: HTMLElement) => {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullScreen();
+    }
+  };
+  ```
+
+- Exit Full Screen
+
+  ```ts
+  /**
+   * Exit Full Screen
+   * @return void
+   * */
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if ((document as any).msExitFullscreen) {
+      (document as any).msExitFullscreen();
+    } else if ((document as any).mozCancelFullScreen) {
+      (document as any).mozCancelFullScreen();
+    } else if ((document as any).webkitExitFullscreen) {
+      (document as any).webkitExitFullscreen();
+    }
+  };
+  ```

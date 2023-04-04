@@ -616,3 +616,46 @@ const isAsyncFunction = (func) => {
   return func[Symbol.toStringTag] === 'AsyncFunction';
 };
 ```
+
+## 开启/退出全屏
+
+- 开启全屏
+
+  ```ts
+  /**
+   * 开启全屏
+   * @param {HTMLElement} element 开启全屏的dom元素
+   * @return void
+   * */
+  const launchFullscreen = (element: HTMLElement) => {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullScreen();
+    }
+  };
+  ```
+
+- 退出全屏
+
+  ```ts
+  /**
+   * 退出全屏
+   * @return void
+   * */
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if ((document as any).msExitFullscreen) {
+      (document as any).msExitFullscreen();
+    } else if ((document as any).mozCancelFullScreen) {
+      (document as any).mozCancelFullScreen();
+    } else if ((document as any).webkitExitFullscreen) {
+      (document as any).webkitExitFullscreen();
+    }
+  };
+  ```
