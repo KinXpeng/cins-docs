@@ -12,7 +12,7 @@ nav:
 
 - 引入 uni 的 SDK（[获取 SDK](https://github.com/KinXpeng/cins-docs/tree/main/utils)，也可在 uniapp 官网获取。）
 
-  ```js
+  ```ts
   import '@/utils/uni-webview.js'; // uni-webview SDK
 
   // uniapp SDK
@@ -21,7 +21,7 @@ nav:
 
 - 具体使用
 
-  ```js
+  ```ts
   // 跳转
   if (/miniProgram/i.test(userAgent) && /micromessenger/i.test(userAgent)) {
     // 判断是否为微信小程序环境
@@ -47,22 +47,25 @@ nav:
 
 #### h5 页面进入多层后回到首页
 
-```js
+```ts
 // 首先同样需要上述引入SDK
 
-// 监听是否回到首页
+// 消除页面所有的回退动作
 history.pushState(null, null, document.URL);
-// 点击小程序返回时会触发popstate事件
-window.addEventListener(
-  'popstate',
-  () => {
-    if (/miniProgram/i.test(userAgent) && /micromessenger/i.test(userAgent)) {
-      // 微信小程序环境
-      wx.miniProgram.navigateBack({
-        delta: history.length,
-      });
-    }
-  },
-  false,
-);
+
+// 小程序返回时添加监听popstate事件
+window.addEventListener('popstate', fallbackEvent, false);
+
+// 离开当前页面时移除监听事件（可以监听路由的变化来移除，不移除会对其它的页面有影响）
+window.removeEventListener('popstate', fallbackEvent, false);
+
+// 回退事件
+const fallbackEvent = () => {
+  if (/miniProgram/i.test(userAgent) && /micromessenger/i.test(userAgent)) {
+    // 微信小程序环境
+    wx.miniProgram.navigateBack({
+      delta: history.length,
+    });
+  }
+};
 ```

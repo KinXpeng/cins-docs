@@ -11,7 +11,6 @@
   left: -40px;
   width: 34px;
   height: 34px;
-  background: url(https://kinxpeng.oss-cn-beijing.aliyuncs.com/image/cins-docs/schedul_warning.png)
-    center/cover;
+  background: url(/icons/warning.png) center/cover;
   content: '';
 }
