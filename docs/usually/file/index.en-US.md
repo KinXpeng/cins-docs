@@ -72,6 +72,8 @@ const fileToBase64 = (file: File): Promise<string> => {
 
 ## imgUrlToBase64
 
+### By http
+
 ```ts
 /**
  * @param {string} url
@@ -104,6 +106,42 @@ const imgUrlToBase64 = (url: string): Promise<string> => {
         reject('Network error');
       };
       xhr.send();
+    } else {
+      // Non-picture address
+      reject('Not(png/jpe?g/gif/svg/webp) address');
+    }
+  });
+};
+```
+
+### Through canvas
+
+```ts
+/**
+ * @param {string} url
+ * @return {Promise<string>}
+ */
+const imgUrlToBase64 = (url: string): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    if (!url) {
+      reject('Please pass in the url content');
+    }
+
+    if (/\.(png|jpe?g|gif|svg)(\?.*)?$/.test(url)) {
+      const image = new Image();
+      image.setAttribute('crossOrigin', 'anonymous');
+      image.src = url;
+      image.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx!.drawImage(image, 0, 0, image.width, image.height);
+        // Get picture suffix
+        const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        const dataUrl = canvas.toDataURL(`image/${ext}`);
+        resolve(dataUrl || '');
+      };
     } else {
       // Non-picture address
       reject('Not(png/jpe?g/gif/svg/webp) address');

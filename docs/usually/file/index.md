@@ -72,6 +72,8 @@ const fileToBase64 = (file: File): Promise<string> => {
 
 ## imgUrl 转 base64
 
+### 通过 http 的方式
+
 ```ts
 /**
  * @param {string} url
@@ -107,6 +109,46 @@ const imgUrlToBase64 = (url: string): Promise<string> => {
     } else {
       // 非图片地址
       reject('非(png/jpe?g/gif/svg/webp等)图片地址');
+    }
+  });
+};
+```
+
+### 通过 canvas 的方式
+
+```ts
+/**
+ * @param {string} url
+ * @return {Promise<string>}
+ */
+const imgUrlToBase64 = (url: string): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    if (!url) {
+      reject('请传入url内容');
+    }
+
+    if (/\.(png|jpe?g|gif|svg)(\?.*)?$/.test(url)) {
+      // 图片地址
+      const image = new Image();
+      // 设置跨域问题
+      image.setAttribute('crossOrigin', 'anonymous');
+      // 图片地址
+      image.src = url;
+      image.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx!.drawImage(image, 0, 0, image.width, image.height);
+        // 获取图片后缀
+        const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        // 转base64
+        const dataUrl = canvas.toDataURL(`image/${ext}`);
+        resolve(dataUrl || '');
+      };
+    } else {
+      // 非图片地址
+      reject('非(png/jpe?g/gif/svg等)图片地址');
     }
   });
 };
