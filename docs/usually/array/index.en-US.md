@@ -202,3 +202,22 @@ const duplicateRemoval = (list) => {
   return newArr;
 };
 ```
+
+## Filter out different items from two arrays
+
+```ts
+/**
+ * @param {array} arr1
+ * @param {array} arr2
+ * @return {array}
+ */
+const diffArray = (arr1, arr2) => {
+  return arr1.filter((x) => !arr2.includes(x));
+};
+
+// Example (filter out items with arr1 not in arr2)
+const list1: Array<number> = [1, 2, 3, 4, 5];
+const list2: Array<number> = [2, 3, 4, 5, 6, 7];
+
+console.log(diffArray(list1, list2)); // =>>> [1]
+```

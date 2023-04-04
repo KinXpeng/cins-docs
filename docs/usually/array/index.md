@@ -203,3 +203,22 @@ const duplicateRemoval = (list) => {
   return newArr;
 };
 ```
+
+## 筛选出两个数组的不同项
+
+```ts
+/**
+ * @param {array} arr1
+ * @param {array} arr2
+ * @return {array}
+ */
+const diffArray = (arr1, arr2) => {
+  return arr1.filter((x) => !arr2.includes(x));
+};
+
+// 例子 (筛选出arr1不在arr2中的项)
+const list1: Array<number> = [1, 2, 3, 4, 5];
+const list2: Array<number> = [2, 3, 4, 5, 6, 7];
+
+console.log(diffArray(list1, list2)); // =>>> [1]
+```
