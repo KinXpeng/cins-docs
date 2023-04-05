@@ -6,8 +6,9 @@ nav:
   order: 0
 ---
 
-### Common
+## Common
 
+- 2023/04/05 Common - Added **Addition of large integers.**
 - 2023/04/05 Common - Added **Turn on/off full screen.**
 - 2023/04/04 Array Object - Added **Filter out different items from two arrays.**
 - 2023/03/27 Http - Added **Axios advanced encapsulation.**
@@ -44,7 +45,7 @@ nav:
 - 2022/11/18 Regex - Added **regular syntax reference.**
 - 2022/11/17 Regex - Added **regulars compatible with mobile phone numbers and landline numbers.**
 
-### Advance
+## Advance
 
 - 2023/04/03 CSS - Added **Dynamic avatar.**
 - 2023/04/03 CSS - Added **Delimiter.**
@@ -64,7 +65,7 @@ nav:
 - 2022/11/28 CSS - Added **a text stroke.**
 - 2022/11/02 CSS - Added **the input box jitter.**
 
-### Column
+## Column
 
 - 2023/03/24 Share - Added **Algorithmic data** & **Front-end interview**.
 - 2023/03/24 Column - Added **Share** menu.

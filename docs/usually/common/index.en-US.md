@@ -688,3 +688,30 @@ const isAsyncFunction = (func) => {
     }
   };
   ```
+
+## Addition of large integers
+
+```ts
+/**
+ * Addition of large integers(PadStart is limited to es2017 and above)
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ * */
+const sum = (a: string, b: string): string => {
+  let result = '';
+  const len = Math.max(a.length, b.length);
+  a = a.padStart(len, '0');
+  b = b.padStart(len, '0');
+  let carry = 0;
+  for (let i = len - 1; i >= 0; i--) {
+    const n = +a[i] + +b[i] + carry;
+    carry = Math.floor(n / 10);
+    result = (n % 10) + result;
+  }
+  if (carry) result = '1' + result;
+  return result;
+};
+
+console.log(sum('1236128461285412414', '723542341244')); // =>>> "1236129184827753658"
+```
