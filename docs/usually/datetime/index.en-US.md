@@ -48,7 +48,7 @@ console.log(formatted); // "2023-03-26 12:34:56"
 /**
  * Day of the week by date (week of the day of return without date)
  * @param {String} date
- * @returns {String} week
+ * @return {String} week
  * Invoke the sample
  * dateToWeek('2022-09-20')
    // Tuesday
@@ -279,7 +279,7 @@ const daysDistance = (date1, date2) => {
  * Time greeting
  * @param param current time,string
  * @description param  `formatAxis('2022-12-12 09:12:11')` Output 'Good morning'
- * @returns Returns the concatenated time string
+ * @return Returns the concatenated time string
  */
 const formatAxis = (param: string): string => {
   let hour: number = new Date(param).getHours();

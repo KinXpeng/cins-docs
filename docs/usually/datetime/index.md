@@ -48,7 +48,7 @@ console.log(formatted); // 输出 "2023-03-26 12:34:56"
 /**
  * 根据日期返回星期几（不传日期返回当天的星期）
  * @param {String} date
- * @returns {String} week
+ * @return {String} week
  * 调用示例
  * dateToWeek('2022-09-20')
    // 二
@@ -271,7 +271,7 @@ const daysDistance = (date1, date2) => {
  * 时间问候语
  * @param param 当前时间，string格式
  * @description param 调用 `formatAxis('2022-12-12 09:12:11')` 输出 `上午好`
- * @returns 返回拼接后的时间字符串
+ * @return 返回拼接后的时间字符串
  */
 const formatAxis = (param: string): string => {
   let hour: number = new Date(param).getHours();
