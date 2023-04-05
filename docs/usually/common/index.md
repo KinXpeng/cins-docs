@@ -256,6 +256,8 @@ const getOSType = (): string => {
 
 ## 生成 uuid
 
+### 方法一
+
 ```ts
 /**
  * uuid
@@ -266,6 +268,43 @@ const uuid = () => {
   const uuid = temp_url.toString();
   URL.revokeObjectURL(temp_url); //释放这个url
   return uuid.substring(uuid.lastIndexOf('/') + 1);
+};
+```
+
+### 方法二
+
+```ts
+/**
+ * uuid 可指定输出格式
+ * @return uuid
+ * */
+const uuid = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c == 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
+```
+
+### 方法三
+
+```ts
+/**
+ * uuid 生成32位uuid
+ * @return uuid
+ * */
+const uuid = () => {
+  const s = [];
+  const hexDigits = '0123456789abcdef';
+  for (let i = 0; i < 32; i++) {
+    s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+  }
+  s[14] = '4';
+  s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);
+  s[8] = s[13] = s[18] = s[23];
+  const uuid = s.join('');
+  return uuid;
 };
 ```
 
