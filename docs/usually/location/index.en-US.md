@@ -42,11 +42,11 @@ const getLocation = (): Promise<{ lat: number; lng: number }> => {
 };
 ```
 
-## Baidu map latitude and longitude into Tencent map latitude and longitude
+## Baidu map latitude and longitude into Tencent(Autonavi) map latitude and longitude
 
 ```ts
 /**
- * Baidu map latitude and longitude into Tencent map latitude and longitude
+ * Baidu map latitude and longitude into Tencent(Autonavi) map latitude and longitude
  * @param {Number} lat
  * @param {Number} lng
  * @returns
@@ -66,11 +66,11 @@ const bdMapToTxMap = (
 };
 ```
 
-## Tencent map to Baidu map latitude and longitude
+## Tencent(Autonavi) map to Baidu map latitude and longitude
 
 ```ts
 /**
- * Tencent map to Baidu map latitude and longitude
+ * Tencent(Autonavi) map to Baidu map latitude and longitude
  * @param {Number} lat
  * @param {Number} lng
  * @return {Object}

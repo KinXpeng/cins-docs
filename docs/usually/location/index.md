@@ -40,11 +40,11 @@ const getLocation = (): Promise<{ lat: number; lng: number }> => {
 };
 ```
 
-## 百度地图经纬度转为腾讯地图经纬度
+## 百度地图经纬度转为腾讯（高德）地图经纬度
 
 ```ts
 /**
- * 百度地图经纬度转为腾讯地图经纬度
+ * 百度地图经纬度转为腾讯（高德）地图经纬度
  * @param lat {Number} 纬度
  * @param lng {Number} 经度
  * @return {Object} 返回经过转换后的经纬度对象，包括lng和lat两个属性
@@ -64,11 +64,11 @@ const bdMapToTxMap = (
 };
 ```
 
-## 腾讯地图转百度地图经纬度
+## 腾讯（高德）地图转百度地图经纬度
 
 ```ts
 /**
- * 腾讯地图转百度地图经纬度
+ * 腾讯（高德）地图转百度地图经纬度
  * @param {Number} lat
  * @param {Number} lng
  * @return {Object}
