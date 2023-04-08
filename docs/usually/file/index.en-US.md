@@ -32,14 +32,14 @@ const upload = ({
     input.type = 'file';
     input.accept = type;
     input.multiple = multiple;
-    input.webkitdirectory = isDirectory; // 兼容不同浏览器
+    input.webkitdirectory = isDirectory; // Compatibility with different browsers
     input.onchange = ({ target }) => {
       const files = (target as EventTarget & { files: FileList }).files;
       if (size) {
-        // 限制大小
+        // Limit size
         for (let i = 0; i < files.length; i++) {
           if (files[i].size && files[i].size / 1024 > size) {
-            reject('上传大小超出限制！');
+            reject('Upload size out of limit!');
             return;
           }
         }
@@ -55,10 +55,10 @@ const upload = ({
 
 - Get [spark-md5](https://github.com/KinXpeng/cins-docs/tree/main/utils)
 
-- 切片上传
+- Slice upload
 
 ```ts
-// 切片上传
+// Slice upload
 const sliceUpload = () => {
   const input = document.createElement('input');
   input.type = 'file';
@@ -69,29 +69,29 @@ const sliceUpload = () => {
     }
     const chunks = createChunks(file, 10 * 1024 * 1024);
     const result = await hash(chunks);
-    console.log(result); // hash值
+    console.log(result); // hash value
   };
   input.click();
 };
 ```
 
-- 获取 hash 值
+- Get the hash value
 
 ```ts
-// 获取hash值
+// Get the hash value
 const hash = (chunks: Blob[]) => {
   return new Promise<string>((resolve) => {
-    // 此处需要引入md5
+    // You need to import md5 here
     const spark = new SparkMD5.ArrayBuffer();
     function _read(i: number) {
       if (i >= chunks.length) {
         resolve(spark.end());
-        return; // 读取完成
+        return; // Read completion
       }
       const blob = chunks[i];
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
-        const bytes = e.target?.result as ArrayBuffer; // 读取到的字节数组
+        const bytes = e.target?.result as ArrayBuffer; // The byte array that was read
         spark.append(bytes);
         _read(i + 1);
       };
@@ -102,10 +102,10 @@ const hash = (chunks: Blob[]) => {
 };
 ```
 
-- 切片
+- Slice
 
 ```ts
-// 切片
+// Slice
 const createChunks = (file: File, chunkSize: number): Blob[] => {
   const result = [];
   for (let i = 0; i < file.size; i += chunkSize) {
@@ -218,31 +218,31 @@ const imgUrlToBase64 = (url: string): Promise<string> => {
 
 ```ts
 /**
- * base64格式转换为File
+ * base64ToFile
  * @param {string} base64String
  * @param {string} fileName
  * @return {File}
  * */
 const base64ToFile = (base64String: string, fileName: string): File => {
-  // 分离 base64String 中的 mime 类型和二进制数据
+  // Separating mime types and binary data in base64String
   let arr = base64String.split(','),
     mime = (arr[0].match(/:(.*?);/) || [])[1],
     bstr = atob(arr[1]),
     n = bstr.length,
     u8arr = new Uint8Array(n);
 
-  // 将二进制数据转换为 Blob 对象
+  // Convert binary data to Blob objects
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
 
-  // 创建 Blob 对象并设置类型和修改日期
+  // Create Blob object and set type and modification date
   const _blob = new Blob([u8arr], { type: mime }),
     _blobType = _blob.type,
     _blobLastModifiedDate = new Date().getTime(),
     _blobName = fileName;
 
-  // 返回 File 对象
+  // Return File Object
   return new File([_blob], _blobName, {
     type: _blobType,
     lastModified: _blobLastModifiedDate,
