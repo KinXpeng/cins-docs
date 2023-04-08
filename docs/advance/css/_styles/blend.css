@@ -1,0 +1,20 @@
+.mix-blend {
+  text-align: center;
+  background-color: #000;
+  filter: contrast(30);
+}
+.mix-blend .text {
+  font-size: 100px;
+  color: #fff;
+  animation: showup 3s infinite;
+}
+@keyframes showup {
+  from {
+    letter-spacing: -50px;
+    filter: blur(10px);
+  }
+  to {
+    letter-spacing: 10px;
+    filter: blur(2px);
+  }
+}

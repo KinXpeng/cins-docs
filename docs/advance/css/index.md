@@ -248,3 +248,17 @@ export default () => {
   );
 };
 ```
+
+## 文字交融动画效果
+
+```tsx
+import React from 'react';
+import './_styles/blend.css';
+export default () => {
+  return (
+    <div className="mix-blend">
+      <div className="text">文字交融动画效果</div>
+    </div>
+  );
+};
+```

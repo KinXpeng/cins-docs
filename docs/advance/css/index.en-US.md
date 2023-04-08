@@ -251,3 +251,17 @@ export default () => {
   );
 };
 ```
+
+## Text blending animation effect
+
+```tsx
+import React from 'react';
+import './_styles/blend.css';
+export default () => {
+  return (
+    <div className="mix-blend">
+      <div className="text">Text blending animation effect</div>
+    </div>
+  );
+};
+```

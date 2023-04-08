@@ -48,6 +48,7 @@ nav:
 
 ## Advance
 
+- 2023/04/08 CSS - Added **Text blending animation effect.**
 - 2023/04/03 CSS - Added **Dynamic avatar.**
 - 2023/04/03 CSS - Added **Delimiter.**
 - 2023/03/24 CSS - Added **Underline dynamic effect.**
