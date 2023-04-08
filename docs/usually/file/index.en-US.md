@@ -6,7 +6,7 @@ nav:
   order: 1
 ---
 
-## Upload
+## Universal upload
 
 ```ts
 /**
@@ -48,6 +48,70 @@ const upload = ({
     };
     input.click();
   });
+};
+```
+
+## Slice upload
+
+- Get [spark-md5](https://github.com/KinXpeng/cins-docs/tree/main/utils)
+
+- 切片上传
+
+```ts
+// 切片上传
+const sliceUpload = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.onchange = async (e: Event) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) {
+      return;
+    }
+    const chunks = createChunks(file, 10 * 1024 * 1024);
+    const result = await hash(chunks);
+    console.log(result); // hash值
+  };
+  input.click();
+};
+```
+
+- 获取 hash 值
+
+```ts
+// 获取hash值
+const hash = (chunks: Blob[]) => {
+  return new Promise<string>((resolve) => {
+    // 此处需要引入md5
+    const spark = new SparkMD5.ArrayBuffer();
+    function _read(i: number) {
+      if (i >= chunks.length) {
+        resolve(spark.end());
+        return; // 读取完成
+      }
+      const blob = chunks[i];
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        const bytes = e.target?.result as ArrayBuffer; // 读取到的字节数组
+        spark.append(bytes);
+        _read(i + 1);
+      };
+      reader.readAsArrayBuffer(blob);
+    }
+    _read(0);
+  });
+};
+```
+
+- 切片
+
+```ts
+// 切片
+const createChunks = (file: File, chunkSize: number): Blob[] => {
+  const result = [];
+  for (let i = 0; i < file.size; i += chunkSize) {
+    result.push(file.slice(i, i + chunkSize));
+  }
+  return result;
 };
 ```
 
@@ -146,6 +210,42 @@ const imgUrlToBase64 = (url: string): Promise<string> => {
       // Non-picture address
       reject('Not(png/jpe?g/gif/svg/webp) address');
     }
+  });
+};
+```
+
+## base64ToFile
+
+```ts
+/**
+ * base64格式转换为File
+ * @param {string} base64String
+ * @param {string} fileName
+ * @return {File}
+ * */
+const base64ToFile = (base64String: string, fileName: string): File => {
+  // 分离 base64String 中的 mime 类型和二进制数据
+  let arr = base64String.split(','),
+    mime = (arr[0].match(/:(.*?);/) || [])[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+
+  // 将二进制数据转换为 Blob 对象
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+
+  // 创建 Blob 对象并设置类型和修改日期
+  const _blob = new Blob([u8arr], { type: mime }),
+    _blobType = _blob.type,
+    _blobLastModifiedDate = new Date().getTime(),
+    _blobName = fileName;
+
+  // 返回 File 对象
+  return new File([_blob], _blobName, {
+    type: _blobType,
+    lastModified: _blobLastModifiedDate,
   });
 };
 ```
@@ -251,67 +351,3 @@ const imgUrlToBase64 = (url: string): Promise<string> => {
     });
   };
   ```
-
-## Slice upload
-
-- Get [spark-md5](https://github.com/KinXpeng/cins-docs/tree/main/utils)
-
-- 切片上传
-
-```ts
-// 切片上传
-const sliceUpload = () => {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.onchange = async (e: Event) => {
-    const file = (e.target as HTMLInputElement).files?.[0];
-    if (!file) {
-      return;
-    }
-    const chunks = createChunks(file, 10 * 1024 * 1024);
-    const result = await hash(chunks);
-    console.log(result); // hash值
-  };
-  input.click();
-};
-```
-
-- 获取 hash 值
-
-```ts
-// 获取hash值
-const hash = (chunks: Blob[]) => {
-  return new Promise<string>((resolve) => {
-    // 此处需要引入md5
-    const spark = new SparkMD5.ArrayBuffer();
-    function _read(i: number) {
-      if (i >= chunks.length) {
-        resolve(spark.end());
-        return; // 读取完成
-      }
-      const blob = chunks[i];
-      const reader = new FileReader();
-      reader.onload = (e: ProgressEvent<FileReader>) => {
-        const bytes = e.target?.result as ArrayBuffer; // 读取到的字节数组
-        spark.append(bytes);
-        _read(i + 1);
-      };
-      reader.readAsArrayBuffer(blob);
-    }
-    _read(0);
-  });
-};
-```
-
-- 切片
-
-```ts
-// 切片
-const createChunks = (file: File, chunkSize: number): Blob[] => {
-  const result = [];
-  for (let i = 0; i < file.size; i += chunkSize) {
-    result.push(file.slice(i, i + chunkSize));
-  }
-  return result;
-};
-```

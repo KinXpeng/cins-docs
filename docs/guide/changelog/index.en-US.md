@@ -8,6 +8,7 @@ nav:
 
 ## Common
 
+- 2023/04/08 File - Added **base64ToFile.**
 - 2023/04/05 Common - Added **Addition of large integers.**
 - 2023/04/05 Common - Added **Turn on/off full screen.**
 - 2023/04/04 Array Object - Added **Filter out different items from two arrays.**
