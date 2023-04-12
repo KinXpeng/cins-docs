@@ -221,3 +221,27 @@ const list2: Array<number> = [2, 3, 4, 5, 6, 7];
 
 console.log(diffArray(list1, list2)); // =>>> [1]
 ```
+
+## Split array
+
+```ts
+/**
+ * Split an array into a two-dimensional array
+ * @param {array} arrayList
+ * @param {number} n
+ * @return {array}
+ */
+const sliceArrayByNum = <T>(arrayList: T[], n: number = 10): T[][] => {
+  return arrayList.reduce((acc: T[][], curr: T, i: number) => {
+    if (i % n === 0) {
+      acc.push([curr]);
+    } else {
+      acc[acc.length - 1].push(curr);
+    }
+    return acc;
+  }, []);
+};
+
+const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(sliceArrayByNum(list), 5); // => [[1,2,3,4,5],[6,7,8,9,10]]
+```

@@ -8,6 +8,7 @@ nav:
 
 ## Common
 
+- 2023/04/12 Array Object - Added **Split array.**
 - 2023/04/08 File - Added **base64ToFile.**
 - 2023/04/05 Common - Added **Addition of large integers.**
 - 2023/04/05 Common - Added **Turn on/off full screen.**
@@ -48,6 +49,7 @@ nav:
 
 ## Advance
 
+- 2023/04/12 Added **Advance->Vue** menu.
 - 2023/04/08 CSS - Added **Text blending animation effect.**
 - 2023/04/03 CSS - Added **Dynamic avatar.**
 - 2023/04/03 CSS - Added **Delimiter.**
@@ -58,9 +60,9 @@ nav:
 - 2023/03/07 CSS - Added **Implement different backgrounds for buttons.**
 - 2023/02/15 CSS - Added **Beyond multiline omission.**
 - 2023/02/06 Component - Added **mobile prompt component.**
-- 2023/02/06 Added **Winnow->Component** menu.
+- 2023/02/06 Added **Advance->Component** menu.
 - 2023/02/03 Mini program - Added **the webview is used in uniapp.**
-- 2023/02/03 Added **Winnow->Mini program** menu.
+- 2023/02/03 Added **Advance->Mini program** menu.
 - 2022/12/03 CSS - Added **achieve button throttling effect by CSS.**
 - 2022/12/02 CSS - Added **pseudo class to achieve the prompt icon effect.**
 - 2022/12/01 CSS - Added **the site turns gray.**
