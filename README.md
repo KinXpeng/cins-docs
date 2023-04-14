@@ -15,11 +15,13 @@
 
 - 作者首页 <a href="https://github.com/KinXpeng" target="_blank">https://github.com/KinXpeng</a>
 - GitHub <a href="https://github.com/KinXpeng/cins-docs" target="_blank">https://github.com/KinXpeng/cins-docs</a>
+- Gitee <a href="https://gitee.com/kinxpeng/cins-docs" target="_blank">https://gitee.com/kinxpeng/cins-docs</a>
 
 #### 🚧 安装 cnpm、yarn
 
-- 复制代码 `npm install -g cnpm --registry=https://registry.npm.taobao.org`
-- 复制代码 `npm install -g yarn`
+- `npm install -g cnpm --registry=https://registry.npm.taobao.org`
+- `npm install -g yarn`
+- `npm install -g pnpm`
 
 #### 🏭 环境支持
 
@@ -27,13 +29,18 @@
 | --------- | ------------ | ----------- | ----------- |
 | Edge ≥ 88 | Firefox ≥ 78 | Chrome ≥ 87 | Safari ≥ 13 |
 
-#### ⚡ 使用说明
+#### ⚡ 使用及介绍
 
-建议使用 ts，基于 Typescript 定义，使用 js 版本时去除相应的类型定义即可。
+- 建议使用 ts，基于 Typescript 定义，使用 js 版本时去除相应的类型定义即可。
+- 常用里包含了常用的前端方法、日期时间、数组对象和正则等等。
+- 进阶中主要是一些少见但很实用的 CSS、小程序及 Vue 等常见框架的一些难点问题。
+- 专栏罗列了一些常见的前端问题、面试题等等，以及前端一些常用的文档链接。
 
 ```bash
 # 克隆项目
 git clone https://github.com/KinXpeng/cins-docs.git
+
+git clone https://gitee.com/kinxpeng/cins-docs.git (国内使用码云克隆更快！)
 
 # 进入项目
 cd cins-docs
