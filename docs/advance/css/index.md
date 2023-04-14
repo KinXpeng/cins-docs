@@ -262,3 +262,13 @@ export default () => {
   );
 };
 ```
+
+## 卡片折叠
+
+```tsx
+import React from 'react';
+import './_styles/fold.css';
+export default () => {
+  return <div className="card-fold"></div>;
+};
+```

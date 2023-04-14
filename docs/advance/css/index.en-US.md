@@ -265,3 +265,13 @@ export default () => {
   );
 };
 ```
+
+## Card folding
+
+```tsx
+import React from 'react';
+import './_styles/fold.css';
+export default () => {
+  return <div className="card-fold"></div>;
+};
+```

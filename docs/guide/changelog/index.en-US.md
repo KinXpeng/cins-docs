@@ -49,6 +49,7 @@ nav:
 
 ## Advance
 
+- 2023/04/14 CSS - Added **Card folding.**
 - 2023/04/12 Added **Advance->Vue** menu.
 - 2023/04/08 CSS - Added **Text blending animation effect.**
 - 2023/04/03 CSS - Added **Dynamic avatar.**

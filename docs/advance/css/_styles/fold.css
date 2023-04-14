@@ -1,0 +1,20 @@
+.card-fold {
+  width: 200px;
+  height: 100px;
+  margin: 0 auto;
+  background: linear-gradient(225deg, transparent 18px, pink 0);
+  position: relative;
+  border-radius: 0.5em;
+}
+
+.card-fold::after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background: linear-gradient(-135deg, transparent 50%, pink 0);
+  width: 25px;
+  height: 25px;
+  border-bottom-left-radius: 4px;
+  box-shadow: -0.2em 0.2em 0.2em #7a3a44;
+}
