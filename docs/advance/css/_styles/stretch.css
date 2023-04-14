@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stretch-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto; /* 拉伸的主要样式 */
+  width: 200px;
+  height: 80px;
+  margin: 0 auto;
+  color: #eee;
+  border-radius: 6px;
+}
+/* 拉伸的主要样式 */
+.horizontal {
+  resize: horizontal;
+  background-color: #f60;
+}
+.vertical {
+  resize: vertical;
+  background-color: #75ddd3;
+}
+.both {
+  resize: both;
+  background-color: #7556a9;
+}

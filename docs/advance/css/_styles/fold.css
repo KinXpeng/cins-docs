@@ -1,4 +1,4 @@
-.card-fold {
+.fold-card {
   width: 200px;
   height: 100px;
   margin: 0 auto;
@@ -7,7 +7,7 @@
   border-radius: 0.5em;
 }
 
-.card-fold::after {
+.fold-card::after {
   content: '';
   position: absolute;
   right: 0px;

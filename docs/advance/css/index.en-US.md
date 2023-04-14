@@ -272,6 +272,22 @@ export default () => {
 import React from 'react';
 import './_styles/fold.css';
 export default () => {
-  return <div className="card-fold"></div>;
+  return <div className="fold-card"></div>;
+};
+```
+
+## Stretchable box
+
+```tsx
+import React from 'react';
+import './_styles/stretch.css';
+export default () => {
+  return (
+    <div class="container">
+      <div className="stretch-card horizontal">Horizontal stretching</div>
+      <div className="stretch-card vertical">Vertical stretching</div>
+      <div className="stretch-card both">Both stretching</div>
+    </div>
+  );
 };
 ```
