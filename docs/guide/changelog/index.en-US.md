@@ -49,6 +49,7 @@ nav:
 
 ## Advance
 
+- 2023/04/17 CSS - Added **Dynamic clock.**
 - 2023/04/14 CSS - Added **Stretchable box.**
 - 2023/04/14 CSS - Added **Card folding.**
 - 2023/04/12 Added **Advance->Vue** menu.

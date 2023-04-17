@@ -283,10 +283,94 @@ import React from 'react';
 import './_styles/stretch.css';
 export default () => {
   return (
-    <div class="container">
+    <div className="stretch-container">
       <div className="stretch-card horizontal">Horizontal stretching</div>
       <div className="stretch-card vertical">Vertical stretching</div>
       <div className="stretch-card both">Both stretching</div>
+    </div>
+  );
+};
+```
+
+## Dynamic clock
+
+```tsx
+import React, { useRef, useEffect } from 'react';
+import './_styles/clock.css';
+export default () => {
+  const canvasDom = useRef();
+  let c = null;
+  const init = () => {
+    c = canvasDom.current?.getContext('2d');
+    // Sets the thickness and color of the line
+    c.lineWidth = 17;
+    c.strokeStyle = '#0ff';
+    c.shadowBlur = 15; // ambiguity
+    c.shadowColor = '#0ff'; // Shadow color
+    fn();
+  };
+  const fn = () => {
+    if (!c) return;
+    // Graphics drawn on the canvas will not be cleared and need to be cleared
+    c.clearRect(0, 0, 500, 500);
+    // Acquisition time
+    const now = new Date();
+    const today = now.toDateString();
+    const time = now.toLocaleTimeString();
+    const hrs = now.getHours(); // Hours
+    const min = now.getMinutes(); // Minutes
+    const sec = now.getSeconds(); // Seconds
+    // Acquire millisecond
+    const hm = now.getMilliseconds();
+    const mm = sec + hm / 1000;
+    const mini = min + mm / 60;
+    //console.log(min)
+
+    // Background partial gradient background
+    // const rg = c.createRadialGradient(250, 250, 5, 250, 250, 300);
+    // rg.addColorStop(0, '#03303a');
+    // rg.addColorStop(1, 'black');
+    // c.fillStyle = rg;
+    // c.rect(0, 0, 500, 500);
+    // c.fill();
+
+    const begin = (270 * Math.PI) / 180;
+    // Hour hand
+    c.beginPath();
+    //24小时 1小时=30度
+    c.arc(250, 250, 200, begin, ((30 * hrs - 90) * Math.PI) / 180);
+    c.stroke();
+
+    // One minute hand =6 degrees
+    c.beginPath();
+    c.arc(250, 250, 170, begin, ((6 * mini - 90) * Math.PI) / 180);
+    c.stroke();
+
+    // Second hand
+    c.beginPath();
+    c.arc(250, 250, 140, begin, ((6 * mm - 90) * Math.PI) / 180);
+    c.stroke();
+
+    // Literal part
+    c.beginPath();
+    c.font = '25px 微软雅黑';
+    c.fillStyle = '#0ff';
+    c.fillText(today, 155, 250);
+
+    c.beginPath();
+    c.font = '25px 微软雅黑';
+    c.fillStyle = '#0ff';
+    c.fillText(`${time}:${hm}`, 155, 280);
+
+    requestAnimationFrame(fn);
+  };
+
+  useEffect(() => {
+    if (canvasDom.current) init();
+  });
+  return (
+    <div className="clock-container">
+      <canvas ref={canvasDom} width="500" height="500"></canvas>
     </div>
   );
 };

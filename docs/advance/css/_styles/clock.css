@@ -1,0 +1,9 @@
+.clock-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: radial-gradient(circle, #03303a, #000);
+  background: -ms-radial-gradient(circle, #03303a, #000);
+  background: -webkit-radial-gradient(circle, #03303a, #000);
+  background: -moz-radial-gradient(circle, #03303a, #000);
+}

@@ -280,10 +280,94 @@ import React from 'react';
 import './_styles/stretch.css';
 export default () => {
   return (
-    <div class="container">
+    <div className="stretch-container">
       <div className="stretch-card horizontal">水平拉伸</div>
       <div className="stretch-card vertical">竖向拉伸</div>
       <div className="stretch-card both">同时拉伸</div>
+    </div>
+  );
+};
+```
+
+## 动态时钟
+
+```tsx
+import React, { useRef, useEffect } from 'react';
+import './_styles/clock.css';
+export default () => {
+  const canvasDom = useRef();
+  let c = null;
+  const init = () => {
+    c = canvasDom.current?.getContext('2d');
+    // 设置线条的粗细与颜色
+    c.lineWidth = 17;
+    c.strokeStyle = '#0ff';
+    c.shadowBlur = 15; // 模糊度
+    c.shadowColor = '#0ff'; // 阴影颜色
+    fn();
+  };
+  const fn = () => {
+    if (!c) return;
+    // 在canvas上画过的图形不会清除  需要清除
+    c.clearRect(0, 0, 500, 500);
+    // 获取时间
+    const now = new Date();
+    const today = now.toDateString();
+    const time = now.toLocaleTimeString();
+    const hrs = now.getHours(); // 小时
+    const min = now.getMinutes(); // 分钟
+    const sec = now.getSeconds(); // 秒
+    // 获取毫秒
+    const hm = now.getMilliseconds();
+    const mm = sec + hm / 1000;
+    const mini = min + mm / 60;
+    //console.log(min)
+
+    // 背景部分 渐变色背景
+    // const rg = c.createRadialGradient(250, 250, 5, 250, 250, 300);
+    // rg.addColorStop(0, '#03303a');
+    // rg.addColorStop(1, 'black');
+    // c.fillStyle = rg;
+    // c.rect(0, 0, 500, 500);
+    // c.fill();
+
+    const begin = (270 * Math.PI) / 180;
+    // 时针
+    c.beginPath();
+    // 24小时 1小时=30度
+    c.arc(250, 250, 200, begin, ((30 * hrs - 90) * Math.PI) / 180);
+    c.stroke();
+
+    // 分针  1分钟=6度
+    c.beginPath();
+    c.arc(250, 250, 170, begin, ((6 * mini - 90) * Math.PI) / 180);
+    c.stroke();
+
+    // 秒针
+    c.beginPath();
+    c.arc(250, 250, 140, begin, ((6 * mm - 90) * Math.PI) / 180);
+    c.stroke();
+
+    // 文字部分
+    c.beginPath();
+    c.font = '25px 微软雅黑';
+    c.fillStyle = '#0ff';
+    c.fillText(today, 155, 250);
+
+    c.beginPath();
+    c.font = '25px 微软雅黑';
+    c.fillStyle = '#0ff';
+    c.fillText(`${time}:${hm}`, 155, 280);
+
+    requestAnimationFrame(fn);
+  };
+
+  useEffect(() => {
+    if (canvasDom.current) init();
+  });
+  return (
+    <div className="clock-container">
+      <canvas ref={canvasDom} width="500" height="500"></canvas>
     </div>
   );
 };
