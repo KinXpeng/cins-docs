@@ -293,3 +293,32 @@ const formatAxis = (param: string): string => {
   else return 'Good nighttime';
 };
 ```
+
+## Specify the date plus or minus the time
+
+```ts
+/**
+ * Specify the date plus or minus the time
+ * @param {string} dateTime Specified date
+ * @param {number} hours Hours added or subtracted
+ * @return The calculated date and time
+ */
+const dateAndHours = (dateTime: string, hours: number): string => {
+  const newDateTime = new Date(dateTime);
+  newDateTime.setTime(newDateTime.getTime() + hours * 60 * 60 * 1000);
+  const year = newDateTime.getFullYear();
+  let month = newDateTime.getMonth() + 1;
+  let day = newDateTime.getDate();
+  let hour = newDateTime.getHours();
+  let minute = newDateTime.getMinutes();
+  let second = newDateTime.getSeconds();
+  month = month < 10 ? '0' + month : month;
+  day = day < 10 ? '0' + day : day;
+  hour = hour < 10 ? '0' + hour : hour;
+  minute = minute < 10 ? '0' + minute : minute;
+  second = second < 10 ? '0' + second : second;
+  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+};
+
+console.log(dateAndHours('2023-04-18 12:00:01', 2)); // =>>> 2023-04-18 14:00:01
+```

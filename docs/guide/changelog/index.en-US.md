@@ -8,6 +8,7 @@ nav:
 
 ## Common
 
+- 2023/04/18 Datetime - Added **Specify the date plus or minus the time.**
 - 2023/04/12 Array Object - Added **Split array.**
 - 2023/04/08 File - Added **base64ToFile.**
 - 2023/04/05 Common - Added **Addition of large integers.**
