@@ -312,16 +312,21 @@ export default () => {
   const fn = () => {
     if (!c) return;
     // Graphics drawn on the canvas will not be cleared and need to be cleared
-    c.clearRect(0, 0, 500, 500);
+    c.clearRect(0, 0, 350, 350);
     // Acquisition time
-    const now = new Date();
-    const today = now.toDateString();
-    const time = now.toLocaleTimeString();
-    const hrs = now.getHours(); // Hours
-    const min = now.getMinutes(); // Minutes
-    const sec = now.getSeconds(); // Seconds
+    const date = new Date();
+    const year = date.getFullYear().toString();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    const today = `${year}-${month}-${day}`;
+    const time = date.toLocaleTimeString();
+
+    const hrs = date.getHours(); // Hours
+    const min = date.getMinutes(); // Minutes
+    const sec = date.getSeconds(); // Seconds
     // Acquire millisecond
-    const hm = now.getMilliseconds();
+    const hm = date.getMilliseconds();
     const mm = sec + hm / 1000;
     const mini = min + mm / 60;
     //console.log(min)
@@ -338,29 +343,29 @@ export default () => {
     // Hour hand
     c.beginPath();
     //24小时 1小时=30度
-    c.arc(250, 250, 200, begin, ((30 * hrs - 90) * Math.PI) / 180);
+    c.arc(180, 180, 150, begin, ((30 * hrs - 90) * Math.PI) / 180);
     c.stroke();
 
     // One minute hand =6 degrees
     c.beginPath();
-    c.arc(250, 250, 170, begin, ((6 * mini - 90) * Math.PI) / 180);
+    c.arc(180, 180, 125, begin, ((6 * mini - 90) * Math.PI) / 180);
     c.stroke();
 
     // Second hand
     c.beginPath();
-    c.arc(250, 250, 140, begin, ((6 * mm - 90) * Math.PI) / 180);
+    c.arc(180, 180, 100, begin, ((6 * mm - 90) * Math.PI) / 180);
     c.stroke();
 
     // Literal part
     c.beginPath();
     c.font = '25px 微软雅黑';
     c.fillStyle = '#0ff';
-    c.fillText(today, 155, 250);
+    c.fillText(today, 105, 180);
 
     c.beginPath();
     c.font = '25px 微软雅黑';
     c.fillStyle = '#0ff';
-    c.fillText(`${time}:${hm}`, 155, 280);
+    c.fillText(`${time}:${hm}`, 100, 200);
 
     requestAnimationFrame(fn);
   };
@@ -370,7 +375,7 @@ export default () => {
   });
   return (
     <div className="clock-container">
-      <canvas ref={canvasDom} width="500" height="500"></canvas>
+      <canvas ref={canvasDom} width="350" height="350"></canvas>
     </div>
   );
 };
