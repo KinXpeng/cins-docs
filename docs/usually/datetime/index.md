@@ -314,3 +314,26 @@ const dateAndHours = (dateTime: string, hours: number): string => {
 
 console.log(dateAndHours('2023-04-18 12:00:01', 2)); // =>>> 2023-04-18 14:00:01
 ```
+
+## 计算两个日期之间所差的分钟数
+
+```ts
+/**
+ * 计算两个日期之间所差的分钟数
+ * @param { string } dateTime1
+ * @param { string } dateTime2
+ * @return { number }
+ */
+const diffMinutes = (dateTime1, dateTime2) => {
+  const diff = Math.abs(
+    new Date(dateTime2).getTime() - new Date(dateTime1).getTime(),
+  );
+  return Math.floor(diff / (1000 * 60));
+};
+
+// 示例用法
+const dateTime1 = '2023-04-17 20:14:25';
+const dateTime2 = '2023-04-17 22:25:35';
+const diff = diffMinutes(dateTime1, dateTime2);
+console.log(diff); // 输出 "131"
+```

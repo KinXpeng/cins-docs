@@ -8,6 +8,7 @@ nav:
 
 ## Common
 
+- 2023/04/18 Datetime - Added **Calculate the number of minutes between two dates.**
 - 2023/04/18 Datetime - Added **Specify the date plus or minus the time.**
 - 2023/04/12 Array Object - Added **Split array.**
 - 2023/04/08 File - Added **base64ToFile.**

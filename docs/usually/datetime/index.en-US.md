@@ -322,3 +322,26 @@ const dateAndHours = (dateTime: string, hours: number): string => {
 
 console.log(dateAndHours('2023-04-18 12:00:01', 2)); // =>>> 2023-04-18 14:00:01
 ```
+
+## Calculate the number of minutes between two dates
+
+```ts
+/**
+ * Calculate the number of minutes between two dates
+ * @param { string } dateTime1
+ * @param { string } dateTime2
+ * @return { number }
+ */
+const diffMinutes = (dateTime1, dateTime2) => {
+  const diff = Math.abs(
+    new Date(dateTime2).getTime() - new Date(dateTime1).getTime(),
+  );
+  return Math.floor(diff / (1000 * 60));
+};
+
+// Example usage
+const dateTime1 = '2023-04-17 20:14:25';
+const dateTime2 = '2023-04-17 22:25:35';
+const diff = diffMinutes(dateTime1, dateTime2);
+console.log(diff); // output "131"
+```
