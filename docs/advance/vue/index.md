@@ -71,3 +71,62 @@ export default {
   <el-table-column prop="address" label="地址"> </el-table-column>
 </el-table>
 ```
+
+## 移动端左滑事件
+
+```js
+import { reactive } from 'vue';
+import { Toast } from 'vant';
+import { useEventListener } from '@vant/use';
+
+const state = reactive({
+  startClientX: 0,
+  endClientX: 0,
+  loginCount: 0,
+  startTime: 0,
+  lastTime: 0,
+});
+
+// 开启调试模式
+const enterDebugMode = () => {
+  if (state.loginCount == 0) {
+    state.startTime = new Date();
+    state.lastTime = state.startTime;
+  } else if (state.loginCount >= 1) {
+    let nextTime = new Date();
+    if (nextTime - state.startTime >= 3000) {
+      // 超过3秒重置
+      state.startTime = nextTime;
+      state.lastTime = nextTime;
+      state.loginCount = 0;
+    } else {
+      state.lastTime = nextTime;
+    }
+    if (state.loginCount === 6) {
+      // 大于三次重置
+      if (localStorage.getItem('debugger') == 'open') {
+        localStorage.setItem('debugger', 'close');
+        Toast('开发者模式已关闭');
+      } else {
+        localStorage.setItem('debugger', 'open');
+        Toast('开发者模式已开启');
+      }
+      state.startTime = nextTime;
+      state.lastTime = nextTime;
+      state.loginCount = 0;
+    }
+  }
+  state.loginCount++;
+};
+
+// 左滑事件
+useEventListener('touchstart', (e) => {
+  state.startClientX = e.changedTouches[0].clientX;
+});
+useEventListener('touchend', (e) => {
+  state.endClientX = e.changedTouches[0].clientX;
+  if (state.startClientX - state.endClientX > 150) {
+    enterDebugMode();
+  }
+});
+```

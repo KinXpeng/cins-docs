@@ -71,3 +71,62 @@ export default {
   <el-table-column prop="address" label="Address"> </el-table-column>
 </el-table>
 ```
+
+## Mobile left slide event
+
+```js
+import { reactive } from 'vue';
+import { Toast } from 'vant';
+import { useEventListener } from '@vant/use';
+
+const state = reactive({
+  startClientX: 0,
+  endClientX: 0,
+  loginCount: 0,
+  startTime: 0,
+  lastTime: 0,
+});
+
+// Enable debug mode
+const enterDebugMode = () => {
+  if (state.loginCount == 0) {
+    state.startTime = new Date();
+    state.lastTime = state.startTime;
+  } else if (state.loginCount >= 1) {
+    let nextTime = new Date();
+    if (nextTime - state.startTime >= 3000) {
+      // Reset after 3 seconds
+      state.startTime = nextTime;
+      state.lastTime = nextTime;
+      state.loginCount = 0;
+    } else {
+      state.lastTime = nextTime;
+    }
+    if (state.loginCount === 6) {
+      // More than three resets
+      if (localStorage.getItem('debugger') == 'open') {
+        localStorage.setItem('debugger', 'close');
+        Toast('Developer mode is turned off');
+      } else {
+        localStorage.setItem('debugger', 'open');
+        Toast('Developer mode has been enabled');
+      }
+      state.startTime = nextTime;
+      state.lastTime = nextTime;
+      state.loginCount = 0;
+    }
+  }
+  state.loginCount++;
+};
+
+// Left slip event
+useEventListener('touchstart', (e) => {
+  state.startClientX = e.changedTouches[0].clientX;
+});
+useEventListener('touchend', (e) => {
+  state.endClientX = e.changedTouches[0].clientX;
+  if (state.startClientX - state.endClientX > 150) {
+    enterDebugMode();
+  }
+});
+```
