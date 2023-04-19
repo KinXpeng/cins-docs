@@ -384,13 +384,13 @@ export default () => {
 ## Button mirror effect
 
 ```tsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './_styles/mirror.css';
-export default ({ children = 'Button' }: any) => {
+export default ({ children = 'Open mirror' }: any) => {
   const reflectionRef = useRef(null);
   const [buttonPressed, setButtonPressed] = useState(false);
 
-  useEffect(() => {
+  const operateMirror = () => {
     if (!reflectionRef.current) return;
     navigator.mediaDevices
       .getUserMedia({
@@ -405,7 +405,7 @@ export default ({ children = 'Button' }: any) => {
         };
       })
       .catch((e) => console.log(e));
-  }, [reflectionRef]);
+  };
 
   return (
     <div className={`button-wrap ${buttonPressed ? 'pressed' : null}`}>
@@ -413,6 +413,7 @@ export default ({ children = 'Button' }: any) => {
         className={`button ${buttonPressed ? 'pressed' : null}`}
         onPointerDown={() => setButtonPressed(true)}
         onPointerUp={() => setButtonPressed(false)}
+        onClick={operateMirror}
       >
         <video className="button-reflection" ref={reflectionRef} />
       </div>

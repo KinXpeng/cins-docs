@@ -1,11 +1,12 @@
 .mix-blend {
-  height: 100px;
+  height: 150px;
   text-align: center;
   background-color: #000;
   filter: contrast(30);
 }
 .mix-blend .text {
-  /* font-size: 100px; */
+  font-size: 100px;
+  height: 100%;
   color: #fff;
   animation: showup 3s infinite;
 }

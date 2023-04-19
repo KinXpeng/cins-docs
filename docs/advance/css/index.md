@@ -380,13 +380,13 @@ export default () => {
 ## 按钮镜面效果
 
 ```tsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './_styles/mirror.css';
-export default ({ children = '按钮' }: any) => {
+export default ({ children = '开启镜面' }: any) => {
   const reflectionRef = useRef(null);
   const [buttonPressed, setButtonPressed] = useState(false);
 
-  useEffect(() => {
+  const operateMirror = () => {
     if (!reflectionRef.current) return;
     navigator.mediaDevices
       .getUserMedia({
@@ -401,7 +401,7 @@ export default ({ children = '按钮' }: any) => {
         };
       })
       .catch((e) => console.log(e));
-  }, [reflectionRef]);
+  };
 
   return (
     <div className={`button-wrap ${buttonPressed ? 'pressed' : null}`}>
@@ -409,6 +409,7 @@ export default ({ children = '按钮' }: any) => {
         className={`button ${buttonPressed ? 'pressed' : null}`}
         onPointerDown={() => setButtonPressed(true)}
         onPointerUp={() => setButtonPressed(false)}
+        onClick={operateMirror}
       >
         <video className="button-reflection" ref={reflectionRef} />
       </div>
