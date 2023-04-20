@@ -8,6 +8,7 @@ nav:
 
 ## Common
 
+- 2023/04/20 Datetime - Added **The array is sorted by date.**
 - 2023/04/18 Datetime - Added **Calculate the number of minutes between two dates.**
 - 2023/04/18 Datetime - Added **Specify the date plus or minus the time.**
 - 2023/04/12 Array Object - Added **Split array.**

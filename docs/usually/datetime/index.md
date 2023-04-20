@@ -337,3 +337,21 @@ const dateTime2 = '2023-04-17 22:25:35';
 const diff = diffMinutes(dateTime1, dateTime2);
 console.log(diff); // 输出 "131"
 ```
+
+## 数组根据日期排序
+
+```ts
+/**
+ * 数组根据日期排序
+ * @param { Array<any> } arr 需要排序的数组
+ * @param { string } prop 日期字段名
+ * @return { Array<any> }
+ */
+const sortByDateTime = (arr: Array<any>, prop: string): Array<any> => {
+  return arr.sort((a, b) => {
+    const dateTimeA = a[`_${prop}`] || (a[`_${prop}`] = new Date(a[prop]));
+    const dateTimeB = b[`_${prop}`] || (b[`_${prop}`] = new Date(b[prop]));
+    return dateTimeA - dateTimeB;
+  });
+};
+```

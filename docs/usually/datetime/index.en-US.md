@@ -345,3 +345,21 @@ const dateTime2 = '2023-04-17 22:25:35';
 const diff = diffMinutes(dateTime1, dateTime2);
 console.log(diff); // output "131"
 ```
+
+## The array is sorted by date
+
+```ts
+/**
+ * The array is sorted by date
+ * @param { Array<any> } arr An array that needs to be sorted
+ * @param { string } prop Date field name
+ * @return { Array<any> }
+ */
+const sortByDateTime = (arr: Array<any>, prop: string): Array<any> => {
+  return arr.sort((a, b) => {
+    const dateTimeA = a[`_${prop}`] || (a[`_${prop}`] = new Date(a[prop]));
+    const dateTimeB = b[`_${prop}`] || (b[`_${prop}`] = new Date(b[prop]));
+    return dateTimeA - dateTimeB;
+  });
+};
+```
