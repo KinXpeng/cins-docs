@@ -41,6 +41,11 @@ nav:
       url: '/pages/index/index',
     });
 
+    wx.miniProgram.switchTab({
+      // Correct example
+      url: '/pages/index/index',
+    });
+
     wx.miniProgram.navigateBack(); // Correct example
   }
   ```

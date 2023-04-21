@@ -41,6 +41,11 @@ nav:
       url: '/pages/index/index',
     });
 
+    wx.miniProgram.switchTab({
+      // 正确例子
+      url: '/pages/index/index',
+    });
+
     wx.miniProgram.navigateBack(); // 正确例子
   }
   ```
