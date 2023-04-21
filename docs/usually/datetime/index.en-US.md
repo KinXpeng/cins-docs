@@ -363,3 +363,31 @@ const sortByDateTime = (arr: Array<any>, prop: string): Array<any> => {
   });
 };
 ```
+
+## Calculates whether there is a time crossover in the array
+
+```ts
+/**
+ * Calculates whether there is a time crossover in the array
+ * @param { Array<any> } list
+ * @param { string } stime Start date field name
+ * @param { string } etime End date field name
+ * @return { boolean }
+ */
+const checkTimeOverlap = (list, stime, etime) => {
+  for (let i = 0; i < list.length; i++) {
+    const item1 = list[i];
+    for (let j = i + 1; j < list.length; j++) {
+      const item2 = list[j];
+      if (
+        (item1[stime] >= item2[stime] && item1[stime] <= item2[etime]) ||
+        (item1[etime] >= item2[stime] && item1[etime] <= item2[etime]) ||
+        (item1[stime] <= item2[stime] && item1[etime] >= item2[etime])
+      ) {
+        return true; // Existence time crossing
+      }
+    }
+  }
+  return false; // No time crossing
+};
+```
