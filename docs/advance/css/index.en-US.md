@@ -422,3 +422,25 @@ export default ({ children = 'Open mirror' }: any) => {
   );
 };
 ```
+
+## Grid layout animation
+
+```tsx
+import React from 'react';
+import './_styles/grid.css';
+export default () => {
+  return (
+    <div className="grid-layout">
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+    </div>
+  );
+};
+```

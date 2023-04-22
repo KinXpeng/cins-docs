@@ -53,6 +53,7 @@ nav:
 
 ## Advance
 
+- 2023/04/22 CSS - Added **Grid layout animation.**
 - 2023/04/19 Vue - Added **Mobile left slide event.**
 - 2023/04/18 CSS - Added **Button mirror effect.**
 - 2023/04/17 CSS - Added **Dynamic clock.**
