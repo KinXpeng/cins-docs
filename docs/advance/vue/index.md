@@ -130,3 +130,27 @@ useEventListener('touchend', (e) => {
   }
 });
 ```
+
+## 行内样式 px 转 vw
+
+- 安装依赖
+
+  ```bash
+  npm i style-vw-loader --save
+  ```
+
+- vue.config.js 中配置
+  ```js
+  // 转rem也能用此方法，转换比例一致
+  // 报错时可尝试删除node_modules重新安装依赖
+  chainWebpack: (config) => {
+    config.module
+      .rule('vue')
+      .test(/\.vue$/)
+      .use('style-vw-loader')
+      .loader('style-vw-loader')
+      .options({
+        viewportWidth: 1920, // 此处为屏幕分辨率，根据实际情况修改
+      });
+  };
+  ```

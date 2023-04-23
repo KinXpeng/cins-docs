@@ -130,3 +130,27 @@ useEventListener('touchend', (e) => {
   }
 });
 ```
+
+## Inline style px to vw
+
+- Installation dependency
+
+  ```bash
+  npm i style-vw-loader --save
+  ```
+
+- The configuration is displayed in vue.config.js
+  ```js
+  // This method can also be used for rem, with the same conversion ratio
+  // If an error occurs, try removing node_modules to reinstall the dependency
+  chainWebpack: (config) => {
+    config.module
+      .rule('vue')
+      .test(/\.vue$/)
+      .use('style-vw-loader')
+      .loader('style-vw-loader')
+      .options({
+        viewportWidth: 1920, // Here is the screen resolution. Change it based on site requirements
+      });
+  };
+  ```
