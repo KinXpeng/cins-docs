@@ -140,3 +140,114 @@ Prompt({
   },
 });
 ```
+
+## Video component
+
+```ts
+// Use example
+import FlexoVideo from '@/components/flexoVideo';
+function Demo() {
+  const config = {
+    src: 'xxxx',
+    controls: true,
+    controlsList: 'nodownload noremoteplayback noplaybackrate',
+    disablePictureInPicture: true,
+    // fullScreen: true,
+    // play: true,
+    // progress: true,
+    // currentTime: true,
+    // remainTime: true,
+    // volume: true,
+    // volumeControls: true
+  };
+  return (
+    <>
+      <div className="demo-container">
+        <div className="video-demo">
+          <FlexoVideo config={config} />
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Demo;
+```
+
+```tsx
+import React from 'react';
+import './_styles/flexovideo.css';
+interface IConfigProps {
+  src: string; // video play url
+  controls?: boolean; // Whether to display the control bar
+  controlsList?: string; // Control bar list of displayed functions
+  autoplay?: boolean; // Auto play or not
+  width?: string | number; // Width of video
+  height?: string | number; // Height of video
+  loop?: boolean; // Loop or not
+  preload?: string; // Preload or not
+  poster?: string; // Video cover
+  muted?: boolean; // Mute or not
+  disablePictureInPicture?: boolean; // Whether to disable picture-in-picture
+  options?: string; // Display of progress bar, volume, full screen and other buttons
+  fullScreen?: boolean;
+  play?: boolean;
+  progress?: boolean;
+  currentTime?: boolean;
+  remainTime?: boolean;
+  volume?: boolean;
+  volumeControls?: boolean;
+}
+// nodownload: Do not download button
+// noremoteplayback: Do not remote playback
+// noplaybackrate Do not play the speed button
+
+// config here can be passed from the parent component
+export default ({ config = {} }) => {
+  const optionsName = (): string => {
+    if (!Object.values(config).some(Boolean)) return '';
+    let options = '';
+    options += `${config.fullScreen == false ? 'fullScreen ' : ''}`;
+    options += `${config.play == false ? 'play ' : ''}`;
+    options += `${config.progress == false ? 'progress ' : ''}`;
+    options += `${config.currentTime == false ? 'currentTime ' : ''}`;
+    options += `${config.remainTime == false ? 'remainTime ' : ''}`;
+    options += `${config.volume == false ? 'volume ' : ''}`;
+    options += `${config.volumeControls == false ? 'volumeControls ' : ''}`;
+    return options;
+  };
+
+  // 默认配置
+  const defaultConfig: IConfigProps = {
+    src: config.src || '',
+    autoplay: config.autoplay || false,
+    controls: config.controls || true,
+    controlsList: config.controlsList || '',
+    width: config.width || '100%',
+    height: config.height || '100%',
+    loop: config.loop || false,
+    preload: config.preload || 'auto',
+    poster: config.poster || '',
+    muted: config.muted || false,
+    disablePictureInPicture: config.disablePictureInPicture || false,
+    options: optionsName() || '',
+  };
+
+  return (
+    <div className="flexo-video">
+      <video
+        className={defaultConfig.options}
+        src={defaultConfig.src}
+        controls={defaultConfig.controls}
+        controlsList={defaultConfig.controlsList}
+        style={{ width: defaultConfig.width, height: defaultConfig.height }}
+        loop={defaultConfig.loop}
+        preload={defaultConfig.preload}
+        poster={defaultConfig.poster}
+        muted={defaultConfig.muted}
+        disablePictureInPicture={defaultConfig.disablePictureInPicture}
+      ></video>
+    </div>
+  );
+};
+```

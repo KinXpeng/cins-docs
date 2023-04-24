@@ -136,3 +136,114 @@ Prompt({
   },
 });
 ```
+
+## video 组件
+
+```ts
+// 使用示例
+import FlexoVideo from '@/components/flexoVideo';
+function Demo() {
+  const config = {
+    src: 'xxxx',
+    controls: true,
+    controlsList: 'nodownload noremoteplayback noplaybackrate',
+    disablePictureInPicture: true,
+    // fullScreen: true,
+    // play: true,
+    // progress: true,
+    // currentTime: true,
+    // remainTime: true,
+    // volume: true,
+    // volumeControls: true
+  };
+  return (
+    <>
+      <div className="demo-container">
+        <div className="video-demo">
+          <FlexoVideo config={config} />
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Demo;
+```
+
+```tsx
+import React from 'react';
+import './_styles/flexovideo.css';
+interface IConfigProps {
+  src: string; // video播放地址
+  controls?: boolean; // 是否显示控制栏
+  controlsList?: string; // 控制栏列表显示的功能
+  autoplay?: boolean; // 是否自动播放
+  width?: string | number; // video的宽度
+  height?: string | number; // video的高度
+  loop?: boolean; // 是否循环播放
+  preload?: string; // 是否预加载
+  poster?: string; // video的封面
+  muted?: boolean; // 是否静音
+  disablePictureInPicture?: boolean; // 是否禁用画中画
+  options?: string; // 进度条、音量、全屏等按钮的显示
+  fullScreen?: boolean;
+  play?: boolean;
+  progress?: boolean;
+  currentTime?: boolean;
+  remainTime?: boolean;
+  volume?: boolean;
+  volumeControls?: boolean;
+}
+// nodownload: 不要下载按钮
+// noremoteplayback: 不要远程回放
+// noplaybackrate 不要播放速度按钮
+
+// 此处的config可从父组件中传递
+export default ({ config = {} }) => {
+  const optionsName = (): string => {
+    if (!Object.values(config).some(Boolean)) return '';
+    let options = '';
+    options += `${config.fullScreen == false ? 'fullScreen ' : ''}`;
+    options += `${config.play == false ? 'play ' : ''}`;
+    options += `${config.progress == false ? 'progress ' : ''}`;
+    options += `${config.currentTime == false ? 'currentTime ' : ''}`;
+    options += `${config.remainTime == false ? 'remainTime ' : ''}`;
+    options += `${config.volume == false ? 'volume ' : ''}`;
+    options += `${config.volumeControls == false ? 'volumeControls ' : ''}`;
+    return options;
+  };
+
+  // 默认配置
+  const defaultConfig: IConfigProps = {
+    src: config.src || '',
+    autoplay: config.autoplay || false,
+    controls: config.controls || true,
+    controlsList: config.controlsList || '',
+    width: config.width || '100%',
+    height: config.height || '100%',
+    loop: config.loop || false,
+    preload: config.preload || 'auto',
+    poster: config.poster || '',
+    muted: config.muted || false,
+    disablePictureInPicture: config.disablePictureInPicture || false,
+    options: optionsName() || '',
+  };
+
+  return (
+    <div className="flexo-video">
+      <video
+        className={defaultConfig.options}
+        src={defaultConfig.src}
+        controls={defaultConfig.controls}
+        controlsList={defaultConfig.controlsList}
+        style={{ width: defaultConfig.width, height: defaultConfig.height }}
+        loop={defaultConfig.loop}
+        preload={defaultConfig.preload}
+        poster={defaultConfig.poster}
+        muted={defaultConfig.muted}
+        disablePictureInPicture={defaultConfig.disablePictureInPicture}
+      ></video>
+    </div>
+  );
+};
+```
