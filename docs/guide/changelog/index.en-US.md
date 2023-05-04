@@ -8,6 +8,7 @@ nav:
 
 ## Common
 
+- 2023/05/04 Array Object - Added **Group by a field.**
 - 2023/04/21 Datetime - Added **Calculates whether there is a time crossover in the array.**
 - 2023/04/20 Datetime - Added **The array is sorted by date.**
 - 2023/04/18 Datetime - Added **Calculate the number of minutes between two dates.**

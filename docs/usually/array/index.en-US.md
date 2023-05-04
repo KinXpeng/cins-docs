@@ -245,3 +245,37 @@ const sliceArrayByNum = <T>(arrayList: T[], n: number = 10): T[][] => {
 const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 console.log(sliceArrayByNum(list), 5); // => [[1,2,3,4,5],[6,7,8,9,10]]
 ```
+
+## Group by a field
+
+```ts
+/**
+ * Group by a field
+ * @param {Array<any>} arr An array to be grouped
+ * @param {string | Function} generateKey The field by which you group or the function that generates the field
+ * @return {Object} Grouping completed array objects
+ *
+ */
+const groupBy = (arr: Array<any>, generateKey: string | Function) => {
+  if (typeof generateKey === 'string') {
+    const propName: string = generateKey;
+    generateKey = (item: any) => item[propName];
+  }
+  const result: any = {};
+  for (const item of arr) {
+    const key = generateKey(item);
+    if (!result[key]) {
+      result[key] = [];
+    }
+    result[key].push(item);
+  }
+  return result;
+};
+
+// Grouping by age
+console.log(groupBy(list, 'age'));
+// Group by name
+console.log(groupBy(list, 'name'));
+// Group by age-name
+console.log(groupBy(list, (item) => `${item.age}-${item.name}`));
+```
