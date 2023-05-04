@@ -278,4 +278,22 @@ console.log(groupBy(list, 'age'));
 console.log(groupBy(list, 'name'));
 // Group by age-name
 console.log(groupBy(list, (item) => `${item.age}-${item.name}`));
+
+/******* Optimized ts version *******/
+// type GenerateKey<T> = string | ((item: T) => string);
+// const groupBy = <T>(
+//   arr: T[],
+//   generateKey: GenerateKey<T>,
+// ): Record<string, T[]> => {
+//   const getKey =
+//     typeof generateKey === 'string'
+//       ? (item: T) => item[generateKey]
+//       : generateKey;
+//   return arr.reduce((result, item) => {
+//     const key = getKey(item);
+//     result[key] = result[key] ?? [];
+//     result[key].push(item);
+//     return result;
+//   }, {} as Record<string, T[]>);
+// };
 ```
