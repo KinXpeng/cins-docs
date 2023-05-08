@@ -54,6 +54,8 @@ nav:
 
 ## Advance
 
+- 2023/05/08 Other - Added **Obtain device battery information.**
+- 2023/05/08 Added **Advance->Other** menu.
 - 2023/04/24 Component - Added **Video component.**
 - 2023/04/23 Vue - Added **Inline style px to vw.**
 - 2023/04/22 CSS - Added **Grid layout animation.**
