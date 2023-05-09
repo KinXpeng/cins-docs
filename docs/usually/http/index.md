@@ -65,7 +65,7 @@ import { get, post } from './request';
 
 /***** 测试接口 *****/
 export const handleGetTest = (params: any) => post('/api1', params);
-export const handlePostTest = (param: any) => get('/api2', params);
+export const handlePostTest = (params: any) => get('/api2', params);
 ```
 
 ## axios 进阶封装
