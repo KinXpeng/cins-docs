@@ -6,6 +6,72 @@ nav:
   order: 2
 ---
 
+## 电池信息
+
+```tsx
+import React, { useState, useEffect, useReducer, useRef } from 'react';
+import './_styles/battery.css';
+
+interface BatteryManager {
+  charging: boolean;
+  chargingTime: number;
+  dischargingTime: number;
+  level: number;
+  addEventListener: Function;
+}
+
+declare global {
+  interface Navigator {
+    getBattery: () => Promise<BatteryManager>;
+    battery: BatteryManager;
+  }
+}
+export default () => {
+  const [isAddListener, setIsAddListener] = useState<boolean>(false);
+  const [battery, setBattery] = useState<BatteryManager>();
+  const [_, forceUpdate] = useReducer((x) => x + 1, 0);
+  const elecQuality = useRef();
+
+  // 更新电池状态
+  async function updateBatteryStatus() {
+    const bat: BatteryManager = await navigator.getBattery();
+    setBattery(bat);
+    console.log(bat);
+    if (elecQuality.current) {
+      console.log(elecQuality.current.style);
+      elecQuality.current.style.background = `linear-gradient(to right, ${
+        bat.level > 0.3 ? '#6feb53' : '#e6260c'
+      } ${bat.level * 100}%, transparent ${100 - bat.level * 100}%)`;
+    }
+    forceUpdate();
+  }
+
+  useEffect(() => {
+    updateBatteryStatus();
+    if (battery && !isAddListener) {
+      setIsAddListener(true);
+      battery?.addEventListener('chargingchange', updateBatteryStatus);
+      battery?.addEventListener('levelchange', updateBatteryStatus);
+      battery?.addEventListener('chargingtimechange', updateBatteryStatus);
+      battery?.addEventListener('dischargingtimechange', updateBatteryStatus);
+    }
+  }, [battery]);
+  return (
+    <div className="battery-container">
+      {battery && (
+        <>
+          <p className="battery-title">电池状态（{battery.level * 100}%）</p>
+          <div className="battery-status">
+            <div ref={elecQuality} className="status-quantity"></div>
+            {battery.charging && <div className="battery-charging"></div>}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+```
+
 ## 上传组件
 
 ```tsx
