@@ -6,6 +6,42 @@ nav:
   order: 2
 ---
 
+## User experience evaluation
+
+```tsx
+import React, { useRef, useEffect } from 'react';
+import './_styles/evaluate.css';
+export default () => {
+  const evaluateDom = useRef();
+  const inputDom = useRef();
+  const calc = () => {
+    evaluateDom.current.style.setProperty('--progress', inputDom.current.value);
+  };
+  useEffect(() => {
+    calc();
+  }, []);
+  return (
+    <div className="evaluate-container" ref={evaluateDom}>
+      <p>Your impression of us is</p>
+      <div className="face">
+        <div className="eye left animate"></div>
+        <div className="eye right animate"></div>
+        <div className="mouse animate"></div>
+      </div>
+      <input
+        ref={inputDom}
+        type="range"
+        min="0"
+        max="1"
+        className="range"
+        step="0.01"
+        onInput={calc}
+      />
+    </div>
+  );
+};
+```
+
 ## Input box jitter
 
 ```tsx

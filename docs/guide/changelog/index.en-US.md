@@ -54,6 +54,7 @@ nav:
 
 ## Advance
 
+- 2023/05/26 CSS - Added **User experience evaluation.**
 - 2023/05/08 Other - Added **Obtain device battery information.**
 - 2023/05/08 Added **Advance->Other** menu.
 - 2023/04/24 Component - Added **Video component.**

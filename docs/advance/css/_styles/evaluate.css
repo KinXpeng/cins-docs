@@ -1,0 +1,128 @@
+.evaluate-container {
+  --progress: 0.5;
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
+  font-size: 1.5em;
+  --hue1: calc(120 * var(--progress));
+  --hue2: calc(330 + var(--hue1));
+  --color1: hsl(var(--hue1), 90%, 55%);
+  --color2: hsl(var(--hue2), 90%, 45%);
+}
+.animate {
+  animation-duration: 1s;
+  animation-delay: calc(-1s * var(--progress));
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+.range {
+  background-color: #e3e4e8;
+  background-image: linear-gradient(to right, var(--color1), var(--color2));
+  background-size: calc(var(--progress) * 100%) 100%;
+  background-repeat: no-repeat;
+  border-radius: 0.25em;
+  display: block;
+  width: 100%;
+  height: 0.5em;
+  appearance: none;
+}
+.range::-webkit-slider-thumb {
+  background-color: #fff;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 0.125em 0.5em hsl(0, 0%, 0%, 0.3);
+  width: 1.5em;
+  height: 1.5em;
+  transition: background-color 0.15s linear;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.range:focus::-webkit-slider-thumb,
+.range::-webkit-slider-thumb:hover {
+  background-color: #efefef;
+}
+
+.face {
+  width: 80px;
+  height: 80px;
+  background-image: linear-gradient(135deg, var(--color1), var(--color2));
+  border-radius: 50%;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.eye {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  background: #fff;
+  top: 30%;
+  left: 50%;
+  border-radius: 50%;
+  margin-left: -10%;
+}
+.eye.left {
+  transform: translateX(-90%);
+  animation-name: leftEyeChange;
+}
+.eye.right {
+  transform: translateX(90%);
+  animation-name: rightEyeChange;
+}
+
+@keyframes leftEyeChange {
+  0% {
+    clip-path: polygon(0 75%, 100% 0, 100% 100%, 0 100%);
+  }
+  50%,
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+@keyframes rightEyeChange {
+  0% {
+    clip-path: polygon(0 0, 100% 70%, 100% 100%, 0 100%);
+  }
+  50%,
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.mouse {
+  position: absolute;
+  --w: 32px;
+  --h: 32px;
+  width: var(--w);
+  height: var(--h);
+  top: 66px;
+  left: 30%;
+  /* background: #f40; */
+  border-radius: var(--w);
+  box-shadow: inset 0 2px 0 #fff;
+  animation-name: mousechange;
+  transform: translateY(calc(var(--h) / -2));
+}
+@keyframes mousechange {
+  50% {
+    height: 4px;
+    box-shadow: inset 0 4px 0 #fff;
+    transform: translateY(calc(var(--h) / -3));
+    clip-path: inset(0% 0% 0% 0%);
+  }
+  50.1% {
+    height: 4px;
+    box-shadow: inset 0 -4px 0 #fff;
+    transform: translateY(calc(var(--h) / -3));
+    clip-path: inset(50% 0% 0% 0%);
+  }
+  to {
+    height: var(--h);
+    box-shadow: inset 0 -50px 0 #fff;
+    transform: translateY(calc(var(--h) / -1));
+    clip-path: inset(50% 0% 0% 0%);
+  }
+}

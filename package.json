@@ -32,5 +32,8 @@
   },
   "dependencies": {
     "dumi-theme-chakra": "^0.0.11"
+  },
+  "volta": {
+    "node": "16.20.0"
   }
 }
