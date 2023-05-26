@@ -725,3 +725,64 @@ const sum = (a: string, b: string): string => {
 
 console.log(sum('1236128461285412414', '723542341244')); // =>>> "1236129184827753658"
 ```
+
+## 进制转换
+
+```ts
+/**
+ * @param {number} num
+ * @param {number} n
+ * @return {string}
+ * */
+// 将 10 进制转换成 n 进制，可以使用 toString(n)
+const toDecimal = (num, n = 10) => num.toString(n);
+// 假设数字10要转换成2进制
+toDecimal(10, 2); // '1010'
+
+// 将 n 进制转换成 10 进制，可以使用 parseInt(num, n)
+// 10的2进制为1010
+const toDecimalism = (num, n = 10) => parseInt(num, n);
+toDecimalism(1010, 2);
+```
+
+## 元素滚动
+
+```ts
+/**
+ * @param {HTMLElement} element
+ * */
+// 如果你希望将一个元素顺滑的滚动到可视区域的起点
+const scrollToTop = (element) =>
+  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+scrollToTop(document.body);
+
+// 如果你希望将一个元素顺滑的滚动到可视区域的终点
+const scrollToBottom = (element) =>
+  element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+scrollToBottom(document.body);
+```
+
+## 文本粘贴
+
+```ts
+/**
+ * 当你需要复制文本到粘贴板上
+ * @param {string} text
+ * */
+const copy = (text) =>
+  navigator.clipboard?.writeText && navigator.clipboard.writeText(text);
+copy('你需要粘贴的文本');
+```
+
+## 强制等待
+
+```ts
+/**
+ * 当你需要等待一段时间，但又不想写在 setTimeout 函数中，造成回调地狱
+ * @param {string} text
+ * */
+const sleep = async (t) => new Promise((resolve) => setTimeout(resolve, t));
+sleep(2000).then(() => {
+  console.log('time');
+});
+```

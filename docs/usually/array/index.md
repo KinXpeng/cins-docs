@@ -280,3 +280,185 @@ console.log(groupBy(list, 'name'));
 // 按年龄-姓名分组
 console.log(groupBy(list, (item) => `${item.age}-${item.name}`));
 ```
+
+## 生成数组
+
+```ts
+/**
+ * 当你需要要生成一个 0-99 的数组
+ * @param {number} n
+ * @return {array}
+ */
+// 方案 1
+const createArr = (n) => Array.from(new Array(n), (v, i) => i);
+const arr = createArr(100); // 0 - 99 数组
+
+// 方案 2
+const createArr = (n) => new Array(n).fill(0).map((v, i) => i);
+createArr(100); // 0 - 99数组
+```
+
+## 打乱数组
+
+```ts
+/**
+ * 当你有一个数组，你需要打乱这个数组的排序
+ * @param {array} list
+ * @return {array}
+ */
+const randomSort = (list) => list.sort(() => Math.random() - 0.5);
+randomSort([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]); // 随机排列结果
+```
+
+## 多数组取交集
+
+```ts
+/**
+ * 当你有一个数组，你需要打乱这个数组的排序
+ * @param {array} list
+ * @return {array}
+ */
+const intersection = (a, ...arr) =>
+  [...new Set(a)].filter((v) => arr.every((b) => b.includes(v)));
+
+intersection([1, 2, 3, 4], [2, 3, 4, 7, 8], [1, 3, 4, 9]);
+// [3, 4]
+```
+
+## 查找最大值索引
+
+```ts
+/**
+ * 当你需要找到一个数组中的最大值的索引
+ * @param {array} arr
+ * @return {number}
+ */
+const indexOfMax = (arr) =>
+  arr.reduce((prev, curr, i, a) => (curr > a[prev] ? i : prev), 0);
+indexOfMax([1, 3, 9, 7, 5]); // 2
+```
+
+## 查找最小值索引
+
+```ts
+/**
+ * 当你需要找到一个数组中的最小值的索引
+ * @param {array} arr
+ * @return {number}
+ */
+const indexOfMin = (arr) =>
+  arr.reduce((prev, curr, i, a) => (curr < a[prev] ? i : prev), 0);
+indexOfMin([2, 5, 3, 4, 1, 0, 9]); // 5
+```
+
+## 找到最接近的数值
+
+```ts
+/**
+ * 当你需要在一个数组中找到一个最接近的值
+ * @param {array} arr
+ * @param {number} n
+ * @return {number}
+ */
+const closest = (arr, n) =>
+  arr.reduce((prev, curr) =>
+    Math.abs(curr - n) < Math.abs(prev - n) ? curr : prev,
+  );
+closest([29, 87, 8, 78, 97, 20, 75, 33, 24, 17], 50); // 33
+```
+
+## 压缩多个数组
+
+```ts
+/**
+ * 当你需要将多个数组压缩成一个数组
+ * @param {array} arr
+ * @return {array}
+ */
+const zip = (...arr) =>
+  Array.from({ length: Math.max(...arr.map((a) => a.length)) }, (_, i) =>
+    arr.map((a) => a[i]),
+  );
+zip([1, 2, 3, 4], ['a', 'b', 'c', 'd'], ['A', 'B', 'C', 'D']);
+// [[1, 'a', 'A'], [2, 'b', 'B'], [3, 'c', 'C'], [4, 'd', 'D']]
+```
+
+## 矩阵交换行和列
+
+```ts
+/**
+ * 当你需要将一个矩阵的行和列进行互相交换
+ * @param {array} arr
+ * @return {array}
+ */
+const transpose = (matrix) =>
+  matrix[0].map((col, i) => matrix.map((row) => row[i]));
+transpose(
+  [
+    // [
+    [1, 2, 3], //      [1, 4, 7],
+    [4, 5, 6], //      [2, 5, 8],
+    [7, 8, 9], //      [3, 6, 9],
+  ], //  ]
+);
+```
+
+## 删除无效属性
+
+```ts
+/**
+ * 当你需要删除一个对象中的属性值为 null 或 undefined 的所有属性
+ * @param {object} obj
+ * @return {object}
+ */
+const removeNullUndefined = (obj) =>
+  Object.entries(obj).reduce(
+    (a, [k, v]) => (v == null ? a : ((a[k] = v), a)),
+    {},
+  );
+
+removeNullUndefined({ name: '', age: undefined, sex: null }); // { name: '' }
+```
+
+## 反转对象键值
+
+```ts
+/**
+ * 当你需要将对象的键值对交换
+ * @param {object} obj
+ * @return {object}
+ */
+const invert = (obj) =>
+  Object.keys(obj).reduce((res, k) => Object.assign(res, { [obj[k]]: k }), {});
+invert({ name: 'jack' }); // {jack: 'name'}
+```
+
+## 字符串转对象
+
+```ts
+/**
+ * 当你需要将一串字符串比如'{name: "jack"}'转换成对象时，直接使用 JSON.parse 将会报错。
+ * @param {string} str
+ * @return {object}
+ */
+const strParse = (str) =>
+  JSON.parse(
+    str.replace(/(\w+)\s*:/g, (_, p1) => `"${p1}":`).replace(/\'/g, '"'),
+  );
+
+strParse('{name: "jack"}');
+```
+
+## 比较两个对象
+
+```ts
+/**
+ * 当你需要比较两个对象，js 的等于只能判断对象的地址是否相同，当地址不相同的时候无法判断两个对象的键值对是否一致。
+ * @param {object}
+ * @return {boolean}
+ */
+const isEqual = (...objects) =>
+  objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));
+isEqual({ name: 'jack' }, { name: 'jack' }); // true
+isEqual({ name: 'jack' }, { name: 'jack1' }, { name: 'jack' }); // false
+```

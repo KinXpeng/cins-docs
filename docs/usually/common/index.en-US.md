@@ -715,3 +715,64 @@ const sum = (a: string, b: string): string => {
 
 console.log(sum('1236128461285412414', '723542341244')); // =>>> "1236129184827753658"
 ```
+
+## Base conversion
+
+```ts
+/**
+ * @param {number} num
+ * @param {number} n
+ * @return {string}
+ * */
+// To convert decimal to n, you can use toString (n)
+const toDecimal = (num, n = 10) => num.toString(n);
+// Assuming the number 10 needs to be converted to binary
+toDecimal(10, 2); // '1010'
+
+// Convert n to 10, using parseInt (num, n)
+// The binary of 10 is 1010
+const toDecimalism = (num, n = 10) => parseInt(num, n);
+toDecimalism(1010, 2);
+```
+
+## Element scrolling
+
+```ts
+/**
+ * @param {HTMLElement} element
+ * */
+// If you want to smoothly scroll an element to the starting point of the visible area
+const scrollToTop = (element) =>
+  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+scrollToTop(document.body);
+
+// If you want to smoothly scroll an element to the end of the visible area
+const scrollToBottom = (element) =>
+  element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+scrollToBottom(document.body);
+```
+
+## Text paste
+
+```ts
+/**
+ * When you need to copy text onto the clipboard
+ * @param {string} text
+ * */
+const copy = (text) =>
+  navigator.clipboard?.writeText && navigator.clipboard.writeText(text);
+copy('The text you need to paste');
+```
+
+## Forced waiting
+
+```ts
+/**
+ * When you need to wait for a period of time but do not want to write it in the setTimeout function, causing a callback to hell
+ * @param {string} text
+ * */
+const sleep = async (t) => new Promise((resolve) => setTimeout(resolve, t));
+sleep(2000).then(() => {
+  console.log('time');
+});
+```

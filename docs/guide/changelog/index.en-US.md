@@ -8,6 +8,22 @@ nav:
 
 ## Common
 
+- 2023/05/26 Common - Added **Forced waiting.**
+- 2023/05/26 Common - Added **Text paste.**
+- 2023/05/26 Common - Added **Element scrolling.**
+- 2023/05/26 Common - Added **Base conversion.**
+- 2023/05/26 Array Object - Added **Comparing Two Objects.**
+- 2023/05/26 Array Object - Added **String to Object.**
+- 2023/05/26 Array Object - Added **Reverse Object Key Values.**
+- 2023/05/26 Array Object - Added **Delete invalid attribute.**
+- 2023/05/26 Array Object - Added **Matrices swap rows and columns.**
+- 2023/05/26 Array Object - Added **Compressing multiple arrays.**
+- 2023/05/26 Array Object - Added **Find the closest value.**
+- 2023/05/26 Array Object - Added **Find the minimum index.**
+- 2023/05/26 Array Object - Added **Find maximum index.**
+- 2023/05/26 Array Object - Added **Most groups take intersection.**
+- 2023/05/26 Array Object - Added **Scramble array.**
+- 2023/05/26 Array Object - Added **Generate array.**
 - 2023/05/04 Array Object - Added **Group by a field.**
 - 2023/04/21 Datetime - Added **Calculates whether there is a time crossover in the array.**
 - 2023/04/20 Datetime - Added **The array is sorted by date.**

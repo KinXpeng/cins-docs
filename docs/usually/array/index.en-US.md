@@ -297,3 +297,185 @@ console.log(groupBy(list, (item) => `${item.age}-${item.name}`));
 //   }, {} as Record<string, T[]>);
 // };
 ```
+
+## Generate array
+
+```ts
+/**
+ * When you need to generate an array of 0-99
+ * @param {number} n
+ * @return {array}
+ */
+// Scheme 1
+const createArr = (n) => Array.from(new Array(n), (v, i) => i);
+const arr = createArr(100);
+
+// Scheme 2
+const createArr = (n) => new Array(n).fill(0).map((v, i) => i);
+createArr(100);
+```
+
+## Scramble array
+
+```ts
+/**
+ * When you have an array, you need to mess with the ordering of that array
+ * @param {array} list
+ * @return {array}
+ */
+const randomSort = (list) => list.sort(() => Math.random() - 0.5);
+randomSort([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]); // Random permutation result
+```
+
+## Most groups take intersection
+
+```ts
+/**
+ * When you have an array, you need to mess with the ordering of that array
+ * @param {array} list
+ * @return {array}
+ */
+const intersection = (a, ...arr) =>
+  [...new Set(a)].filter((v) => arr.every((b) => b.includes(v)));
+
+intersection([1, 2, 3, 4], [2, 3, 4, 7, 8], [1, 3, 4, 9]);
+// [3, 4]
+```
+
+## Find maximum index
+
+```ts
+/**
+ * When you need to find the index of the largest value in an array
+ * @param {array} arr
+ * @return {number}
+ */
+const indexOfMax = (arr) =>
+  arr.reduce((prev, curr, i, a) => (curr > a[prev] ? i : prev), 0);
+indexOfMax([1, 3, 9, 7, 5]); // 2
+```
+
+## Find the minimum index
+
+```ts
+/**
+ * When you need to find the index of the smallest value in an array
+ * @param {array} arr
+ * @return {number}
+ */
+const indexOfMin = (arr) =>
+  arr.reduce((prev, curr, i, a) => (curr < a[prev] ? i : prev), 0);
+indexOfMin([2, 5, 3, 4, 1, 0, 9]); // 5
+```
+
+## Find the closest value
+
+```ts
+/**
+ * When you need to find the closest value in an array
+ * @param {array} arr
+ * @param {number} n
+ * @return {number}
+ */
+const closest = (arr, n) =>
+  arr.reduce((prev, curr) =>
+    Math.abs(curr - n) < Math.abs(prev - n) ? curr : prev,
+  );
+closest([29, 87, 8, 78, 97, 20, 75, 33, 24, 17], 50); // 33
+```
+
+## Compressing multiple arrays
+
+```ts
+/**
+ * When you need to compress multiple arrays into one array
+ * @param {array} arr
+ * @return {array}
+ */
+const zip = (...arr) =>
+  Array.from({ length: Math.max(...arr.map((a) => a.length)) }, (_, i) =>
+    arr.map((a) => a[i]),
+  );
+zip([1, 2, 3, 4], ['a', 'b', 'c', 'd'], ['A', 'B', 'C', 'D']);
+// [[1, 'a', 'A'], [2, 'b', 'B'], [3, 'c', 'C'], [4, 'd', 'D']]
+```
+
+## Matrices swap rows and columns
+
+```ts
+/**
+ * When you need to swap the rows and columns of a matrix with each other
+ * @param {array} arr
+ * @return {array}
+ */
+const transpose = (matrix) =>
+  matrix[0].map((col, i) => matrix.map((row) => row[i]));
+transpose(
+  [
+    // [
+    [1, 2, 3], //      [1, 4, 7],
+    [4, 5, 6], //      [2, 5, 8],
+    [7, 8, 9], //      [3, 6, 9],
+  ], //  ]
+);
+```
+
+## Delete invalid attribute
+
+```ts
+/**
+ * When you need to delete all attributes in an object with null or undefined attribute values
+ * @param {object} obj
+ * @return {object}
+ */
+const removeNullUndefined = (obj) =>
+  Object.entries(obj).reduce(
+    (a, [k, v]) => (v == null ? a : ((a[k] = v), a)),
+    {},
+  );
+
+removeNullUndefined({ name: '', age: undefined, sex: null }); // { name: '' }
+```
+
+## Reverse Object Key Values
+
+```ts
+/**
+ * When you need to exchange the key value pairs of an object
+ * @param {object} obj
+ * @return {object}
+ */
+const invert = (obj) =>
+  Object.keys(obj).reduce((res, k) => Object.assign(res, { [obj[k]]: k }), {});
+invert({ name: 'jack' }); // {jack: 'name'}
+```
+
+## String to Object
+
+```ts
+/**
+ * When you need to convert a string such as' {name: "jack"} 'into an object, using JSON. parse directly will result in an error.
+ * @param {string} str
+ * @return {object}
+ */
+const strParse = (str) =>
+  JSON.parse(
+    str.replace(/(\w+)\s*:/g, (_, p1) => `"${p1}":`).replace(/\'/g, '"'),
+  );
+
+strParse('{name: "jack"}');
+```
+
+## Comparing Two Objects
+
+```ts
+/**
+ * When you need to compare two objects, JS can only determine whether the address of the object is the same. When the address is different, it cannot determine whether the key value pairs of the two objects are consistent.
+ * @param {object}
+ * @return {boolean}
+ */
+const isEqual = (...objects) =>
+  objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));
+isEqual({ name: 'jack' }, { name: 'jack' }); // true
+isEqual({ name: 'jack' }, { name: 'jack1' }, { name: 'jack' }); // false
+```
