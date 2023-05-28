@@ -37,7 +37,6 @@ export default () => {
     const bat: BatteryManager = await navigator.getBattery();
     setBattery(bat);
     if (elecQuality.current) {
-      console.log(elecQuality.current.style);
       elecQuality.current.style.background = `linear-gradient(to right, ${
         bat.level > 0.3 ? '#6feb53' : '#e6260c'
       } ${bat.level * 100}%, transparent ${100 - bat.level * 100}%)`;
