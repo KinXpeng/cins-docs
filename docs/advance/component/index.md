@@ -36,7 +36,6 @@ export default () => {
   async function updateBatteryStatus() {
     const bat: BatteryManager = await navigator.getBattery();
     setBattery(bat);
-    console.log(bat);
     if (elecQuality.current) {
       console.log(elecQuality.current.style);
       elecQuality.current.style.background = `linear-gradient(to right, ${
