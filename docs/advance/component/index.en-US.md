@@ -26,6 +26,7 @@ declare global {
     battery: BatteryManager;
   }
 }
+
 export default () => {
   const [isAddListener, setIsAddListener] = useState<boolean>(false);
   const [battery, setBattery] = useState<BatteryManager>();
@@ -34,7 +35,11 @@ export default () => {
 
   // Update battery status
   async function updateBatteryStatus() {
-    const bat: BatteryManager = await navigator.getBattery();
+    const bat: BatteryManager =
+      (await navigator.getBattery()) ||
+      navigator.battery ||
+      (navigator as any).webkitBattery ||
+      (navigator as any).mozBattery;
     setBattery(bat);
     if (elecQuality.current) {
       elecQuality.current.style.background = `linear-gradient(to right, ${
