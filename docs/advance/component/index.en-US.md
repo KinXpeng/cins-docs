@@ -1,6 +1,6 @@
 ---
 title: Component
-order: 2
+order: 3
 nav:
   title: Advance
   order: 2

@@ -70,6 +70,7 @@ nav:
 
 ## Advance
 
+- 2023/05/30 Vue - Added **Implementation of Vue2 Data Responsive Principle.**
 - 2023/05/26 Component - Added **Battery information.**
 - 2023/05/26 CSS - Added **User experience evaluation.**
 - 2023/05/08 Other - Added **Obtain device battery information.**

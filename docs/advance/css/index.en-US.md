@@ -1,6 +1,6 @@
 ---
 title: CSS
-order: 0
+order: 1
 nav:
   title: Advance
   order: 2

@@ -1,6 +1,6 @@
 ---
 title: 组件
-order: 2
+order: 3
 nav:
   title: 进阶
   order: 2

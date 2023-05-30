@@ -1,6 +1,6 @@
 ---
 title: Vue
-order: 3
+order: 4
 nav:
   title: 进阶
   order: 2
@@ -140,6 +140,7 @@ useEventListener('touchend', (e) => {
   ```
 
 - vue.config.js 中配置
+
   ```js
   // 转rem也能用此方法，转换比例一致
   // 报错时可尝试删除node_modules重新安装依赖
@@ -154,3 +155,44 @@ useEventListener('touchend', (e) => {
       });
   };
   ```
+
+## vue2 数据响应式原理实现
+
+```js
+/**
+ * 通过observe观测函数，监测data对象中每条数据
+ * @param {Object} obj
+ * */
+function observe(obj) {
+  for (const key in obj) {
+    let internalValue = obj[key];
+    const funcs = []; // 用来记录数据依赖的函数
+    Object.defineProperty(obj, key, {
+      get: function () {
+        // 记录依赖的函数
+        if (window.__fn__ && !funcs.includes(window.__fn__)) {
+          funcs.push(window.__fn__);
+        }
+        return internalValue;
+      },
+      set: function (val) {
+        internalValue = val;
+        // 执行数据依赖的所有函数
+        for (let i = 0; i < funcs.length; i++) {
+          funcs[i]();
+        }
+      },
+    });
+  }
+}
+
+/**
+ * 将所有的函数通过此方法执行，记录执行的方法
+ * @param {Function} fn
+ * */
+function autorun(fn) {
+  window.__fn__ = fn;
+  fn();
+  window.__fn__ = null;
+}
+```

@@ -1,6 +1,6 @@
 ---
 title: Vue
-order: 3
+order: 4
 nav:
   title: Advance
   order: 2
@@ -154,3 +154,44 @@ useEventListener('touchend', (e) => {
       });
   };
   ```
+
+## Implementation of Vue2 Data Responsive Principle
+
+```js
+/**
+ * Monitor each data in the data object through the observe function
+ * @param {Object} obj
+ * */
+function observe(obj) {
+  for (const key in obj) {
+    let internalValue = obj[key];
+    const funcs = []; // Functions used to record data dependencies
+    Object.defineProperty(obj, key, {
+      get: function () {
+        // Record dependent functions
+        if (window.__fn__ && !funcs.includes(window.__fn__)) {
+          funcs.push(window.__fn__);
+        }
+        return internalValue;
+      },
+      set: function (val) {
+        internalValue = val;
+        // Execute all functions dependent on data
+        for (let i = 0; i < funcs.length; i++) {
+          funcs[i]();
+        }
+      },
+    });
+  }
+}
+
+/**
+ * Execute all functions through this method and record the execution method
+ * @param {Function} fn
+ * */
+function autorun(fn) {
+  window.__fn__ = fn;
+  fn();
+  window.__fn__ = null;
+}
+```

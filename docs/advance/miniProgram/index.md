@@ -1,6 +1,6 @@
 ---
 title: 小程序
-order: 1
+order: 2
 nav:
   title: 进阶
   order: 2

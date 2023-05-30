@@ -1,6 +1,6 @@
 ---
 title: Mini program
-order: 1
+order: 2
 nav:
   title: Advance
   order: 2

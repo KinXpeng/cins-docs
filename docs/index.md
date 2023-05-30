@@ -7,7 +7,7 @@ hero:
     - text: 快速上手
       link: /guide/introduction
     - text: 开始使用
-      link: /usually/common
+      link: /usually/introduction
 features:
   - title: 开箱即用
     emoji: 💎

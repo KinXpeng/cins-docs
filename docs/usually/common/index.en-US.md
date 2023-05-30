@@ -6,13 +6,6 @@ nav:
   order: 1
 ---
 
-## Introduction
-
-- A collection of methods that are commonly used but not very informative.
-- There are multiple solutions, and there are separate menus for those that fall into one category.
-- Although the methods are common and simple, they are useful.
-- Summary is not easy, don't spray if you don't like.
-
 ## Address Bar Parameters
 
 ### A single parameter
