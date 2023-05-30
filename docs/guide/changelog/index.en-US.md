@@ -105,6 +105,7 @@ nav:
 
 ## Column
 
+- 2023/05/30 Column - Added **Difficulty** menu.
 - 2023/03/24 Share - Added **Algorithmic data** & **Front-end interview**.
 - 2023/03/24 Column - Added **Share** menu.
 - 2023/03/16 Column - Added **JS** menu.

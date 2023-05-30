@@ -1,6 +1,6 @@
 ---
 title: Share
-order: 6
+order: 7
 nav:
   title: Column
   order: 3
