@@ -196,3 +196,42 @@ function autorun(fn) {
   window.__fn__ = null;
 }
 ```
+
+## vue3 数据响应式原理实现
+
+```js
+/**
+ * 通过reactive，监测data对象中每条数据
+ * @param {Object} info
+ * */
+function reactive(info) {
+  const funcs = [];
+  const proxy = new Proxy(info, {
+    get: function (target, prop) {
+      // 记录依赖的函数
+      if (window.__fn__ && !funcs.includes(window.__fn__)) {
+        funcs.push(window.__fn__);
+      }
+      return target[prop];
+    },
+    set: function (target, prop, value) {
+      target[prop] = value;
+      // 执行数据依赖的函数
+      for (let i = 0; i < funcs.length; i++) {
+        funcs[i]();
+      }
+    },
+  });
+  return proxy;
+}
+
+/**
+ * 将所有的函数通过此方法执行，记录执行的方法
+ * @param {Function} fn
+ * */
+function autorun(fn) {
+  window.__fn__ = fn;
+  fn();
+  window.__fn__ = null;
+}
+```

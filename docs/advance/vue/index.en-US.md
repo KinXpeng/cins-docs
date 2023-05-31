@@ -155,7 +155,7 @@ useEventListener('touchend', (e) => {
   };
   ```
 
-## Implementation of Vue2 Data Responsive Principle
+## Implementation of data responsive principle in Vue2
 
 ```js
 /**
@@ -183,6 +183,45 @@ function observe(obj) {
       },
     });
   }
+}
+
+/**
+ * Execute all functions through this method and record the execution method
+ * @param {Function} fn
+ * */
+function autorun(fn) {
+  window.__fn__ = fn;
+  fn();
+  window.__fn__ = null;
+}
+```
+
+## Implementation of data responsive principle in Vue3
+
+```js
+/**
+ * Monitor each data in the data object through reactive
+ * @param {Object} info
+ * */
+function reactive(info) {
+  const funcs = [];
+  const proxy = new Proxy(info, {
+    get: function (target, prop) {
+      // Record dependent functions
+      if (window.__fn__ && !funcs.includes(window.__fn__)) {
+        funcs.push(window.__fn__);
+      }
+      return target[prop];
+    },
+    set: function (target, prop, value) {
+      target[prop] = value;
+      // Execute data dependent functions
+      for (let i = 0; i < funcs.length; i++) {
+        funcs[i]();
+      }
+    },
+  });
+  return proxy;
 }
 
 /**
