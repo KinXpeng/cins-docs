@@ -70,6 +70,8 @@ nav:
 
 ## Advance
 
+- 2023/06/11 DesignPattern - Added **Publish-subscribe.**
+- 2023/06/11 Added **Advance->DesignPattern** menu.
 - 2023/05/30 Vue - Added **Implementation of data responsive principle in Vue3.**
 - 2023/05/30 Vue - Added **Implementation of data responsive principle in Vue2.**
 - 2023/05/26 Component - Added **Battery information.**

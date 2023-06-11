@@ -1,6 +1,6 @@
 ---
 title: Other
-order: 5
+order: 8
 nav:
   title: Advance
   order: 2
