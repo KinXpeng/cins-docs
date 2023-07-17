@@ -8,6 +8,7 @@ nav:
 
 ## Common
 
+- 2023/07/17 Regex - Added **Strong cipher 3.**
 - 2023/05/26 Common - Added **Forced waiting.**
 - 2023/05/26 Common - Added **Text paste.**
 - 2023/05/26 Common - Added **Element scrolling.**

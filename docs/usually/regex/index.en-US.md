@@ -39,7 +39,7 @@ nav:
  * Check whether it is license plate number (excluding trailer)
  * Special vehicle calibration is currently not supported
  * @param str
- * @returns
+ * @return
  */
 const isVehicleNumber = (str: string): boolean => {
   // Traditional fuel
@@ -57,7 +57,7 @@ const isVehicleNumber = (str: string): boolean => {
 /**
  * Check whether it is a license plate number
  * @param str
- * @returns
+ * @return
  */
 const isTrailerNumber = (str: string): boolean => {
   const pattern =
@@ -105,7 +105,7 @@ const isMobileOrLandline = (str: string): boolean => {
 ```ts
 /**
  * Verification certificate number
- * @returns
+ * @return
  */
 const isIDNumber = (str: string): boolean => {
   // 15-digit ID regular expression
@@ -154,7 +154,7 @@ const isIDNumber = (str: string): boolean => {
 ```ts
 /**
  * Verify the ID number
- * @returns
+ * @return
  */
 const isIdentityNumber = (str: string): boolean => {
   // 18-digit ID regular expression
@@ -170,7 +170,7 @@ const isIdentityNumber = (str: string): boolean => {
 /**
  * Check whether the email box format is correct
  * @param str
- * @returns
+ * @return
  */
 const isEmail = (str: string): boolean => {
   const pattern = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+.)+[A-Za-z]{2,4}$/;
@@ -184,7 +184,7 @@ const isEmail = (str: string): boolean => {
 /**
  * Valid account (start with a letter, 5-16 bytes allowed, alphanumeric underscore allowed)
  * @param str
- * @returns
+ * @return
  */
 const isValidAccount = (str: string): boolean => {
   const pattern = /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
@@ -198,7 +198,7 @@ const isValidAccount = (str: string): boolean => {
 /**
  * Checks whether the color is hexadecimal
  * @param str
- * @returns
+ * @return
  */
 const isHexColor = (str: string): boolean => {
   const pattern = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
@@ -212,7 +212,7 @@ const isHexColor = (str: string): boolean => {
 /**
  * Check whether the value is an integer
  * @param str
- * @returns
+ * @return
  */
 const isInteger = (str: string): boolean => {
   const pattern = /^-?\\d+$/;
@@ -226,7 +226,7 @@ const isInteger = (str: string): boolean => {
 /**
  * Check whether it is a non-negative integer (positive integer +0)
  * @param str
- * @returns
+ * @return
  */
 const isNonNegativeInteger = (str: string): boolean => {
   const pattern = /^\d+$/;
@@ -240,7 +240,7 @@ const isNonNegativeInteger = (str: string): boolean => {
 /**
  * Check whether the value is a positive integer
  * @param str
- * @returns
+ * @return
  */
 const isPositiveInteger = (str: string): boolean => {
   const pattern = /^[0-9]*[1-9][0-9]*$/;
@@ -254,7 +254,7 @@ const isPositiveInteger = (str: string): boolean => {
 /**
  * Checks for positive floating point numbers
  * @param str
- * @returns
+ * @return
  */
 const isFPNumber = (str: string): boolean => {
   const pattern =
@@ -269,7 +269,7 @@ const isFPNumber = (str: string): boolean => {
 /**
  * Check for nonnegative floating point numbers (positive floating point numbers +0)
  * @param str
- * @returns
+ * @return
  */
 const isNonNegFloatNumber = (str: string): boolean => {
   const pattern = /^(\+)?\d+(\.\d+)?$/;
@@ -283,7 +283,7 @@ const isNonNegFloatNumber = (str: string): boolean => {
 /**
  * Postal code
  * @param str string
- * @returns
+ * @return
  */
 const verifyPostalCode = (str: string): boolean => {
   if (!/^[1-9][0-9]{5}$/.test(str)) return false;
@@ -302,7 +302,7 @@ const verifyPostalCode = (str: string): boolean => {
  * @description Weak: pure numbers, pure letters, pure special characters
  * @description Medium: Letters + digits, letters + special characters, digits + special characters
  * @description Strong: letters + digits + special characters
- * @returns Returns the processed string: weak, medium, and strong
+ * @return Returns the processed string: weak, medium, and strong
  */
 const verifyPasswordStrength = (str: string): boolean => {
   let v = '';
@@ -333,7 +333,7 @@ const verifyPasswordStrength = (str: string): boolean => {
 /**
  * Password format (The value must start with a letter and contain only letters, digits, and underscores (_))
  * @param str string
- * @returns
+ * @return
  */
 const verifyPassword = (str: string): boolean => {
   if (!/^[a-zA-Z]\w{5,15}$/.test(str)) return false;
@@ -347,7 +347,7 @@ const verifyPassword = (str: string): boolean => {
 /**
  * Strong cipher (The value contains 6 to 16 letters, digits, and special characters)
  * @param str string
- * @returns
+ * @return
  */
 const verifyPasswordPowerful = (str: string): boolean => {
   if (
@@ -366,12 +366,30 @@ const verifyPasswordPowerful = (str: string): boolean => {
 /**
  * Strong password (must contain a combination of uppercase and lowercase letters and numbers, cannot use special characters, and must be 8-16 in length) :
  * @param str
- * @returns
+ * @return
  */
 const isStrongPassword(str: string): boolean => {
   const pattern = /^(?=.d)(?=.[a-z])(?=.*[A-Z]).{8,16}$/;
   return pattern.test(str);
 }
+```
+
+### Strong cipher 3
+
+```ts
+/**
+ * Strong cipher
+ * 1.At least 8 bits
+ * 2.At least 3 types of Minuscule, uppercase letters, numbers and special characters
+ * 3.Cannot have continuous input of 3 or more digits on the keyboard
+ * @param {string} str
+ * @return
+ */
+const isStrongPassword = (str: string): boolean => {
+  const pattern =
+    /^(?!.*?(\w)\1{2})((?=(.*\d))(?=(.*[a-z]))(?=(.*[A-Z])|.*[-+_!@#$%^&*.,?])|(?=(.*\d))(?=(.*[A-Z]))(?=(.*[a-z])|.*[-+_!@#$%^&*.,?])|(?=(.*[A-Z]))(?=(.*[a-z]))(?=(.*\d)|.*[-+_!@#$%^&*.,?]))(?!.*?(?:qwe|wer|ert|rty|tyu|yui|uio|iop|asd|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|123|234|345|456|567|678|789|890)).{8,}$/;
+  return pattern.test(str);
+};
 ```
 
 ## IP address
@@ -380,7 +398,7 @@ const isStrongPassword(str: string): boolean => {
 /**
  * IP address
  * @param str string
- * @returns
+ * @return
  */
 const verifyIPAddress = (str: string): boolean => {
   if (
@@ -399,7 +417,7 @@ const verifyIPAddress = (str: string): boolean => {
 /**
  * The amount is separated by a ', '
  * @param str
- * @returns
+ * @return
  */
 const numberComma = (str: string): string => {
   let v: any = verifyNumberIntegerAndFloat(str);

@@ -39,7 +39,7 @@ nav:
  * 校验是否为车牌号（不含挂车）
  * 暂不支持特种车辆校验
  * @param str
- * @returns
+ * @return
  */
 const isVehicleNumber = (str: string): boolean => {
   // 传统燃油
@@ -57,7 +57,7 @@ const isVehicleNumber = (str: string): boolean => {
 /**
  * 校验是否为挂车牌号
  * @param str
- * @returns
+ * @return
  */
 const isTrailerNumber = (str: string): boolean => {
   const pattern =
@@ -105,7 +105,7 @@ const isMobileOrLandline = (str: string): boolean => {
 ```ts
 /**
  * 校验证件号
- * @returns
+ * @return
  */
 const isIDNumber = (str: string): boolean => {
   //15位数身份证正则表达式
@@ -154,7 +154,7 @@ const isIDNumber = (str: string): boolean => {
 ```ts
 /**
  * 校验身份证件号
- * @returns
+ * @return
  */
 const isIdentityNumber = (str: string): boolean => {
   //18位数身份证正则表达式
@@ -170,7 +170,7 @@ const isIdentityNumber = (str: string): boolean => {
 /**
  * 校验邮箱格式是否正确
  * @param str
- * @returns
+ * @return
  */
 const isEmail = (str: string): boolean => {
   const pattern = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+.)+[A-Za-z]{2,4}$/;
@@ -184,7 +184,7 @@ const isEmail = (str: string): boolean => {
 /**
  * 帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)
  * @param str
- * @returns
+ * @return
  */
 const isValidAccount = (str: string): boolean => {
   const pattern = /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
@@ -198,7 +198,7 @@ const isValidAccount = (str: string): boolean => {
 /**
  * 校验是否为十六进制颜色
  * @param str
- * @returns
+ * @return
  */
 const isHexColor = (str: string): boolean => {
   const pattern = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
@@ -212,7 +212,7 @@ const isHexColor = (str: string): boolean => {
 /**
  * 校验是否为整数
  * @param str
- * @returns
+ * @return
  */
 const isInteger = (str: string): boolean => {
   const pattern = /^-?\\d+$/;
@@ -226,7 +226,7 @@ const isInteger = (str: string): boolean => {
 /**
  * 校验是否为非负整数(正整数+0)
  * @param str
- * @returns
+ * @return
  */
 const isNonNegativeInteger = (str: string): boolean => {
   const pattern = /^\d+$/;
@@ -240,7 +240,7 @@ const isNonNegativeInteger = (str: string): boolean => {
 /**
  * 校验是否为正整数
  * @param str
- * @returns
+ * @return
  */
 const isPositiveInteger = (str: string): boolean => {
   const pattern = /^[0-9]*[1-9][0-9]*$/;
@@ -254,7 +254,7 @@ const isPositiveInteger = (str: string): boolean => {
 /**
  * 校验是否为正浮点数
  * @param str
- * @returns
+ * @return
  */
 const isFPNumber = (str: string): boolean => {
   const pattern =
@@ -269,7 +269,7 @@ const isFPNumber = (str: string): boolean => {
 /**
  * 校验是否为非负浮点数(正浮点数+0)
  * @param str
- * @returns
+ * @return
  */
 const isNonNegFloatNumber = (str: string): boolean => {
   const pattern = /^(\+)?\d+(\.\d+)?$/;
@@ -283,7 +283,7 @@ const isNonNegFloatNumber = (str: string): boolean => {
 /**
  * 邮政编码
  * @param str 当前值字符串
- * @returns
+ * @return
  */
 const verifyPostalCode = (str: string): boolean => {
   if (!/^[1-9][0-9]{5}$/.test(str)) return false;
@@ -302,7 +302,7 @@ const verifyPostalCode = (str: string): boolean => {
  * @description 弱：纯数字，纯字母，纯特殊字符
  * @description 中：字母+数字，字母+特殊字符，数字+特殊字符
  * @description 强：字母+数字+特殊字符
- * @returns 返回处理后的字符串：弱、中、强
+ * @return 返回处理后的字符串：弱、中、强
  */
 const verifyPasswordStrength = (str: string): boolean => {
   let v = '';
@@ -333,7 +333,7 @@ const verifyPasswordStrength = (str: string): boolean => {
 /**
  * 密码 (以字母开头，长度在6~16之间，只能包含字母、数字和下划线)
  * @param str 当前值字符串
- * @returns 返回 true: 密码正确
+ * @return 返回 true: 密码正确
  */
 const verifyPassword = (str: string): boolean => {
   // false: 密码不正确
@@ -349,7 +349,7 @@ const verifyPassword = (str: string): boolean => {
 /**
  * 强密码 (字母+数字+特殊字符，长度在6-16之间)
  * @param str 当前值字符串
- * @returns 返回 true: 强密码正确
+ * @return 返回 true: 强密码正确
  */
 const verifyPasswordPowerful = (str: string): boolean => {
   // false: 强密码不正确
@@ -370,12 +370,30 @@ const verifyPasswordPowerful = (str: string): boolean => {
 /**
  * 强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-16之间)：
  * @param str
- * @returns
+ * @return
  */
 const isStrongPassword(str: string): boolean => {
   const pattern = /^(?=.d)(?=.[a-z])(?=.*[A-Z]).{8,16}$/;
   return pattern.test(str);
 }
+```
+
+### 强密码 3
+
+```ts
+/**
+ * 强密码
+ * 1.至少8位
+ * 2.小写字母、大写字母、数字、特殊字符至少3类
+ * 3.不能有键盘3位及以上的连续输入
+ * @param {string} str
+ * @return
+ */
+const isStrongPassword = (str: string): boolean => {
+  const pattern =
+    /^(?!.*?(\w)\1{2})((?=(.*\d))(?=(.*[a-z]))(?=(.*[A-Z])|.*[-+_!@#$%^&*.,?])|(?=(.*\d))(?=(.*[A-Z]))(?=(.*[a-z])|.*[-+_!@#$%^&*.,?])|(?=(.*[A-Z]))(?=(.*[a-z]))(?=(.*\d)|.*[-+_!@#$%^&*.,?]))(?!.*?(?:qwe|wer|ert|rty|tyu|yui|uio|iop|asd|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|123|234|345|456|567|678|789|890)).{8,}$/;
+  return pattern.test(str);
+};
 ```
 
 ## IP 地址
@@ -384,7 +402,7 @@ const isStrongPassword(str: string): boolean => {
 /**
  * IP地址
  * @param str 当前值字符串
- * @returns
+ * @return
  */
 const verifyIPAddress = (str: string): boolean => {
   if (
@@ -403,7 +421,7 @@ const verifyIPAddress = (str: string): boolean => {
 /**
  * 金额用 `,` 区分开
  * @param str 当前值字符串
- * @returns 返回处理后的字符串
+ * @return 返回处理后的字符串
  */
 const numberComma = (str: string): string => {
   // 调用小数或整数(不可以负数)方法
