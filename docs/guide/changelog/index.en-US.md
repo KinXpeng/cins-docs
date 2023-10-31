@@ -71,6 +71,7 @@ nav:
 
 ## Advance
 
+- 2023/10/31 Added **Advance->CSS Frames** menu.
 - 2023/06/11 DesignPattern - Added **Publish-subscribe.**
 - 2023/06/11 Added **Advance->DesignPattern** menu.
 - 2023/05/30 Vue - Added **Implementation of data responsive principle in Vue3.**
