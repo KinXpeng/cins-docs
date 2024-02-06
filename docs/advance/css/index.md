@@ -254,23 +254,6 @@ export default () => {
 };
 ```
 
-## 分隔符
-
-```tsx
-import React from 'react';
-import './_styles/separator.css';
-export default () => {
-  return (
-    <div className="separator">
-      <span>首页</span>
-      <span>商城</span>
-      <span>购物车</span>
-      <span>我的</span>
-    </div>
-  );
-};
-```
-
 ## 动态头像
 
 ```tsx
@@ -472,6 +455,20 @@ export default () => {
       <div className="item"></div>
       <div className="item"></div>
       <div className="item"></div>
+    </div>
+  );
+};
+```
+
+## 跑马灯按钮
+
+```tsx
+import React from 'react';
+import './_styles/carousel.css';
+export default () => {
+  return (
+    <div className="carousel-content">
+      <button className="carousel-btn">跑马灯按钮</button>
     </div>
   );
 };

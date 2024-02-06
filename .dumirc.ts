@@ -22,13 +22,13 @@ export default defineConfig({
     },
     footer: `Copyright © ${new Date().getFullYear()} cins.cc`,
     // 通知
-    // announcementBar: {
-    //   isCloseable: true,
-    //   id: 'notice',
-    //   content: 'cins文档2.0全新出场！！！',
-    //   backgroundColor: '#f9fafc',
-    //   // textColor:''
-    // },
+    announcementBar: {
+      isCloseable: false,
+      id: 'notice',
+      content: '祝大家龙年快乐！',
+      backgroundColor: '#fbbc05',
+      textColor: '#ea4335'
+    },
     thumbBackground: true,
     settingPanelVisible: true,
     hero: {

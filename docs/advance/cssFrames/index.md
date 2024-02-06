@@ -66,3 +66,10 @@ leading-[20px] // line-height:20px;
 // 粗细
 font-[600] // font-weight:600;
 ```
+
+### 阴影
+
+```js
+// 盒子阴影
+shadow-[4px_8px_10px_rgba(214,217,222,0.8)] // box-shadow: 4px 8px 10px rgba(214,217,222,0.8)
+```

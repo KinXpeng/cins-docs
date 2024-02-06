@@ -234,3 +234,139 @@ function autorun(fn) {
   window.__fn__ = null;
 }
 ```
+
+## Encapsulate imperative components
+
+Notes:
+
+1.You need to introduce createApp to mount the component to the body, and call the removal of the component after the Confirm button or Cancel button is executed.
+
+2.The cancellation event does not need to be transmitted, and the default click is to close the pop-up window. Of course, this is just using message components as an example, and other component packaging should also be considered comprehensively, making it easy to use.
+
+1.Create Component
+
+```html
+<script setup lang="ts">
+  import type { PropType } from 'vue';
+
+  const emit = defineEmits(['cancel', 'confirm']);
+  interface IConfig {
+    title: string;
+    message: string;
+    onConfirm?: Function;
+    onCancel?: Function;
+  }
+  defineProps({
+    config: {
+      type: Object as PropType<IConfig>,
+      default: () => {
+        return {
+          title: '',
+          message: '',
+        };
+      },
+    },
+  });
+</script>
+
+<template>
+  <view
+    class="flex items-center justify-center absolute top-0 left-0 w-full h-full z-99999 bg-[#000000cc]"
+  >
+    <view class="w-4/5 h-[400rpx] bg-white rounded-lg p-3">
+      <view class="h-[260rpx] text-center">
+        <view class="font-semibold">{{ config.title }}</view>
+        <view>{{ config.message }}</view>
+      </view>
+      <view class="flex justify-between h-[100rpx]">
+        <button class="w-1/2 mr-1" @click="emit('cancel')">Cancel</button>
+        <button class="w-1/2 bg-[#2979ff] text-white" @click="emit('confirm')">
+          Confirm
+        </button>
+      </view>
+    </view>
+  </view>
+</template>
+```
+
+2.Mount components
+
+```ts
+import MessageBox from './index.vue'; // Import components
+import { createApp } from 'vue';
+
+interface IConfig {
+  title: string;
+  message: string;
+  onConfirm?: Function;
+  onCancel?: Function;
+}
+
+// Throw usage method
+export default function showMsg(config: IConfig) {
+  const app = createApp(MessageBox, {
+    config, // Component parameter configuration
+    onConfirm() {
+      // Confirm button event
+      config.onConfirm &&
+        config.onConfirm(() => {
+          app.unmount();
+          div.remove();
+        });
+    },
+    onCancel() {
+      // Cancel button event
+      if (config.onCancel) {
+        config.onCancel(() => {
+          app.unmount();
+          div.remove();
+        });
+      } else {
+        app.unmount();
+        div.remove();
+      }
+    },
+  });
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+  app.mount(div);
+}
+```
+
+3.How to use it
+
+```ts
+import showMsg from '@/components/MessageBox';
+
+const handleOpenMsg2 = () => {
+  showMsg({
+    title: 'Command based components',
+    message: 'Test content',
+    onConfirm: (close: any) => {
+      close();
+    },
+    onCancel: (close: any) => {
+      close();
+    },
+  });
+};
+```
+
+## Set printing paper direction
+
+```ts
+// Print Paper Direction Setting
+const printStyleSetting = (type: number) => {
+  const _pritnStyle = document.querySelector('#print-style');
+  if (_pritnStyle) {
+    window.document.head.removeChild(_pritnStyle);
+  }
+  const style = document.createElement('style');
+  style.id = 'print-style';
+  //portrait-direction  landscape-transverse
+  style.innerHTML = `@media print { @page {size:${
+    Number(type) === 1 ? 'portrait' : 'landscape'
+  }; }}`;
+  window.document.head.appendChild(style);
+};
+```

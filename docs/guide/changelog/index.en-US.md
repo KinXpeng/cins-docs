@@ -76,6 +76,10 @@ nav:
 
 ## Advance
 
+- 2024/02/06 CSS - Added **Carousel Button.**
+- 2024/02/06 Vue - Added **Set printing paper direction.**
+- 2024/02/06 Vue - Added **Encapsulate imperative components.**
+- 2023/12/23 CSS Frames - Added **shadow.**
 - 2023/10/31 Added **Advance->CSS Frames** menu.
 - 2023/06/11 DesignPattern - Added **Publish-subscribe.**
 - 2023/06/11 Added **Advance->DesignPattern** menu.
@@ -96,7 +100,6 @@ nav:
 - 2023/04/12 Added **Advance->Vue** menu.
 - 2023/04/08 CSS - Added **Text blending animation effect.**
 - 2023/04/03 CSS - Added **Dynamic avatar.**
-- 2023/04/03 CSS - Added **Delimiter.**
 - 2023/03/24 CSS - Added **Underline dynamic effect.**
 - 2023/03/10 CSS - Added **Pinyin labeling.**
 - 2023/03/14 Component - Added **Upload component.**

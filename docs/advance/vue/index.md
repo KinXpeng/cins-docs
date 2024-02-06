@@ -235,3 +235,139 @@ function autorun(fn) {
   window.__fn__ = null;
 }
 ```
+
+## 封装命令式组件
+
+注意事项：
+
+1.需引入 createApp 将组件挂载到 body 中，在确认按钮或取消按钮执行后调用组件的移除。
+
+2.取消事件可以不必传，默认点击关闭弹窗。当然这只是以消息组件作为示例，其他的组件封装也要考虑全面，使用起来方便即可。
+
+1.创建组件
+
+```html
+<script setup lang="ts">
+  import type { PropType } from 'vue';
+
+  const emit = defineEmits(['cancel', 'confirm']);
+  interface IConfig {
+    title: string;
+    message: string;
+    onConfirm?: Function;
+    onCancel?: Function;
+  }
+  defineProps({
+    config: {
+      type: Object as PropType<IConfig>,
+      default: () => {
+        return {
+          title: '',
+          message: '',
+        };
+      },
+    },
+  });
+</script>
+
+<template>
+  <view
+    class="flex items-center justify-center absolute top-0 left-0 w-full h-full z-99999 bg-[#000000cc]"
+  >
+    <view class="w-4/5 h-[400rpx] bg-white rounded-lg p-3">
+      <view class="h-[260rpx] text-center">
+        <view class="font-semibold">{{ config.title }}</view>
+        <view>{{ config.message }}</view>
+      </view>
+      <view class="flex justify-between h-[100rpx]">
+        <button class="w-1/2 mr-1" @click="emit('cancel')">取消</button>
+        <button class="w-1/2 bg-[#2979ff] text-white" @click="emit('confirm')">
+          确认
+        </button>
+      </view>
+    </view>
+  </view>
+</template>
+```
+
+2.挂载组件
+
+```ts
+import MessageBox from './index.vue'; // 引入组件
+import { createApp } from 'vue';
+
+interface IConfig {
+  title: string;
+  message: string;
+  onConfirm?: Function;
+  onCancel?: Function;
+}
+
+// 抛出使用方法
+export default function showMsg(config: IConfig) {
+  const app = createApp(MessageBox, {
+    config, // 组件参数配置
+    onConfirm() {
+      // 确认按钮事件
+      config.onConfirm &&
+        config.onConfirm(() => {
+          app.unmount();
+          div.remove();
+        });
+    },
+    onCancel() {
+      // 取消按钮事件
+      if (config.onCancel) {
+        config.onCancel(() => {
+          app.unmount();
+          div.remove();
+        });
+      } else {
+        app.unmount();
+        div.remove();
+      }
+    },
+  });
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+  app.mount(div);
+}
+```
+
+3.如何使用
+
+```ts
+import showMsg from '@/components/MessageBox';
+
+const handleOpenMsg2 = () => {
+  showMsg({
+    title: '命令式组件',
+    message: '测试内容',
+    onConfirm: (close: any) => {
+      close();
+    },
+    onCancel: (close: any) => {
+      close();
+    },
+  });
+};
+```
+
+## 设置打印纸张方向
+
+```ts
+// 打印纸张方向设置
+const printStyleSetting = (type: number) => {
+  const _pritnStyle = document.querySelector('#print-style');
+  if (_pritnStyle) {
+    window.document.head.removeChild(_pritnStyle);
+  }
+  const style = document.createElement('style');
+  style.id = 'print-style';
+  //portrait 纵向 landscape 横向
+  style.innerHTML = `@media print { @page {size:${
+    Number(type) === 1 ? 'portrait' : 'landscape'
+  }; }}`;
+  window.document.head.appendChild(style);
+};
+```
