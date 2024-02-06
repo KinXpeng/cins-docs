@@ -769,3 +769,18 @@ sleep(2000).then(() => {
   console.log('time');
 });
 ```
+
+## Get the current domain name
+
+```ts
+/**
+ * Get the current domain name
+ * @return {string}
+ */
+export const getDomain = (): string => {
+  const domain: string = document.location.toString();
+  const regex = /^(https?:\/\/[^/]+)/;
+  const match = domain.match(regex);
+  return match ? match[1] : '';
+};
+```

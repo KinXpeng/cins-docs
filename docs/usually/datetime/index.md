@@ -383,3 +383,89 @@ const checkTimeOverlap = (list, stime, etime) => {
   return false; // 没有时间交叉
 };
 ```
+
+## 判断日期是否为今天
+
+```ts
+/**
+ * 判断日期是否为今天
+ * @param { string } date 日期
+ * @return { boolean }
+ */
+const isToday = (date: string) => {
+  const _date = new Date(date);
+  const _today = new Date();
+  // 比较年、月、日是否相等
+  return (
+    _date.getDate() === _today.getDate() &&
+    _date.getMonth() === _today.getMonth() &&
+    _date.getFullYear() === _today.getFullYear()
+  );
+};
+```
+
+## 判断日期是否为周六日
+
+```ts
+/**
+ * 判断日期是否为周六日
+ * @param { string } date 日期
+ * @return { boolean }
+ */
+const isWeekend = (date: string) => {
+  const _date = new Date(date);
+  const day = _date.getDay(); // 获取星期几，0 表示周日，1 表示周一，依此类推
+  return day === 0 || day === 6;
+};
+```
+
+## 判断日期是否在今天（指定天数）前
+
+```ts
+/**
+ * 判断日期是否在今天（指定天数）前
+ * @param { string } date 日期
+ * @param { string } days 天数
+ * @return { boolean }
+ */
+const isBeforeDays = (date: string, days = 0) => {
+  const _date = new Date(date);
+  // 获取当前日期
+  const _today = new Date();
+  const severalDaysLater = new Date(
+    _today.getFullYear(),
+    _today.getMonth(),
+    _today.getDate() + days,
+  );
+  const inputDate = new Date(
+    _date.getFullYear(),
+    _date.getMonth(),
+    _date.getDate(),
+  );
+  // 比较日期
+  return inputDate < severalDaysLater;
+};
+```
+
+## 找出数组中的最小日期
+
+```ts
+/**
+ * 找出数组中的最小日期
+ * @param { string[] } list 日期
+ * @return { string | null }
+ */
+const findMinDate = (list: string[]) => {
+  if (list.length === 0) {
+    return null; // 数组为空，返回 null
+  }
+  let minDate = new Date(list[0]); // 假设第一个日期为最小日期
+  for (let i = 1; i < list.length; i++) {
+    const currentDate = new Date(list[i]);
+    if (currentDate < minDate) {
+      minDate = currentDate; // 找到更小的日期，更新最小日期
+    }
+  }
+  return minDate;
+};
+```

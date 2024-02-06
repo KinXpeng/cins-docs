@@ -8,6 +8,11 @@ nav:
 
 ## Common
 
+- 2024/01/03 Common - Added **Get the current domain name.**
+- 2023/11/12 Datetime - Added **Find the minimum date in the array.**
+- 2023/10/29 Datetime - Added **Determine if the date is before today (specified number of days).**
+- 2023/10/08 Datetime - Added **Determine if the date is Saturday or Sunday.**
+- 2023/09/20 Datetime - Added **Determine if the date is today.**
 - 2023/07/17 Regex - Added **Strong cipher 3.**
 - 2023/05/26 Common - Added **Forced waiting.**
 - 2023/05/26 Common - Added **Text paste.**

@@ -391,3 +391,89 @@ const checkTimeOverlap = (list, stime, etime) => {
   return false; // No time crossing
 };
 ```
+
+## Determine if the date is today
+
+```ts
+/**
+ * Determine if the date is today
+ * @param { string } date date
+ * @return { boolean }
+ */
+const isToday = (date: string) => {
+  const _date = new Date(date);
+  const _today = new Date();
+  // Compare whether years, months, and days are equal
+  return (
+    _date.getDate() === _today.getDate() &&
+    _date.getMonth() === _today.getMonth() &&
+    _date.getFullYear() === _today.getFullYear()
+  );
+};
+```
+
+## Determine if the date is Saturday or Sunday
+
+```ts
+/**
+ * Determine if the date is Saturday or Sunday
+ * @param { string } date
+ * @return { boolean }
+ */
+const isWeekend = (date: string) => {
+  const _date = new Date(date);
+  const day = _date.getDay(); // Get the day of the week, where 0 represents Sunday, 1 represents Monday, and so on
+  return day === 0 || day === 6;
+};
+```
+
+## Determine if the date is before today (specified number of days)
+
+```ts
+/**
+ * Determine if the date is before today (specified number of days)
+ * @param { string } date
+ * @param { string } days
+ * @return { boolean }
+ */
+const isBeforeDays = (date: string, days = 0) => {
+  const _date = new Date(date);
+  // Get current date
+  const _today = new Date();
+  const severalDaysLater = new Date(
+    _today.getFullYear(),
+    _today.getMonth(),
+    _today.getDate() + days,
+  );
+  const inputDate = new Date(
+    _date.getFullYear(),
+    _date.getMonth(),
+    _date.getDate(),
+  );
+  // Compare dates
+  return inputDate < severalDaysLater;
+};
+```
+
+## Find the minimum date in the array
+
+```ts
+/**
+ * Find the minimum date in the array
+ * @param { string[] } list
+ * @return { string | null }
+ */
+const findMinDate = (list: string[]) => {
+  if (list.length === 0) {
+    return null; // Array is empty, return null
+  }
+  let minDate = new Date(list[0]); // Assuming the first date is the minimum date
+  for (let i = 1; i < list.length; i++) {
+    const currentDate = new Date(list[i]);
+    if (currentDate < minDate) {
+      minDate = currentDate; // Find a smaller date and update the minimum date
+    }
+  }
+  return minDate;
+};
+```
