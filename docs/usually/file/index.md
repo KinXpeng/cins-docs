@@ -355,3 +355,51 @@ const base64ToFile = (base64String: string, fileName: string): File => {
     });
   };
   ```
+
+## 文件流下载
+
+### 将文件流转换为文件下载
+
+```ts
+/**
+ * 将文件流转换为文件下载
+ * @param res {AxiosResponse<Blob>}
+ */
+import { AxiosResponse } from 'axios';
+const download = (res: AxiosResponse<Blob>) => {
+  const contentDisposition = res.headers['content-disposition'];
+  const fileName = decodeURIComponent(
+    contentDisposition.split(';')[1].split('filename=')[1].replace(/"/g, ''),
+  ); // 从响应头中获取文件名
+  const url = window.URL.createObjectURL(new Blob([res.data])); // 创建Blob对象的URL
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', fileName); // 设置下载文件的文件名
+  document.body.appendChild(link);
+  link.click(); // 触发点击事件下载文件
+  document.body.removeChild(link); // 移除创建的a标签
+  window.URL.revokeObjectURL(url); // 释放URL对象
+};
+```
+
+### 接口请求头配置
+
+```ts
+/**
+ * 接口请求头配置
+ * @param params 请求参数
+ */
+import { download } from '@/utils/file';
+const exportList = async (params) => {
+  const res = await request.get({
+    url: '/api/export',
+    params,
+    headers: {
+      Accept: '*/*',
+    },
+    responseType: 'blob',
+  });
+  download(res);
+  return res && res.data;
+};
+```

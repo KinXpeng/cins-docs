@@ -351,3 +351,51 @@ const base64ToFile = (base64String: string, fileName: string): File => {
     });
   };
   ```
+
+## File stream download
+
+### Convert file stream to file download
+
+```ts
+/**
+ * Convert file stream to file download
+ * @param res {AxiosResponse<Blob>}
+ */
+import { AxiosResponse } from 'axios';
+const download = (res: AxiosResponse<Blob>) => {
+  const contentDisposition = res.headers['content-disposition'];
+  const fileName = decodeURIComponent(
+    contentDisposition.split(';')[1].split('filename=')[1].replace(/"/g, ''),
+  ); // Get the file name from the response header
+  const url = window.URL.createObjectURL(new Blob([res.data])); // Create URL for Blob object
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', fileName); // Set the file name for downloading files
+  document.body.appendChild(link);
+  link.click(); // Trigger click event to download file
+  document.body.removeChild(link); // Remove the created a tag
+  window.URL.revokeObjectURL(url); // Release URL Object
+};
+```
+
+### Interface request header configuration
+
+```ts
+/**
+ * Interface request header configuration
+ * @param params Request parameters
+ */
+import { download } from '@/utils/file';
+const exportList = async (params) => {
+  const res = await request.get({
+    url: '/api/export',
+    params,
+    headers: {
+      Accept: '*/*',
+    },
+    responseType: 'blob',
+  });
+  download(res);
+  return res && res.data;
+};
+```

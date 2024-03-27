@@ -8,6 +8,7 @@ nav:
 
 ## Common
 
+- 2024/03/27 File - Added **File stream download.**
 - 2024/01/03 Common - Added **Get the current domain name.**
 - 2023/11/12 Datetime - Added **Find the minimum date in the array.**
 - 2023/10/29 Datetime - Added **Determine if the date is before today (specified number of days).**
