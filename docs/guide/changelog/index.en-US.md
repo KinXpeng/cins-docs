@@ -66,39 +66,50 @@ nav:
 - 2022/12/27 Array Object - Added **Filter object attributes.**
 - 2022/12/27 Common - Added **Copy the text to the clipboard.**
 - 2022/12/27 Datetime - Added **Gets the day of the year in which a date is located.**
-- 2022/12/02 Datetime - Added **gets the duration between two times.**
-- 2022/12/02 Datetime - Added **calculate the sum of start time and time length.**
-- 2022/11/30 Common - Added **convert the data of json to URL parameters.**
-- 2022/11/30 Datetime - Added **every day of a certain year and a certain month.**
-- 2022/11/30 Datetime - Added **the number of days in a month and a year.**
-- 2022/11/28 Common - Added **deep copy.**
-- 2022/11/18 Regex - Added **regular syntax reference.**
-- 2022/11/17 Regex - Added **regulars compatible with mobile phone numbers and landline numbers.**
+- 2022/12/02 Datetime - Added **Gets the duration between two times.**
+- 2022/12/02 Datetime - Added **Calculate the sum of start time and time length.**
+- 2022/11/30 Common - Added **Convert the data of json to URL parameters.**
+- 2022/11/30 Datetime - Added **Every day of a certain year and a certain month.**
+- 2022/11/30 Datetime - Added **The number of days in a month and a year.**
+- 2022/11/28 Common - Added **Deep copy.**
+- 2022/11/18 Regex - Added **Regular syntax reference.**
+- 2022/11/17 Regex - Added **Regulars compatible with mobile phone numbers and landline numbers.**
 
 ## Advance
 
+- 2024/04/10 Mini program - Added **WeChat official account realizes sharing friends and circle of friends.**
+- 2024/04/10 Mini program - Added **Long press the iOS Apple app screen to display three small menus: "Copy, Search, and Translate".**
+- 2024/04/10 Mini program - Added **How to exit a program with a uniapp packaged app.**
+- 2024/04/10 Mini program - Added **After packaging with Uniapp, launching the application will pop up an Html5+runtime pop-up box.**
+- 2024/04/10 Common - Added **Text recognition.**
+- 2024/04/08 Git - Added **Overwrite one branch of code over another branch.**
+- 2024/04/08 Git - Added **Avoid duplicate password input when using HTTPS cloning.**
+- 2024/04/08 Git - Added **Switch branches and merge branches.**
+- 2024/04/08 Git - Added **Save local changes when switching branches.**
+- 2024/04/08 Git - Added **Configure multiple git accounts using gum.**
+- 2024/04/08 Git - Added **Switch branch and remote warehouse association.**
 - 2024/02/06 CSS - Added **Carousel Button.**
-- 2024/02/06 Vue - Added **Set printing paper direction.**
-- 2024/02/06 Vue - Added **Encapsulate imperative components.**
+- 2024/02/06 Common - Added **Set printing paper direction.**
+- 2024/02/06 Common - Added **Encapsulate imperative components.**
 - 2023/12/23 CSS Frames - Added **shadow.**
 - 2023/10/31 Added **Advance->CSS Frames** menu.
 - 2023/06/11 DesignPattern - Added **Publish-subscribe.**
 - 2023/06/11 Added **Advance->DesignPattern** menu.
-- 2023/05/30 Vue - Added **Implementation of data responsive principle in Vue3.**
-- 2023/05/30 Vue - Added **Implementation of data responsive principle in Vue2.**
+- 2023/05/30 Common - Added **Implementation of data responsive principle in Vue3.**
+- 2023/05/30 Common - Added **Implementation of data responsive principle in Vue2.**
 - 2023/05/26 Component - Added **Battery information.**
 - 2023/05/26 CSS - Added **User experience evaluation.**
 - 2023/05/08 Other - Added **Obtain device battery information.**
 - 2023/05/08 Added **Advance->Other** menu.
 - 2023/04/24 Component - Added **Video component.**
-- 2023/04/23 Vue - Added **Inline style px to vw.**
+- 2023/04/23 Common - Added **Inline style px to vw.**
 - 2023/04/22 CSS - Added **Grid layout animation.**
-- 2023/04/19 Vue - Added **Mobile left slide event.**
+- 2023/04/19 Common - Added **Mobile left slide event.**
 - 2023/04/18 CSS - Added **Button mirror effect.**
 - 2023/04/17 CSS - Added **Dynamic clock.**
 - 2023/04/14 CSS - Added **Stretchable box.**
 - 2023/04/14 CSS - Added **Card folding.**
-- 2023/04/12 Added **Advance->Vue** menu.
+- 2023/04/12 Added **Advance->Common** menu.
 - 2023/04/08 CSS - Added **Text blending animation effect.**
 - 2023/04/03 CSS - Added **Dynamic avatar.**
 - 2023/03/24 CSS - Added **Underline dynamic effect.**
@@ -109,13 +120,13 @@ nav:
 - 2023/02/15 CSS - Added **Beyond multiline omission.**
 - 2023/02/06 Component - Added **mobile prompt component.**
 - 2023/02/06 Added **Advance->Component** menu.
-- 2023/02/03 Mini program - Added **the webview is used in uniapp.**
+- 2023/02/03 Mini program - Added **The webview is used in uniapp.**
 - 2023/02/03 Added **Advance->Mini program** menu.
-- 2022/12/03 CSS - Added **achieve button throttling effect by CSS.**
-- 2022/12/02 CSS - Added **pseudo class to achieve the prompt icon effect.**
-- 2022/12/01 CSS - Added **the site turns gray.**
-- 2022/11/28 CSS - Added **a text stroke.**
-- 2022/11/02 CSS - Added **the input box jitter.**
+- 2022/12/03 CSS - Added **Achieve button throttling effect by CSS.**
+- 2022/12/02 CSS - Added **Pseudo class to achieve the prompt icon effect.**
+- 2022/12/01 CSS - Added **The site turns gray.**
+- 2022/11/28 CSS - Added **A text stroke.**
+- 2022/11/02 CSS - Added **The input box jitter.**
 
 ## Column
 

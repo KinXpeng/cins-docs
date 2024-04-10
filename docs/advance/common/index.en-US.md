@@ -1,6 +1,6 @@
 ---
-title: Vue
-order: 4
+title: Common
+order: 1
 nav:
   title: Advance
   order: 2
@@ -368,5 +368,74 @@ const printStyleSetting = (type: number) => {
     Number(type) === 1 ? 'portrait' : 'landscape'
   }; }}`;
   window.document.head.appendChild(style);
+};
+```
+
+## Obtain device battery information
+
+```js
+navigator.getBattery().then(function (battery) {
+  // Obtain the remaining percentage of device power
+  var level = battery.level; // The maximum value is 1, which corresponds to 100% electricity
+  console.log('Level: ' + level * 100 + '%');
+
+  // Obtain the charging status of the device
+  var charging = battery.charging;
+  console.log('Charging state: ' + charging);
+
+  // Get how long it takes for the device to be fully charged
+  var chargingTime = battery.chargingTime;
+  console.log('The time it takes to fully charge: ' + chargingTime);
+
+  // Obtain the time required for complete discharge of the device
+  var dischargingTime = battery.dischargingTime;
+  console.log('The time required for complete discharge: ' + dischargingTime);
+});
+```
+
+## Text recognition
+
+```ts
+// Recognizing text in images (optional in both Chinese and English)
+import Tesseract from 'tesseract.js';
+
+/**
+ * Identify images
+ * @param {string} url Image address
+ * @param {string} language Recognized language chi_sim Chinese/eng English
+ * */
+const resolveImg = (url: string, language: string) => {
+  return Tesseract.recognize(url, language)
+    .then(({ data: { text } }) => {
+      return {
+        url: url,
+        text: text,
+      };
+    })
+    .catch(() => {
+      return {
+        url: url,
+        text: '',
+      };
+    });
+};
+
+/**
+ * Image processing
+ * @param {string[]} urlList Image Address List
+ * @param {string} language Recognized language chi_sim Chinese/eng English
+ * */
+export interface IRecognize {
+  url: string;
+  text: string;
+}
+export const recognizeText = async (
+  urlList: string[],
+  language = 'chi_sim',
+) => {
+  const result: IRecognize[] = await Promise.all(
+    urlList.map((item) => resolveImg(item, language)),
+  );
+  return result;
 };
 ```

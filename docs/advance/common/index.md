@@ -1,6 +1,6 @@
 ---
-title: Vue
-order: 4
+title: 通用
+order: 1
 nav:
   title: 进阶
   order: 2
@@ -369,5 +369,74 @@ const printStyleSetting = (type: number) => {
     Number(type) === 1 ? 'portrait' : 'landscape'
   }; }}`;
   window.document.head.appendChild(style);
+};
+```
+
+## 获取设备电池信息
+
+```js
+navigator.getBattery().then(function (battery) {
+  // 获取设备电量剩余百分比
+  var level = battery.level; //最大值为1,对应电量100%
+  console.log('Level: ' + level * 100 + '%');
+
+  // 获取设备充电状态
+  var charging = battery.charging;
+  console.log('充电状态: ' + charging);
+
+  // 获取设备完全充电需要的时间
+  var chargingTime = battery.chargingTime;
+  console.log('完全充电需要的时间: ' + chargingTime);
+
+  // 获取设备完全放电需要的时间
+  var dischargingTime = battery.dischargingTime;
+  console.log('完全放电需要的时间: ' + dischargingTime);
+});
+```
+
+## 文字识别
+
+```ts
+// 识别图片中的文字（中英文可选）
+import Tesseract from 'tesseract.js';
+
+/**
+ * 识别图片
+ * @param {string} url 图片地址
+ * @param {string} language 识别的语言  chi_sim 中文 / eng 英文
+ * */
+const resolveImg = (url: string, language: string) => {
+  return Tesseract.recognize(url, language)
+    .then(({ data: { text } }) => {
+      return {
+        url: url,
+        text: text,
+      };
+    })
+    .catch(() => {
+      return {
+        url: url,
+        text: '',
+      };
+    });
+};
+
+/**
+ * 图片处理
+ * @param {string[]} urlList 图片地址列表
+ * @param {string} language 识别的语言  chi_sim 中文 / eng 英文
+ * */
+export interface IRecognize {
+  url: string;
+  text: string;
+}
+export const recognizeText = async (
+  urlList: string[],
+  language = 'chi_sim',
+) => {
+  const result: IRecognize[] = await Promise.all(
+    urlList.map((item) => resolveImg(item, language)),
+  );
+  return result;
 };
 ```
