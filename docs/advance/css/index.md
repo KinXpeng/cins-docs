@@ -473,3 +473,80 @@ export default () => {
   );
 };
 ```
+
+## 加入购物车
+
+```tsx
+import React, { useRef, useEffect } from 'react';
+import './_styles/moveball.css';
+import { MoveBall } from './_js/moveball.js';
+export default () => {
+  const moveballContent = useRef();
+  const plus1 = useRef();
+  const plus2 = useRef();
+  const cart = useRef();
+  const init = () => {
+    plus1.current.onclick = function (e) {
+      const moveball = new MoveBall({
+        startDom: plus1.current,
+        endDom: cart.current,
+        width: 60,
+        height: 60,
+      });
+      moveball.freeThrow();
+    };
+    plus2.current.onclick = function (e) {
+      const moveball = new MoveBall({
+        startDom: plus2.current,
+        endDom: cart.current,
+        customStyle: {
+          backgroundColor: 'blue',
+        },
+      });
+      moveball.freeThrow();
+    };
+  };
+  useEffect(() => {
+    if (moveballContent.current) {
+      init();
+    }
+  });
+  return (
+    <div ref={moveballContent} className="moveball-content">
+      <div className="goods-card">
+        <div className="goods-img">图片</div>
+        <div className="goods-info">
+          <div>
+            <p className="title">商品名称</p>
+            <p className="desc">描述信息</p>
+          </div>
+          <div className="bottom">
+            <span className="price">￥2.00</span>
+            <span ref={plus1} className="plus">
+              +
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="goods-card">
+        <div className="goods-img">图片</div>
+        <div className="goods-info">
+          <div>
+            <p className="title">商品名称</p>
+            <p className="desc">描述信息</p>
+          </div>
+          <div className="bottom">
+            <span className="price">￥2.00</span>
+            <span ref={plus2} className="plus">
+              +
+            </span>
+          </div>
+        </div>
+      </div>
+      <div ref={cart} className="cart">
+        购物车
+      </div>
+    </div>
+  );
+};
+```

@@ -1,0 +1,72 @@
+.moveball-content {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
+.moveball-content .goods-card {
+  display: flex;
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  box-shadow: 0 0 4px #ccc;
+  padding: 20px 10px;
+  margin-bottom: 30px;
+}
+.moveball-content .goods-card .goods-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 100px;
+  border-radius: 6px;
+  background-color: #efefef;
+  color: #ddd;
+}
+.moveball-content .goods-card .goods-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% - 110px);
+  margin-left: 30px;
+}
+.moveball-content .goods-card .goods-info .title {
+  font-weight: 600;
+}
+.moveball-content .goods-card .goods-info .desc,
+.moveball-content .goods-card .goods-info .price {
+  color: #aaa;
+}
+.moveball-content .goods-card .goods-info .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.moveball-content .goods-card .goods-info .plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: red;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+.moveball-content .goods-card .goods-info .plus:active {
+  background-color: #df8380;
+}
+.moveball-content .cart {
+  position: absolute;
+  right: calc(50% - 50px);
+  bottom: 0;
+  width: 100px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: darkseagreen;
+  color: #fff;
+}
