@@ -554,3 +554,183 @@ export default () => {
   );
 };
 ```
+
+## Honeycomb layout
+
+```tsx
+import React, { useRef, useEffect } from 'react';
+import './_styles/honeycomb.css';
+export default () => {
+  // Random color
+  const randomColor = () => {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  };
+
+  // Get the honeycomb parent node
+  const honeycombContainer = useRef();
+
+  useEffect(() => {
+    const parentElement = honeycombContainer.current;
+    if (parentElement) {
+      const _eleList = Array.from(parentElement.children).map(
+        (childElement) => {
+          if (childElement.children && childElement.children.length) {
+            return {
+              element: childElement,
+              children: Array.from(childElement.children),
+            };
+          }
+        },
+      );
+
+      // Register events for each node
+      _eleList.forEach((item, index) => {
+        item.children?.forEach((ele, ind) => {
+          // Random background color
+          ele.style.backgroundColor = randomColor();
+
+          // mouseenter
+          ele.addEventListener('mouseenter', () => {
+            ele.style.transform = 'scale(1.1)';
+            const _index = index % 2 === 0 ? ind : ind - 1;
+
+            // left
+            if (item.children[ind - 1]) {
+              item.children[ind - 1].style.transform = 'scale(0.8)';
+            }
+
+            // right
+            if (item.children[ind + 1]) {
+              item.children[ind + 1].style.transform = 'scale(0.8)';
+            }
+
+            // top
+            if (index - 1 >= 0) {
+              const _prevItems = _eleList[index - 1].children;
+              if (_prevItems[_index]) {
+                _prevItems[_index].style.transform = 'scale(0.8)';
+              }
+              if (_prevItems[_index + 1]) {
+                _prevItems[_index + 1].style.transform = 'scale(0.8)';
+              }
+            }
+
+            // bottom
+            if (index + 1 < _eleList.length) {
+              const _nextItems = _eleList[index + 1].children;
+              if (_nextItems[_index]) {
+                _nextItems[_index].style.transform = 'scale(0.8)';
+              }
+              if (_nextItems[_index + 1]) {
+                _nextItems[_index + 1].style.transform = 'scale(0.8)';
+              }
+            }
+          });
+
+          // mouseleave
+          ele.addEventListener('mouseleave', () => {
+            ele.style.transform = 'scale(1)';
+            const _index = index % 2 === 0 ? ind : ind - 1;
+
+            // left
+            if (item.children[ind - 1]) {
+              item.children[ind - 1].style.transform = 'scale(1)';
+            }
+
+            // right
+            if (item.children[ind + 1]) {
+              item.children[ind + 1].style.transform = 'scale(1)';
+            }
+
+            // top
+            if (index - 1 >= 0) {
+              const _prevItems = _eleList[index - 1].children;
+              if (_prevItems[_index]) {
+                _prevItems[_index].style.transform = 'scale(1)';
+              }
+              if (_prevItems[_index + 1]) {
+                _prevItems[_index + 1].style.transform = 'scale(1)';
+              }
+            }
+
+            // bottom
+            if (index + 1 < _eleList.length) {
+              const _nextItems = _eleList[index + 1].children;
+              if (_nextItems[_index]) {
+                _nextItems[_index].style.transform = 'scale(1)';
+              }
+              if (_nextItems[_index + 1]) {
+                _nextItems[_index + 1].style.transform = 'scale(1)';
+              }
+            }
+          });
+        });
+      });
+    }
+  }, []);
+  return (
+    <div ref={honeycombContainer} className="honeycomb-content">
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+    </div>
+  );
+};
+```

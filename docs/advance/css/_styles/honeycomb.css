@@ -1,0 +1,40 @@
+.honeycomb-content {
+  --n: 9;
+  --size: calc(800px / var(--n));
+  overflow: hidden;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.honeycomb-content .line {
+  display: flex;
+  width: 100%;
+}
+
+/* 偶数行 */
+.honeycomb-content .line:nth-child(even) {
+  transform: translateX(calc(var(--size) / -2));
+}
+
+/* 第二行开始 */
+.honeycomb-content .line:nth-child(n + 2) {
+  margin-top: calc(var(--size) / -6);
+}
+
+/* 单个多边形 */
+.honeycomb-content .line .item {
+  flex-shrink: 0;
+  width: var(--size);
+  height: var(--size);
+  background-color: #ccc;
+  transition: 0.3s;
+  -webkit-clip-path: polygon(
+    50% 0%,
+    95% 25%,
+    95% 75%,
+    50% 100%,
+    5% 75%,
+    5% 25%
+  );
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+}

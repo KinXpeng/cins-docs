@@ -550,3 +550,183 @@ export default () => {
   );
 };
 ```
+
+## 蜂巢布局
+
+```tsx
+import React, { useRef, useEffect } from 'react';
+import './_styles/honeycomb.css';
+export default () => {
+  // 随机颜色
+  const randomColor = () => {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  };
+
+  // 获取蜂巢父节点
+  const honeycombContainer = useRef();
+
+  useEffect(() => {
+    const parentElement = honeycombContainer.current;
+    if (parentElement) {
+      const _eleList = Array.from(parentElement.children).map(
+        (childElement) => {
+          if (childElement.children && childElement.children.length) {
+            return {
+              element: childElement,
+              children: Array.from(childElement.children),
+            };
+          }
+        },
+      );
+
+      // 为每个节点注册事件
+      _eleList.forEach((item, index) => {
+        item.children?.forEach((ele, ind) => {
+          // 随机背景色
+          ele.style.backgroundColor = randomColor();
+
+          // 鼠标移入
+          ele.addEventListener('mouseenter', () => {
+            ele.style.transform = 'scale(1.1)';
+            const _index = index % 2 === 0 ? ind : ind - 1;
+
+            // 左
+            if (item.children[ind - 1]) {
+              item.children[ind - 1].style.transform = 'scale(0.8)';
+            }
+
+            // 右
+            if (item.children[ind + 1]) {
+              item.children[ind + 1].style.transform = 'scale(0.8)';
+            }
+
+            // 上
+            if (index - 1 >= 0) {
+              const _prevItems = _eleList[index - 1].children;
+              if (_prevItems[_index]) {
+                _prevItems[_index].style.transform = 'scale(0.8)';
+              }
+              if (_prevItems[_index + 1]) {
+                _prevItems[_index + 1].style.transform = 'scale(0.8)';
+              }
+            }
+
+            // 下
+            if (index + 1 < _eleList.length) {
+              const _nextItems = _eleList[index + 1].children;
+              if (_nextItems[_index]) {
+                _nextItems[_index].style.transform = 'scale(0.8)';
+              }
+              if (_nextItems[_index + 1]) {
+                _nextItems[_index + 1].style.transform = 'scale(0.8)';
+              }
+            }
+          });
+
+          // 鼠标移出
+          ele.addEventListener('mouseleave', () => {
+            ele.style.transform = 'scale(1)';
+            const _index = index % 2 === 0 ? ind : ind - 1;
+
+            // 左
+            if (item.children[ind - 1]) {
+              item.children[ind - 1].style.transform = 'scale(1)';
+            }
+
+            // 右
+            if (item.children[ind + 1]) {
+              item.children[ind + 1].style.transform = 'scale(1)';
+            }
+
+            // 上
+            if (index - 1 >= 0) {
+              const _prevItems = _eleList[index - 1].children;
+              if (_prevItems[_index]) {
+                _prevItems[_index].style.transform = 'scale(1)';
+              }
+              if (_prevItems[_index + 1]) {
+                _prevItems[_index + 1].style.transform = 'scale(1)';
+              }
+            }
+
+            // 下
+            if (index + 1 < _eleList.length) {
+              const _nextItems = _eleList[index + 1].children;
+              if (_nextItems[_index]) {
+                _nextItems[_index].style.transform = 'scale(1)';
+              }
+              if (_nextItems[_index + 1]) {
+                _nextItems[_index + 1].style.transform = 'scale(1)';
+              }
+            }
+          });
+        });
+      });
+    }
+  }, []);
+  return (
+    <div ref={honeycombContainer} className="honeycomb-content">
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+      <div className="line">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+    </div>
+  );
+};
+```
