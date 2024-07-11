@@ -734,3 +734,109 @@ export default () => {
   );
 };
 ```
+
+## Stroke animation
+
+```tsx
+import React from 'react';
+import './_styles/strokeanimation.css';
+export default () => {
+  return (
+    <div className="strokeanimation-content">
+      <svg width="100%" height="100%">
+        <defs>
+          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop
+              offset="0%"
+              style={{ stopColor: '#027a96', stopOpacity: '1' }}
+            />
+            <stop
+              offset="10%"
+              style={{ stopColor: '#8ecc9a', stopOpacity: '1' }}
+            />
+            <stop
+              offset="20%"
+              style={{ stopColor: '#dbda09', stopOpacity: '1' }}
+            />
+            <stop
+              offset="30%"
+              style={{ stopColor: '#fbd12e', stopOpacity: '1' }}
+            />
+            <stop
+              offset="40%"
+              style={{ stopColor: '#f5ac3a', stopOpacity: '1' }}
+            />
+            <stop
+              offset="50%"
+              style={{ stopColor: '#f56c59', stopOpacity: '1' }}
+            />
+            <stop
+              offset="60%"
+              style={{ stopColor: '#f35144', stopOpacity: '1' }}
+            />
+            <stop
+              offset="70%"
+              style={{ stopColor: '#dc99be', stopOpacity: '1' }}
+            />
+            <stop
+              offset="80%"
+              style={{ stopColor: '#6060a2', stopOpacity: '1' }}
+            />
+            <stop
+              offset="90%"
+              style={{ stopColor: '#6c9ce3', stopOpacity: '1' }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: '#6868c2', stopOpacity: '1' }}
+            />
+          </linearGradient>
+          <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop
+              offset="0%"
+              style={{ stopColor: '#5fa2d8', stopOpacity: 1 }}
+            />
+            <stop
+              offset="50%"
+              style={{ stopColor: '#8093e5', stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: '#6261b9', stopOpacity: 1 }}
+            />
+          </linearGradient>
+          <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop
+              offset="0%"
+              style={{ stopColor: '#5fa2d8', stopOpacity: 1 }}
+            />
+            <stop
+              offset="50%"
+              style={{ stopColor: '#4da3d3', stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: '#72b9d6', stopOpacity: 1 }}
+            />
+          </linearGradient>
+        </defs>
+        <path
+          className="path path-1"
+          d="M208,338c38-16.67,73.74-45.72,97.33-66,21.33-18.33,32.67-35.67,37.33-52.67C347.12,203.12,344,192,332,192c-11,0-21,10.33-24.94,27.68-4.52,19.89-22.06,107.82-29.39,149,15.67-72.33,36.33-81.33,53.67-81.33,22.33,0,24.67,18.67,19.42,39-5.43,21.07-7.42,44.32,17.91,44.32,18,0,35.53-8.17,52.67-20,14-9.67,23-24,23-40,0-13.42-8-23.33-20.67-23.33s-24.33,12-24.33,33.33c0,27,16.33,48,44,48,25.67,0,47.67-19.67,62-44.67,13.61-23.74,30.67-64.67,33.33-92.67s-5.33-36-18.67-36-24.67,17.33-28.67,43.33S486,302,491.33,330s28,37.67,46,37.67,38.17-15.67,52-37c16.54-25.51,35.87-67.45,38.67-102,2-24.67-8.67-33.33-20-33.33-14.67,0-23.33,13.33-28,38-4.5,23.81-8,64-2,94,4.64,23.21,25.33,40.33,44.67,40.33s32.67-19,36.67-42.33"
+          transform="translate(-199 -183)"
+        />
+        <path
+          className="path path-2"
+          d="M697.33,287.33C672,287.33,661.33,305,659,327c-2.81,26.54,10.33,41.67,29.67,41.67,22,0,34.54-20.78,36.67-40.67,2-18.67-7.39-39.13-28-40.67"
+          transform="translate(-199 -183)"
+        />
+        <path
+          className="path path-3"
+          d="M714.8,295.12c12.11,12.26,43.53,9.55,56.53-5.79"
+          transform="translate(-199 -183)"
+        />
+      </svg>
+    </div>
+  );
+};
+```
