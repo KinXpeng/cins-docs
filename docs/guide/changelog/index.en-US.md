@@ -77,7 +77,7 @@ nav:
 
 ## Advance
 
-- 2024/07/11 CSS - Added **Stroke animation.**
+- 2024/07/11 CSS - Added **Sketching animation.**
 - 2024/07/10 CSS - Added **Honeycomb layout.**
 - 2024/05/15 CSS - Added **Add to shopping cart.**
 - 2024/04/10 Mini program - Added **WeChat official account realizes sharing friends and circle of friends.**

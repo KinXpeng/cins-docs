@@ -734,12 +734,25 @@ export default () => {
 ## 描边动画
 
 ```tsx
-import React from 'react';
-import './_styles/strokeanimation.css';
+import React, { useRef, useEffect } from 'react';
+import './_styles/sketching-animation.css';
 export default () => {
+  const sketchingSvg = useRef();
+  useEffect(() => {
+    const sketchingElement = sketchingSvg.current;
+    if (sketchingElement) {
+      setInterval(() => {
+        sketchingElement.style.display = 'none';
+      }, 5000);
+
+      setInterval(() => {
+        sketchingElement.style.display = 'block';
+      }, 5100);
+    }
+  }, []);
   return (
-    <div className="strokeanimation-content">
-      <svg width="100%" height="100%">
+    <div className="sketching-animation-content">
+      <svg ref={sketchingSvg} width="100%" height="100%">
         <defs>
           <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop
