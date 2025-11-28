@@ -9,7 +9,7 @@
 
 #### ⛱️ 线上预览
 
-- 线上文档预览 <a href="https://docs.cins.cc" target="_blank">https://docs.cins.cc</a>
+- 线上文档预览 <a href="https://docs.kinxpeng.cn" target="_blank">https://docs.kinxpeng.cn</a>
 
 #### 💒 代码仓库
 
